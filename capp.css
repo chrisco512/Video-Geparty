@@ -1,0 +1,33 @@
+table.imagetable {
+	font-family: verdana,arial,sans-serif;
+	font-size:14px;
+	color:#FFFFFF;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+	height: 70%;
+	width: 80%;
+	right: 10px;
+	top: 10px;
+	position: absolute;
+	text-align: center;
+}
+table.imagetable tr {
+	height: 16.6%;
+}
+table.imagetable th {
+	background:#0000FF url('cell-blue.jpg');
+	border-width: 3px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #FFFFFF;
+	width: 16.6%;
+}
+table.imagetable td {
+	background:#0000FF url('cell-grey.jpg');
+	border-width: 3px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #FFFFFF;
+	font-size:1em;
+}
