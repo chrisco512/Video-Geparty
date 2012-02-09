@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/css" href="cd_catalog.css"?>
+<game>
+  <category>
+    <cid>0</cid>
+    <title>Famous Texans</title>
+    <q1>$100</q1>
+    <q2>$200</q2>
+    <q3>$300</q3>
+    <q4>$400</q4>
+    <q5>$500</q5>
+  </category>
+  <category>
+    <cid>1</cid>
+    <title>Before and After</title>
+    <q1>$100</q1>
+    <q2>$200</q2>
+    <q3>$300</q3>
+    <q4>$400</q4>
+    <q5>$500</q5>
+  </category>
+  <category>
+    <cid>2</cid>
+    <title>Suits of Cards</title>
+    <q1>$100</q1>
+    <q2>$200</q2>
+    <q3>$300</q3>
+    <q4>$400</q4>
+    <q5>$500</q5>
+  </category>
+  <category>
+    <cid>3</cid>
+    <title>World Capitals</title>
+    <q1>$100</q1>
+    <q2>$200</q2>
+    <q3>$300</q3>
+    <q4>$400</q4>
+    <q5>$500</q5>
+  </category>
+  <category>
+    <cid>4</cid>
+    <title>Mammals</title>
+    <q1>$100</q1>
+    <q2>$200</q2>
+    <q3>$300</q3>
+    <q4>$400</q4>
+    <q5>$500</q5>
+  </category>
+  <category>
+    <cid>5</cid>
+    <title>Time Killers</title>
+    <q1>$100</q1>
+    <q2>$200</q2>
+    <q3>$300</q3>
+    <q4>$400</q4>
+    <q5>$500</q5>
+  </category>
+</game>

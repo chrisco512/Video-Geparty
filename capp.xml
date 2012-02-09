@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Module>
+    <!-- /*
+ * Copyright (c) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */ -->
+  <ModulePrefs title="Starter App">
+	  <Require feature="rpc"/>
+	  <Require feature="views"/>
+  </ModulePrefs>
+  <Content type="html">
+  
+    <![CDATA[
+<!DOCTYPE html>
+<html>
+<head>
+<!-- The hangout API JavaScript. Always include this first -->
+<script src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=0.1"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/jquery.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/capp2.js"></script>
+
+<link rel="stylesheet" type="text/css" href="//www.cise.ufl.edu/~s11020am/capp.css" />
+</head>
+<body>
+<span id="answer">
+  <table class="imagetable">
+    <tr><th>Wes Cherry developed the version of this card game for one that came with Windows 95</th></tr>
+    <tr id="question"<th>What is Solitaire?</th></tr>
+  </table>
+</span>
+<table id="board" class="imagetable">
+  <tr>
+    <th>PASS THE DUCHY</th><th>CLOWNS</th><th>THAT YEAR'S HEADLINE</th><th>A LITTLE GAME OF CARDS?</th><th>BREAKFAST MENU</th><th>BIRD WORDS & PHRASES</th>
+  </tr>
+  <tr>
+    <td>$100</td><td>$100</td><td>$100</td><td id="100">$100</td><td>$100</td><td>$100</td>
+  </tr>
+  <tr>
+    <td>$200</td><td>$200</td><td>$200</td><td>$200</td><td>$200</td><td>$200</td>
+  </tr>
+  <tr>
+    <td>$300</td><td>$300</td><td>$300</td><td>$300</td><td>$300</td><td>$300</td>
+  </tr>
+  <tr>
+    <td>$400</td><td>$400</td><td>$400</td><td>$400</td><td>$400</td><td>$400</td>
+  </tr>
+  <tr>
+    <td>$500</td><td>$500</td><td>$500</td><td>$500</td><td>$500</td><td>$500</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+
+]]></Content>
+</Module>
