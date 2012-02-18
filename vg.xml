@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Module>
+    <!-- /*
+ * Copyright (c) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */ -->
+  <ModulePrefs title="Starter App">
+	  <Require feature="rpc"/>
+	  <Require feature="views"/>
+  </ModulePrefs>
+  <Content type="html">
+  
+    <![CDATA[
+	<script src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=0.2"></script>
+	<!-- The hangout API JavaScript. Always include this first -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/main.js"></script>
+
+</head>
+<body>
+<!-- <span id="answer">
+	<table class="imagetable">
+		<tr>
+			<th>Wes Cherry developed the version of this card game for one that came with Windows 95</th>
+		</tr>
+	</table>
+</span> -->
+<table id="board" class="imagetable">
+<div id="stuff">
+  <tr>
+    <th id="category_0">PASS THE DUCHY</th>
+	<th id="category_1">CLOWNS</th>
+	<th id="category_2">THAT YEAR'S HEADLINE</th>
+	<th id="category_3">A LITTLE GAME OF CARDS?</th>
+	<th id="category_4">BREAKFAST MENU</th>
+	<th id="category_5">BIRD WORDS & PHRASES</th>
+  </tr>
+  <tr>
+    <td id="cat0_q0">$100</td>
+	<td id="cat1_q0">$100</td>
+	<td id="cat2_q0">$100</td>
+	<td id="cat3_q0">$100</td>
+	<td id="cat4_q0">$100</td>
+	<td id="cat5_q0">$100</td>
+  </tr>
+  <tr>
+    <td id="cat0_q1">$200</td>
+	<td id="cat1_q1">$200</td>
+	<td id="cat2_q1">$200</td>
+	<td id="cat3_q1">$200</td>
+	<td id="cat4_q1">$200</td>
+	<td id="cat5_q1">$200</td>
+  </tr>
+  <tr>
+    <td id="cat0_q2">$300</td>
+	<td id="cat1_q2">$300</td>
+	<td id="cat2_q2">$300</td>
+	<td id="cat3_q2">$300</td>
+	<td id="cat4_q2">$300</td>
+	<td id="cat5_q2">$300</td>
+  </tr>
+  <tr>
+    <td id="cat0_q3">$400</td>
+	<td id="cat1_q3">$400</td>
+	<td id="cat2_q3">$400</td>
+	<td id="cat3_q3">$400</td>
+	<td id="cat4_q3">$400</td>
+	<td id="cat5_q3">$400</td>
+  </tr>
+  <tr>
+    <td id="cat0_q4">$500</td>
+	<td id="cat1_q4">$500</td>
+	<td id="cat2_q4">$500</td>
+	<td id="cat3_q4">$500</td>
+	<td id="cat4_q4">$500</td>
+	<td id="cat5_q4">$500</td>
+  </tr>
+</div>
+</table>
+<button type="button" onclick="game.setHost();">I'm host!</button>
+</body>
+</html>
+
+
+]]></Content>
+</Module>
