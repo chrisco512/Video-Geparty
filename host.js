@@ -12,12 +12,73 @@ The host object stores pertinent functions to be accessed by the host.
 These functions should only be accessed by a player verified by the 
 game.isHost() function.
 */
-
+host.id = 0;
+host.name = "";
 /*attributes to be implemented
 	-id
 	-name
 end attributes */
 
+
+function host(id, name){
+	this.id = id;
+	this.name = name;
+};
+
+host.pullID = function(){
+	return this.id;
+};
+
+host.pullName = function(){
+	return this.name;
+};
+
+host.adjustScore = function(playerId, amount){
+	if(gapi.hangout.data.getValue("Player1Id") == playerId){
+		var score = parseInt(gapi.hangout.data.getValue("Player1Score"));
+		score += amount;
+		gapi.hangout.data.setValue("Player1Score", ""+score);
+	}
+	else if(gapi.hangout.data.getValue("Player2Id") == playerId){
+		var score = parseInt(gapi.hangout.data.getValue("Player2Score"));
+		score += amount;
+		gapi.hangout.data.setValue("Player2Score", ""+score);
+	}
+	else if(gapi.hangout.data.getValue("Player3Id") == playerId){
+		var score = parseInt(gapi.hangout.data.getValue("Player3Score"));
+		score += amount;
+		gapi.hangout.data.setValue("Player3Score", ""+score);
+	}
+};
+
+host.questionCorrect = function(){
+
+};
+
+host.questionIncorrect = function(){
+
+};
+
+host.questionUnanswered = function(){
+
+};
+
+host.releaseBuzzers = function(){
+
+};
+
+host.removePlayer = function(playerId){
+
+};
+ 
+host.selectAnswer = function( answerId ){
+
+};
+
+host.showQuestion = function( answerId ){
+
+};
+ 
 /* functions to be implemented
 	-constructor
 	-pullId() -- gets google id from api
