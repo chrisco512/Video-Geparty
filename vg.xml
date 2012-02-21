@@ -99,6 +99,7 @@
 </div>
 </table>
 <button type="button" onclick="game.setHost();">I'm host!</button>
+<button type="button" onclick="host.adjustScore("1",-100);">I'm host!</button>
 </body>
 </html>
 
