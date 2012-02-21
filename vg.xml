@@ -28,14 +28,14 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/vg.css" />
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/cnst.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/jquery.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/board.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/game.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/host.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/player.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/printer.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/main.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/cnst.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/jquery.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/board.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/game.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/host.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/player.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/printer.js"></script>
+<script type="text/javascript" src="//www.cise.ufl.edu/~s11020am/main.js"></script>
 
 </head>
 <body>
@@ -99,7 +99,7 @@
 </div>
 </table>
 <button type="button" onclick="game.setHost();">I'm host!</button>
-<button type="button" onclick="host.adjustScore("1",-100);">I'm host!</button>
+<button type="button" onclick="var craig = new player();">new player</button>
 </body>
 </html>
 

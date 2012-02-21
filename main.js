@@ -6,6 +6,7 @@ if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
 
+
 /*
 Note to Team: When coding and testing, make extensive use of console.log for debugging purposes.
 Javascript can be a messy language and outputs to the console (hidden from browser view)
@@ -38,6 +39,7 @@ function initGame() {
 	console.log("cnst.start is initially " + cnst.START );
 	game.setState( cnst.START );
 	board.setBoard();
+	var craig = new player();
 		
 	gapi.hangout.data.setValue("Player1Id", "1");
 	gapi.hangout.data.setValue("Player1Score", "250");

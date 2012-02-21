@@ -21,63 +21,60 @@ control is determined by the host.
 	-name
 end attributes */
 
+player.score = 0;
+player.id = 0;
+player.name = "";
+
 function player() /*constructor*/
 {
 	this.score = 0;
-	this.id = pullId();
-	this.name = pullName();
+	this.id = player.pullId();
+	this.name = player.pullName();
 }
 
 player.pullId= function(/*gets google id from api */)
 {
 	var playerId = gapi.hangout.getParticipantId();
-	console.log("hangout Id is:" + playerId);
 	return(playerId);
-}
+};
 
-// player.pullName = function(/*gets google name from api*/)
-// {
-    // Person mePerson = plus.people.get().execute();
-	// var playerName = mePerson.getDisplayName();
-	// return(playerName);
+player.pullName = function(/*gets google name from api*/)
+{
+   var playerName = gapi.hangout.getParticipantById(this.pullId());
+	var person = playerName.person.displayName;
+   return(person);
 	
-// }
-
-// player.modifyScore= function(int amount)/*adjusts player score by an int value */
-// {
-	// var temp = player.getScore();
-	// var newScore = temp + amout;
-	// return(score);
-
-// }
+};
 
 // player.buzzIn = function(/*buzzer call*/)
 // {
 	// main.buzzOn();  /*calls buzzOn function from main code*/
-// }
+//}
 
-// player.respond = function(string response) /*allows player to send a string for final jeopardy */
-// {
-// }
+//player.respond = function(response)/*Get players string for final jeopardy, store it in sharedstare object*/
+//{
+		//not critical for first release
+//};
 
 // player.getScore = function(/* gets player score*/)
 // {
-// }
+// };
 
 // player.getId = function(/* gets player Id */)
 // {
-// }
+// };
 // player.setId = function(/*sets player Id */)
 // {
-// }
+// };
 // player.getName = function(/* gets player Name */)
 // {
-// }
+// };
 // player.setName = function(/*sets player Name */)
 // {
-// }
+// };
 // player.enterWager = function(int amount) /*allows player to enter wager for question */
 // {
-// }
+		//don't implement for first release
+// };
 
 
