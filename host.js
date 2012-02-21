@@ -20,17 +20,17 @@ host.name = "";
 end attributes */
 
 
-function host(id, name){
-	this.id = id;
-	this.name = name;
+function host(){
+	this.id = pullID();
+	this.name = pullName();
 };
 
 host.pullID = function(){
-	return this.id;
+	return (gapi.hangout.getParticipantId());
 };
 
 host.pullName = function(){
-	return this.name;
+	return (gapi.hangout.getParticipantById(gapi.hangout.getParticipantId()).person.displayName);
 };
 
 host.adjustScore = function(playerId, amount){
