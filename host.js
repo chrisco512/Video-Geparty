@@ -49,6 +49,7 @@ host.adjustScore = function(playerId, amount){
 		score += amount;
 		gapi.hangout.data.setValue("Player3Score", ""+score);
 	}
+
 };
 
 host.questionCorrect = function(){

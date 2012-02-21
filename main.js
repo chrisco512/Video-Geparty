@@ -39,9 +39,7 @@ function initGame() {
 	game.setState( cnst.START );
 	board.setBoard();
 		
-	gapi.hangout.data.setValue("Player1Id", "1");
-	gapi.hangout.data.setValue("Player1Score", "250");
-	gapi.hangout.data.setValue("Player1Name", "George");
+	
 	
 	//TODO: this was a proof of concept event handler for a state changed event
 	//needs to be implemented below as a true function.  This is our main
@@ -49,6 +47,11 @@ function initGame() {
 	gapi.hangout.data.onStateChanged.add( function(event) {
 		gameLoop();
 	});
+	
+	gapi.hangout.data.setValue("Player1Id", "1");
+	gapi.hangout.data.setValue("Player1Score", "249");
+	gapi.hangout.data.setValue("Player1Name", "George");
+	
 }
 
 function gameLoop() {
@@ -58,6 +61,7 @@ function gameLoop() {
 		console.log("Attempting to display answer...");
 		printer.displayAnswer();
 	}
+	console.log("score init: "  + gapi.hangout.data.getValue("Player1Score") );
 }
 
 
