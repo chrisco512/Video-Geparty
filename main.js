@@ -38,6 +38,10 @@ function initGame() {
 	console.log("cnst.start is initially " + cnst.START );
 	game.setState( cnst.START );
 	board.setBoard();
+		
+	gapi.hangout.data.setValue("Player1Id", "1");
+	gapi.hangout.data.setValue("Player1Score", "250");
+	gapi.hangout.data.setValue("Player1Name", "George");
 	
 	//TODO: this was a proof of concept event handler for a state changed event
 	//needs to be implemented below as a true function.  This is our main
