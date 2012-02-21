@@ -6,6 +6,12 @@ if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
 
+var socket = new EasyWebSocket("ws://jeopardy.bvdtech.com");
+
+socket.onmessage = function(event){
+	console.log("received "+ event.data);
+};
+
 /*
 Note to Team: When coding and testing, make extensive use of console.log for debugging purposes.
 Javascript can be a messy language and outputs to the console (hidden from browser view)
@@ -52,7 +58,15 @@ function initGame() {
 	gapi.hangout.data.setValue("Player1Score", "249");
 	gapi.hangout.data.setValue("Player1Name", "George");
 	
+	myHost = new Host();
+	
 }
+
+function buzzOn(){
+	console.log(gapi.hangout.data.getValue("Player1Id"));
+	socket.send(gapi.hangout.data.getValue("Player1Id"));
+	console.log("Sent");
+};
 
 function gameLoop() {
 	var currentState = game.getState();
@@ -62,6 +76,7 @@ function gameLoop() {
 		printer.displayAnswer();
 	}
 	console.log("score init: "  + gapi.hangout.data.getValue("Player1Score") );
+	console.log(myHost.id + " " + myHost.name );
 }
 
 

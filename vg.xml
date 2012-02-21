@@ -28,6 +28,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/easyWebSocket.min.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/jquery.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/board.js"></script>
@@ -99,7 +100,7 @@
 </div>
 </table>
 <button type="button" onclick="game.setHost();">I'm host!</button>
-<button type="button" onclick="host.adjustScore(&quot;1&quot;,-100);">I'm host!</button>
+<button type="button" onclick="buzzOn();">Buzz</button>
 </body>
 </html>
 
