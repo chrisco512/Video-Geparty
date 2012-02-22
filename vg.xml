@@ -28,6 +28,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/vg.css" />
+<<<<<<< HEAD
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/easyWebSocket.min.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/jquery.js"></script>
@@ -37,7 +38,6 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/player.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/printer.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/main.js"></script>
-
 </head>
 <body>
 <!-- <span id="answer">

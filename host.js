@@ -30,7 +30,7 @@ host.pullID = function(){
 };
 
 host.pullName = function(){
-	return (gapi.hangout.getParticipantById(gapi.hangout.getParticipantId()).person.displayName);
+	return (gapi.hangout.getParticipantById( gapi.hangout.getParticipantId() ).person.displayName);
 };
 
 host.adjustScore = function(playerId, amount){

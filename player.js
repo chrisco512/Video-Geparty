@@ -21,17 +21,60 @@ control is determined by the host.
 	-name
 end attributes */
 
-/* functions to be implemented
-	-constructor
-	-pullId() -- gets google id from api
-	-pullName() -- gets google name from api
-	-modifyScore(amount) --adjusts player score by an int value
-	-buzzIn() -- buzzer call
-	-respond( response ) --allows player to send a string for final jeopardy
-	-getScore()
-	-getId()
-	-setId()
-	-getName()
-	-setName()
-	-enterWager( amount )
-end functions */
+player.score = 0;
+player.id = 0;
+player.name = "";
+
+function player() /*constructor*/
+{
+	this.score = 0;
+	this.id = player.pullId();
+	this.name = player.pullName();
+}
+
+player.pullId= function(/*gets google id from api */)
+{
+	var playerId = gapi.hangout.getParticipantId();
+	return(playerId);
+};
+
+player.pullName = function(/*gets google name from api*/)
+{
+   var playerName = gapi.hangout.getParticipantById(this.pullId());
+	var person = playerName.person.displayName;
+   return(person);
+	
+};
+
+// player.buzzIn = function(/*buzzer call*/)
+// {
+	// main.buzzOn();  /*calls buzzOn function from main code*/
+//}
+
+//player.respond = function(response)/*Get players string for final jeopardy, store it in sharedstare object*/
+//{
+		//not critical for first release
+//};
+
+// player.getScore = function(/* gets player score*/)
+// {
+// };
+
+// player.getId = function(/* gets player Id */)
+// {
+// };
+// player.setId = function(/*sets player Id */)
+// {
+// };
+// player.getName = function(/* gets player Name */)
+// {
+// };
+// player.setName = function(/*sets player Name */)
+// {
+// };
+// player.enterWager = function(int amount) /*allows player to enter wager for question */
+// {
+		//don't implement for first release
+// };
+
+

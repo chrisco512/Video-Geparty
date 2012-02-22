@@ -6,12 +6,6 @@ if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
 
-var socket = new EasyWebSocket("ws://jeopardy.bvdtech.com");
-
-socket.onmessage = function(event){
-	console.log("received "+ event.data);
-};
-
 /*
 Note to Team: When coding and testing, make extensive use of console.log for debugging purposes.
 Javascript can be a messy language and outputs to the console (hidden from browser view)
@@ -44,6 +38,7 @@ function initGame() {
 	console.log("cnst.start is initially " + cnst.START );
 	game.setState( cnst.START );
 	board.setBoard();
+	var craig = new player();
 		
 	
 	
