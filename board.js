@@ -25,6 +25,7 @@ end functions */
 //TODO: function needs to be expanded to incorporate database code, also a for loop that runs through and stores each
 //question, answer, and category in the shared state according to proper naming convention.  
 board.setBoard = function() {
+	console.log("SETTING UP THE BOARD");
 	for(var i = 0; i < 6; i++){
 		var newCategory = "Test Cat" + i;
 		gapi.hangout.data.setValue("cat"+i, newCategory);
@@ -35,6 +36,7 @@ board.setBoard = function() {
 			gapi.hangout.data.setValue( "cat" + i + "_q" + j, newQuestion );
 		}
 	}	
+	
 };
 
 //pulls question from shared state object
@@ -49,6 +51,8 @@ board.getQuestion = function() {
 board.getAnswer = function() {
 	var cat = gapi.hangout.data.getValue("currentCat");
 	var a = gapi.hangout.data.getValue("currentQ");
+	console.log("CurrentCat: " + cat);
+	console.log("CurrentA: " + a);
 	return (gapi.hangout.data.getValue( "cat"+cat+"_a"+a ));
 };
 //TODO: implement parameters that rep the cat id according to naming conventions
