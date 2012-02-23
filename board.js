@@ -39,13 +39,17 @@ board.setBoard = function() {
 
 //pulls question from shared state object
 //TODO: implement a parameter(s) that represents the question id according to naming conventions in the shared state
-board.getQuestion = function( /* question id var */ ) {
-	return (gapi.hangout.data.getValue( "cat3_q0" ));
+board.getQuestion = function() {
+	var cat = gapi.hangout.data.getValue("currentCat");
+	var q = gapi.hangout.data.getValue("currentQ");
+	return (gapi.hangout.data.getValue( "cat"+cat+"_q"+q ));
 };
 //get answer from shared state
 //TODO: implement a parameter(s) that represents the answer id according to naming conventions in the shared state
-board.getAnswer = function( /* answer id var */ ) {
-	return (gapi.hangout.data.getValue( "cat3_a0" ));
+board.getAnswer = function() {
+	var cat = gapi.hangout.data.getValue("currentCat");
+	var a = gapi.hangout.data.getValue("currentQ");
+	return (gapi.hangout.data.getValue( "cat"+cat+"_a"+a ));
 };
 //TODO: implement parameters that rep the cat id according to naming conventions
 board.getCategory = function( catNum ) {

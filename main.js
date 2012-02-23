@@ -23,13 +23,20 @@ $(document).ready( function(){
 		gapi.hangout.onApiReady.add(initGame);
 	}
 	console.log("You loaded the function");
-	$("#cat3_q0").click( function(){
-		if( game.isHost() ){
-			console.log("attempting to set state...");
-			game.setState( cnst.ANSWER );
-			console.log("state is now..." + game.getState() );
-			}
-	});
+	for(var i = 0; i < 6; i++){
+		for(var j = 0; j < 5; j++){
+			var check = "#cat"+i+"_q"+j;
+			$(check).click( function(){
+				if( game.isHost() ){
+					console.log("attempting to set state...");
+					game.setState( cnst.ANSWER );
+					gapi.hangout.data.setValue("currentCat", i);
+					gapi.hangout.data.setValue("currentQ", j);					
+					console.log("state is now..." + game.getState() );
+				}
+			});
+		}
+	}
 });
 
 //set up initial variables on game load 
