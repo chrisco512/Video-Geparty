@@ -24,7 +24,7 @@ end functions */
 
 //TODO: function needs to be expanded to incorporate database code, also a for loop that runs through and stores each
 //question, answer, and category in the shared state according to proper naming convention.  
-board.setBoard = function() {
+/*board.setBoard = function() {
 	console.log("SETTING UP THE BOARD");
 	for(var i = 0; i < 6; i++){
 		var newCategory = "Test Cat" + i;
@@ -36,6 +36,50 @@ board.setBoard = function() {
 			gapi.hangout.data.setValue( "cat" + i + "_q" + j, newQuestion );
 		}
 	}	
+	
+};*/
+
+board.setBoard = function() {
+	console.log("CALLING SETBOARD");
+
+	// Get content
+	var content = $.ajax({
+                url: "https://bvdtechcom.ipage.com/geparty/gameboard.php",
+                async: false
+            }).responseText;
+
+	//console.log(content);
+	
+	xmlDoc = $.parseXML(content);
+
+	$(xmlDoc).find("category").each(function()
+ 	{
+		var id = $(this).attr("id");
+		console.log("CategoryID: " + id);
+		var category = $(this).attr("title");
+		console.log("Category: " + category);
+
+		gapi.hangout.data.setValue(id, category);
+  	});
+
+	// TODO - switch question-answer , add answer ID
+
+	$(xmlDoc).find("entry").each(function()
+ 	{
+		var answerID = $(this).attr("aID");
+		console.log("answerID: " + answerID);
+	    var answer = ($(this).find("answer").text());
+		console.log("Answer: " + answer);
+
+		gapi.hangout.data.setValue(answerID, answer);
+
+		var questionID = $(this).attr("qID");
+		console.log("questionID: " + questionID);
+	    var question = ($(this).find("question").text());
+		console.log("Question: " + question);
+
+		gapi.hangout.data.setValue(questionID, question);
+	});
 	
 };
 
