@@ -41,6 +41,9 @@ board.getAnswer = function( /* answer id var */ ) {
 	return (gapi.hangout.data.getValue( "cat3_a0" ));
 };
 //TODO: implement parameters that rep the cat id according to naming conventions
-board.getCategory = function( /* category id var here */ ) {
-	
+board.getCategory = function( catNum ) {
+	if( catNum < 6 && catNum >= 0 )
+		return( gapi.hangout.data.getValue( "cat" + catNum ) );
+	else
+		console.log("ERROR: Category number out of range.");
 };
