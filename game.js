@@ -48,24 +48,25 @@ game.setHost = function( /* insert player id var here */ ) {
 	var newHost = gapi.hangout.getParticipantId();
 	console.log("You just set the host to: " + newHost );
 	gapi.hangout.data.setValue( "host", newHost );
+	game.setState( cnst.SELECT );
 };
 
 //sets the state of the gameboard
 //currently only accepts START, SELECT, ANSWER as valid input
 game.setState = function( newState ) {
-	console.log("You are setting the state to " + newState);
+	console.log("RUNNING game.setState with state " + newState);
 	switch( newState ) {
 	case cnst.START:
 		gapi.hangout.data.setValue( "state", newState );
-		console.log("now state is " + game.getState() );
+		//console.log("now state is " + game.getState() );
 		break;
 	case cnst.SELECT:
 		gapi.hangout.data.setValue( "state", newState );
-		console.log("now state is " + game.getState() );
+		//console.log("now state is " + game.getState() );
 		break;
 	case cnst.ANSWER:
 		gapi.hangout.data.setValue( "state", newState );
-		console.log("now state is " + game.getState() );
+		//console.log("now state is " + game.getState() );
 		break;
 	default:
 		console.log("Bad State: " + newState );
