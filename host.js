@@ -49,6 +49,7 @@ host.adjustScore = function(playerId, amount){
 		score += amount;
 		gapi.hangout.data.setValue("Player3Score", ""+score);
 	}
+
 };
 
 host.questionCorrect = function(){
@@ -64,19 +65,21 @@ host.questionUnanswered = function(){
 };
 
 host.releaseBuzzers = function(){
-
+//Later Release
 };
 
 host.removePlayer = function(playerId){
-
+//Later Release
 };
  
-host.selectAnswer = function( answerId ){
-
+host.selectAnswer = function( cat, q ){
+	gapi.hangout.data.setValue("currentCat",""+cat);
+	gapi.hangout.data.setValue("currentQ", ""+q);	
 };
 
-host.showQuestion = function( answerId ){
-
+host.showQuestion = function(){
+	gapi.hangout.data.setValue("displayQuestion", "1");
+	printer.displayQuestion();
 };
  
 /* functions to be implemented

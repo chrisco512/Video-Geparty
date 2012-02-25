@@ -1,0 +1,20 @@
+<html>
+<a href="http://jeopardy.bvdtech.com/client.php">client.php</a>
+<br>
+<a href="http://jeopardy.bvdtech.com/server.php">server.php</a>
+<p>
+<script src="http://easywebsocket.org/easyWebSocket.min.js"></script>
+	<script>
+	    var socket = new EasyWebSocket("ws://jeopardy.bvdtech.com");
+	    socket.onopen = function(){
+			socket.send("hello world!")
+	    }
+	    socket.onmessage = function(event){
+			alert("received "+ event.data)
+	    }
+	function displaymessage(){
+		socket.send("hello trebek")
+	}
+	</script>
+<input type="button" value="Click me!" onclick="displaymessage()" />
+</html>

@@ -6,7 +6,6 @@ if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
 
-
 /*
 Note to Team: When coding and testing, make extensive use of console.log for debugging purposes.
 Javascript can be a messy language and outputs to the console (hidden from browser view)
@@ -24,14 +23,14 @@ $(document).ready( function(){
 		gapi.hangout.onApiReady.add(initGame);
 	}
 	console.log("You loaded the function");
-	$("#cat3_q0").click( function(){
-		if( game.isHost() ){
-			console.log("attempting to set state...");
-			game.setState( cnst.ANSWER );
-			console.log("state is now..." + game.getState() );
-			}
-	});
+	board.setUpJQuery();
+	// $("#answer").click( function() {
+		// console.log("You clicked an answer...");
+		// game.setState( cnst.SELECT );
+	// });
 });
+
+
 
 //set up initial variables on game load 
 function initGame() {
@@ -39,6 +38,7 @@ function initGame() {
 	console.log("cnst.start is initially " + cnst.START );
 	game.setState( cnst.START );
 	board.setBoard();
+
 	console.log("Testing Player Functions");
 	player.setId();
 	player.getId();
@@ -49,6 +49,8 @@ function initGame() {
 	gapi.hangout.data.setValue("Player1Id", "1");
 	gapi.hangout.data.setValue("Player1Score", "250");
 	gapi.hangout.data.setValue("Player1Name", "George");
+
+
 	
 	//TODO: this was a proof of concept event handler for a state changed event
 	//needs to be implemented below as a true function.  This is our main
@@ -56,15 +58,26 @@ function initGame() {
 	gapi.hangout.data.onStateChanged.add( function(event) {
 		gameLoop();
 	});
+	
+	gapi.hangout.data.setValue("Player1Id", "1");
+	gapi.hangout.data.setValue("Player1Score", "249");
+	gapi.hangout.data.setValue("Player1Name", "George");
+	
+	//myHost = new Host();
+}
+
+function buzzOn(){
+	console.log(gapi.hangout.data.getValue("Player1Id"));
+	socket.send(gapi.hangout.data.getValue("Player1Id"));
+	console.log("Sent");
 }
 
 function gameLoop() {
 	var currentState = game.getState();
-	console.log("State changed.  Game State is now " + currentState );
-	if( currentState == cnst.ANSWER ) {
-		console.log("Attempting to display answer...");
-		printer.displayAnswer();
-	}
+	console.log("RUNNING gameLoop.  State is currently " + currentState );
+	printer.display(currentState);
+	//console.log("score init: "  + gapi.hangout.data.getValue("Player1Score") );
+	//console.log(myHost.id + " " + myHost.name );
 }
 
 
