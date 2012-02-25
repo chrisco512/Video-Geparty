@@ -83,6 +83,26 @@ board.setBoard = function() {
 	
 };
 
+
+board.setUpJQuery = function() {
+	for(var i = 0; i < 6; i++){
+		for(var j = 0; j < 5; j++){
+			var check = "#cat"+i+"_q"+j;
+			$(check).click( function(){
+				if( game.isHost() ){
+					console.log("setUpJQuery: attempting to set state...");
+					game.setState( cnst.ANSWER );
+					var hold = $(this).attr('id');
+					var m = hold[3];
+					var n = hold[6];
+					host.selectAnswer(m,n);
+					console.log("state is now..." + game.getState() );
+				}
+			});
+		}
+	} //end board clicks
+};
+
 //pulls question from shared state object
 //TODO: implement a parameter(s) that represents the question id according to naming conventions in the shared state
 board.getQuestion = function() {

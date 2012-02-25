@@ -23,33 +23,14 @@ $(document).ready( function(){
 		gapi.hangout.onApiReady.add(initGame);
 	}
 	console.log("You loaded the function");
-	setUpJQuery();
+	board.setUpJQuery();
 	// $("#answer").click( function() {
 		// console.log("You clicked an answer...");
 		// game.setState( cnst.SELECT );
 	// });
 });
 
-function setUpJQuery() {
-	for(var i = 0; i < 6; i++){
-		for(var j = 0; j < 5; j++){
-			var check = "#cat"+i+"_q"+j;
-			console.log(check);
-			$(check).click( function(){
-				if( game.isHost() ){
-					console.log("attempting to set state...");
-					game.setState( cnst.ANSWER );
-					var hold = $(this).attr('id');
-					var m = hold[3];
-					var n = hold[6];
-					gapi.hangout.data.setValue("currentCat",""+m);
-					gapi.hangout.data.setValue("currentQ", ""+n);	
-					console.log("state is now..." + game.getState() );
-				}
-			});
-		}
-	} //end board clicks
-}
+
 
 //set up initial variables on game load 
 function initGame() {

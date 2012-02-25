@@ -72,12 +72,14 @@ host.removePlayer = function(playerId){
 //Later Release
 };
  
-host.selectAnswer = function( answerId ){
-
+host.selectAnswer = function( cat, q ){
+	gapi.hangout.data.setValue("currentCat",""+cat);
+	gapi.hangout.data.setValue("currentQ", ""+q);	
 };
 
-host.showQuestion = function( answerId ){
-
+host.showQuestion = function(){
+	gapi.hangout.data.setValue("displayQuestion", "1");
+	printer.displayQuestion();
 };
  
 /* functions to be implemented

@@ -31,12 +31,18 @@ printer.display = function(currentState) {
 	}
 	else if( currentState == cnst.ANSWER ) {
 		console.log("Attempting to display answer...");
-		printer.displayAnswer();
+		console.log("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
+		if(gapi.hangout.data.getValue("displayQuestion") == "1"){
+			printer.displayQuestion();
+		}
+		else{
+			printer.displayAnswer();
+		}
 	} 
 	else if( currentState == cnst.SELECT ) {
 		console.log("Select your question, host");
 		printer.displayBoard();
-		setUpJQuery();
+		board.setUpJQuery();
 	}
 };
 
@@ -50,6 +56,7 @@ printer.displayStart = function() {
 
 printer.displayBoard = function() {
 	console.log("RUNNING printer.displayBoard");
+	gapi.hangout.data.setValue("displayQuestion","0");
 	$("#board").html( function() {
 		var boardTable = "";
 		boardTable += "<tr>";
@@ -84,8 +91,29 @@ printer.displayAnswer = function() {
 		answerTable += "</th></tr>";
 		//working up to isHost func
 		if( game.isHost() ) {
-			answerTable += "<tr><th>" + board.getQuestion() + "<button type=\"button\" onclick=\"game.setState(cnst.SELECT);\">I'm host!</button>" + "</tr></th>";			
+			answerTable += "<tr><th>" + board.getQuestion() +"<br></br>"+"<button type=\"button\" onclick=\"host.showQuestion();\">Show Question</button>" 
+															+"<br></br>"+"<button type=\"button\" onclick=\"game.setState(cnst.SELECT);\">Move on</button>" + "</tr></th>";			
 		}
 		return (answerTable);
 	});
+};
+
+printer.displayQuestion = function() {
+	if(!game.isHost()){
+		console.log("RUNNING printer.displayQuestion");
+		$("#board").html( function(){
+			console.log("trying to display the answer");
+			var answerTable = "<tr><th id=\"#answer\">";
+			console.log(answerTable);
+			var answer = board.getAnswer();
+			answerTable += answer;
+			console.log(answerTable);
+			answerTable += "</th></tr>";
+			console.log(answerTable);
+			//working up to isHost func
+			answerTable += ("<tr><th>" + board.getQuestion() + "</tr></th>");
+			console.log(answerTable);			
+			return (answerTable);
+		});
+	}
 };
