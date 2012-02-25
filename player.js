@@ -25,14 +25,8 @@ player.score = 0;
 player.id = 0;
 player.name = "";
 
-function player() /*constructor*/
-{
-	this.score = 0;
-	this.id = player.pullId();
-	this.name = player.pullName();
-}
 
-player.pullId= function(/*gets google id from api */)
+player.pullId= function(/*gets google id from api */)  //gets the hangout id of each player possibly not needed
 {
 	var playerId = gapi.hangout.getParticipantId();
 	return(playerId);
@@ -40,9 +34,31 @@ player.pullId= function(/*gets google id from api */)
 
 player.pullName = function(/*gets google name from api*/)
 {
-   var playerName = gapi.hangout.getParticipantById(this.pullId());
+       var playerName = gapi.hangout.getParticipantById(this.pullId());
+	   var person = playerName.person.displayName;
+       return(person);
+};
+player.getId = function(/* gets player Id */)
+{
+		return(player.id);
+};
+player.setId = function(idNumber) /*sets player Id*/
+{
+	var playerName = gapi.hangout.getParticipantById(this.pullId());
+	var playerId = playerName.person.id;
+     player.id = playerId;
+};
+
+player.getName = function(/* gets player Name */)
+{
+	return(player.name);
+	
+};
+player.setName = function(playerName)  /*sets player Name */
+{
+	var playerName = gapi.hangout.getParticipantById(this.pullId());
 	var person = playerName.person.displayName;
-   return(person);
+	player.name = person;
 	
 };
 
@@ -60,21 +76,11 @@ player.pullName = function(/*gets google name from api*/)
 // {
 // };
 
-// player.getId = function(/* gets player Id */)
-// {
-// };
-// player.setId = function(/*sets player Id */)
-// {
-// };
-// player.getName = function(/* gets player Name */)
-// {
-// };
-// player.setName = function(/*sets player Name */)
-// {
-// };
 // player.enterWager = function(int amount) /*allows player to enter wager for question */
 // {
 		//don't implement for first release
 // };
+
+
 
 

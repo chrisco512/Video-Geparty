@@ -39,7 +39,12 @@ function initGame() {
 	console.log("cnst.start is initially " + cnst.START );
 	game.setState( cnst.START );
 	board.setBoard();
-	var craig = new player();
+	console.log("Testing Player Functions");
+	player.setId();
+	player.getId();
+	player.setName();
+	player.getName();
+   
 		
 	gapi.hangout.data.setValue("Player1Id", "1");
 	gapi.hangout.data.setValue("Player1Score", "250");
