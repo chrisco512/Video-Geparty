@@ -38,6 +38,10 @@ player.pullName = function(/*gets google name from api*/)
 	   var person = playerName.person.displayName;
        return(person);
 };
+player.buzzIn = function()
+{
+	buzzOn(this.id);
+};
 player.getId = function(/* gets player Id */)
 {
 		return(player.id);

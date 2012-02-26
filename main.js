@@ -30,6 +30,15 @@ $(document).ready( function(){
 	// });
 });
 
+function buzzOn(id){
+	if(gapi.hangout.data.getValue("Buzzer") == "false" || game.isHost()){
+		console.log("Bad Buzz - Ignoring");
+	}
+	else{
+		console.log("Correct buzz from player: " + id);
+		gapi.hangout.data.setValue("Buzzer", "false");
+	}
+};
 
 
 //set up initial variables on game load 
@@ -38,7 +47,8 @@ function initGame() {
 	console.log("cnst.start is initially " + cnst.START );
 	game.setState( cnst.START );
 	board.setBoard();
-
+	gapi.hangout.data.setValue("Buzzer", "false");
+	
 	console.log("Testing Player Functions");
 	player.setId();
 	player.getId();

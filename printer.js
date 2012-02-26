@@ -43,6 +43,7 @@ printer.display = function(currentState) {
 		console.log("Select your question, host");
 		printer.displayBoard();
 		board.setUpJQuery();
+		host.releaseBuzzers();
 	}
 };
 
@@ -85,10 +86,11 @@ printer.displayAnswer = function() {
 	console.log("RUNNING printer.displayAnswer");
 	$("#board").html( function(){
 		console.log("trying to display the answer");
-		var answerTable = "<tr><th id=\"#answer\">";
+		var answerTable = "<tr><th>"+gapi.hangout.data.getValue("cat"+gapi.hangout.data.getValue("currentCat"))+"</tr></th><tr><th id=\"#answer\">";
 		var answer = board.getAnswer();
 		answerTable += answer;
 		answerTable += "</th></tr>";
+		answerTable += "<input onkeydown=\"player.buzzIn()\" />";
 		//working up to isHost func
 		if( game.isHost() ) {
 			answerTable += "<tr><th>" + board.getQuestion() +"<br></br>"+"<button type=\"button\" onclick=\"host.showQuestion();\">Show Question</button>" 
@@ -103,16 +105,12 @@ printer.displayQuestion = function() {
 		console.log("RUNNING printer.displayQuestion");
 		$("#board").html( function(){
 			console.log("trying to display the answer");
-			var answerTable = "<tr><th id=\"#answer\">";
-			console.log(answerTable);
+			var answerTable = "<tr><th>"+gapi.hangout.data.getValue("cat"+gapi.hangout.data.getValue("currentCat"))+"</tr></th><tr><th id=\"#answer\">";
 			var answer = board.getAnswer();
 			answerTable += answer;
-			console.log(answerTable);
 			answerTable += "</th></tr>";
-			console.log(answerTable);
 			//working up to isHost func
-			answerTable += ("<tr><th>" + board.getQuestion() + "</tr></th>");
-			console.log(answerTable);			
+			answerTable += ("<tr><th>" + board.getQuestion() + "</tr></th>");		
 			return (answerTable);
 		});
 	}
