@@ -24,6 +24,27 @@ end attributes */
 	-displaySelect() --highlights player with board control	
 end functions */
 
+printer.displayScores = function() {
+	console.log("Buzzedin.................is..........."+gapi.hangout.data.getValue("BuzzedIn"));
+	if(gapi.hangout.data.getValue("BuzzedIn") == "1") {
+		$("#podiumlight1").css("background-color","yellow");
+		$("#podiumlight2").css("background-color","black");
+		$("#podiumlight3").css("background-color","black");
+	} else if(gapi.hangout.data.getValue("BuzzedIn") == "2") {
+		$("#podiumlight1").css("background-color","black");
+		$("#podiumlight2").css("background-color","yellow");
+		$("#podiumlight3").css("background-color","black");
+	} else if(gapi.hangout.data.getValue("BuzzedIn") == "3") {
+		$("#podiumlight1").css("background-color","black");
+		$("#podiumlight2").css("background-color","black");
+		$("#podiumlight3").css("background-color","yellow");
+	} else  {
+		$("#podiumlight1").css("background-color","black");
+		$("#podiumlight2").css("background-color","black");
+		$("#podiumlight3").css("background-color","black");
+	} 
+};
+
 printer.display = function(currentState) {
 	if( currentState == cnst.START ) {
 		console.log("Calling printer.displayStart");
@@ -32,6 +53,7 @@ printer.display = function(currentState) {
 	else if( currentState == cnst.ANSWER ) {
 		console.log("Attempting to display answer...");
 		console.log("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
+		setLocalPlayerNum();
 		if(gapi.hangout.data.getValue("displayQuestion") == "1"){
 			printer.displayQuestion();
 		}
@@ -43,8 +65,32 @@ printer.display = function(currentState) {
 		console.log("Select your question, host");
 		printer.displayBoard();
 		board.setUpJQuery();
-		host.releaseBuzzers();
+		
+		game.setPlayers();
+		//host.releaseBuzzers();
 	}
+	printer.displayControls();
+	printer.displayScores();
+};
+
+printer.displayControls = function() {
+	//$("#btnHelp").hide();
+	$("#btnBuzzer").hide();
+	$("#btnShow").hide();
+	$("#btnWrong").hide();
+	$("#btnControl").hide();
+	$("#btnRelease").hide();
+	//$("#btnQuit").hide();
+	if( game.isHost() ) {
+		$("#btnShow").show();
+		$("#btnWrong").show();
+		$("#btnControl").show();
+		$("#btnRelease").show();
+	}
+	else {
+		$("#btnBuzzer").show();
+	}
+	
 };
 
 printer.displayStart = function() { 
@@ -57,6 +103,7 @@ printer.displayStart = function() {
 
 printer.displayBoard = function() {
 	console.log("RUNNING printer.displayBoard");
+	gapi.hangout.data.setValue("BuzzedIn","");
 	gapi.hangout.data.setValue("displayQuestion","0");
 	$("#board").html( function() {
 		var boardTable = "";
@@ -72,7 +119,7 @@ printer.displayBoard = function() {
 		for( var i = 0; i < 5; i++ ) {
 			boardTable += "<tr>";
 			for( var j = 0; j < 6; j++ ) {
-				boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (i+1) + "00</td>";
+				boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
 			}
 			boardTable += "</tr>";
 		}
@@ -85,19 +132,20 @@ printer.displayBoard = function() {
 printer.displayAnswer = function() {
 	console.log("RUNNING printer.displayAnswer");
 	$("#board").html( function(){
+		
 		console.log("trying to display the answer");
 		var answerTable = "<tr><th>"+gapi.hangout.data.getValue("cat"+gapi.hangout.data.getValue("currentCat"))+"</tr></th><tr><th id=\"#answer\">";
 		var answer = board.getAnswer();
 		answerTable += answer;
 		answerTable += "</th></tr>";
-		answerTable += "<input onkeydown=\"player.buzzIn()\" />";
+		//answerTable += "<input onkeydown=\"player.buzzIn()\" />";
 		//working up to isHost func
 		if( game.isHost() ) {
-			answerTable += "<tr><th>" + board.getQuestion() +"<br></br>"+"<button type=\"button\" onclick=\"host.showQuestion();\">Show Question</button>" 
-															+"<br></br>"+"<button type=\"button\" onclick=\"game.setState(cnst.SELECT);\">Move on</button>" + "</tr></th>";			
+			answerTable += "<tr><th>" + board.getQuestion() +"<button type=\"button\" onclick=\"game.setState(cnst.SELECT);\">Move on</button>" + "</tr></th>";			
 		}
 		return (answerTable);
 	});
+	
 };
 
 printer.displayQuestion = function() {

@@ -12,18 +12,11 @@ The host object stores pertinent functions to be accessed by the host.
 These functions should only be accessed by a player verified by the 
 game.isHost() function.
 */
-host.id = 0;
-host.name = "";
+
 /*attributes to be implemented
 	-id
 	-name
 end attributes */
-
-
-function host(){
-	this.id = pullID();
-	this.name = pullName();
-};
 
 host.pullID = function(){
 	return (gapi.hangout.getParticipantId());
@@ -49,7 +42,6 @@ host.adjustScore = function(playerId, amount){
 		score += amount;
 		gapi.hangout.data.setValue("Player3Score", ""+score);
 	}
-
 };
 
 host.questionCorrect = function(){
@@ -86,6 +78,11 @@ host.selectAnswer = function( cat, q ){
 host.showQuestion = function(){
 	gapi.hangout.data.setValue("displayQuestion", "1");
 	printer.displayQuestion();
+	gapi.hangout.data.setValue("BuzzedIn","");
+};
+
+host.questionIncorrect = function() {
+	gapi.hangout.data.setValue("BuzzedIn","");
 };
  
 /* functions to be implemented

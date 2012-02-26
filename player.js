@@ -13,56 +13,71 @@ In Video Geparty, players have relatively few functions, as most of the game
 control is determined by the host.
 */
 
-//this object will be instantiated, so it should follow tradition constructor obj model
+LocalPlayerNum = 0;
 
-/*attributes to be implemented
-	-score=0
-	-id
-	-name
-end attributes */
+function setLocalPlayerNum() {
+	
+	console.log("Running setlocalplayernum.................................");
+	var temp1 = player.getGoogleIdByPlayerNum( 1 );
+	var temp2 = player.getGoogleIdByPlayerNum( 2 );
+	var temp3 = player.getGoogleIdByPlayerNum( 3 );
+	console.log("Player1: " + temp1);
+	console.log("Player2: " + temp2);
+	console.log("Player3: " + temp3);
+	for( var i = 1; i < 4; i++ ) {
+		var temp = getGoogleId();
+		var temp2 = player.getGoogleIdByPlayerNum( i );
+		if( temp == temp2 ) {
+			LocalPlayerNum = i;
+		}
+	}
+	console.log("Local Player Num Set to: " + LocalPlayerNum );
+}
 
-player.score = 0;
-player.id = 0;
-player.name = "";
-
-
-player.pullId= function(/*gets google id from api */)  //gets the hangout id of each player possibly not needed
-{
-	var playerId = gapi.hangout.getParticipantId();
-	return(playerId);
-};
-
-player.pullName = function(/*gets google name from api*/)
-{
-       var playerName = gapi.hangout.getParticipantById(this.pullId());
+player.pullName = function() { /*gets google name from api*/
+       var playerName = getThisParticipant();
 	   var person = playerName.person.displayName;
        return(person);
 };
 
-
-player.getId = function(playerNum)/* gets player Id */
-{
-		return(gapi.hangout.data.getValue("Player" + playerNum + "Id"));
+player.getGoogleIdByPlayerNum = function( playerNum ){  /* gets player Id */
+		
+		//console.log("Running gGIDbN: " + gapi.hangout.data.getValue("Player" + playerNum + "Id"));
+		//console.log("playerNUM: " + playerNum );
+		//console.log("Player1Id: " + gapi.hangout.data.getValue("Player1Id"));
+		//console.log("Player2Id: " + gapi.hangout.data.getValue("Player2Id"));
+		//console.log("Player3Id: " + gapi.hangout.data.getValue("Player3Id"));
+		return( gapi.hangout.data.getValue("Player" + playerNum + "Id") );
 };
 
-
-player.getName = function(playerNum)/* gets player Name */
-{
+player.getName = function( playerNum ) {  /* gets player Name */
 	return(gapi.hangout.data.getValue("Player" + playerNum + "Name"));
-	
-};
-player.setName = function(playerNum)  /*sets player Name */
-{
-	var playerName = gapi.hangout.getParticipantById(this.pullId());
-	var person = playerName.person.displayName;
-	gapi.hangout.data.setValue("Player" + playerNum + "Name",""+ person);
-	
 };
 
-// player.buzzIn = function()
-// {
-	// buzzOn(this.id);
+function getGoogleId() { /* Returns the Google Id for the local user */
+	//console.log("Running getGoogleId()");
+	var thisLocalId = gapi.hangout.getParticipantId();
+	//console.log("thisLocalId: " + thisLocalId );
+	var thisParticipant = gapi.hangout.getParticipantById( thisLocalId );
+	//console.log("thisParticipant.person.id: " + thisParticipant.person.id );
+	return( thisParticipant.person.id );
+}
+
+function getThisParticipant() {   /* Returns the Participant Object for the local user */
+	var thisLocalId = gapi.hangout.getParticipantId();
+	var thisParticipant = gapi.hangout.getParticipantById( thisLocalId );
+	return(thisParticipant);
+} 
+
+// player.setName = function(playerNum) {   /*sets player Name */
+	// var playerName = gapi.hangout.getParticipantById(this.pullId());
+	// var person = playerName.person.displayName;
+	// gapi.hangout.data.setValue("Player" + playerNum + "Name",""+ person);
 // };
+player.buzzIn = function()
+{
+	buzzOn( LocalPlayerNum );
+};
 
 // player.buzzIn = function(/*buzzer call*/)
 // {
@@ -92,5 +107,10 @@ player.setName = function(playerNum)  /*sets player Name */
 	// var playerName = gapi.hangout.getParticipantById(this.pullId());
 	// var playerId = playerName.person.id;
      // gapi.hangout.data.setValue("Player" + playerNum + "Id",""+ playerId);
+// };
+
+// player.pullId = function() {  /*gets hangout id from api; possibly not needed */
+	// var playerId = gapi.hangout.getParticipantId();
+	// return(playerId);
 // };
 

@@ -16,51 +16,40 @@ It is a JQuery function with an inline function call.  We use this
 to call our initGame function, which initializes state variables.
 */  
 $(document).ready( function(){	
-
+	console.log("DOCUMENT READY");
 	if( gapi.hangout.isApiReady() ) {
 		initGame();
 	} else {
 		gapi.hangout.onApiReady.add(initGame);
 	}
-	console.log("You loaded the function");
-	//board.setUpJQuery();
-	// $("#answer").click( function() {
-		// console.log("You clicked an answer...");
-		// game.setState( cnst.SELECT );
-	// });
+	
 });
 
-function buzzOn(id){
+function buzzOn( id ){
 	if(gapi.hangout.data.getValue("Buzzer") == "false" || game.isHost()){
 		console.log("Bad Buzz - Ignoring");
 	}
 	else{
-		console.log("Correct buzz from player: " + id);
+		console.log("buzz in from player: " + id );
 		gapi.hangout.data.setValue("Buzzer", "false");
+		gapi.hangout.data.setValue("BuzzedIn",(""+LocalPlayerNum));
+		console.log("buzzed in set to "+gapi.hangout.data.getValue("BuzzedIn"));
 	}
 };
-
 
 //set up initial variables on game load 
 function initGame() {
 	console.log("Init func is being run.......");
-	console.log("cnst.start is initially " + cnst.START );
+	//console.log("cnst.start is initially " + cnst.START );
 	game.setState( cnst.START );
 	board.setBoard();
-	
 	gapi.hangout.data.setValue("Buzzer", "false");
-	
-	//TODO: this was a proof of concept event handler for a state changed event
-	//needs to be implemented below as a true function.  This is our main
-	//loop, since it is run each time the game state changes, and must control the game flow.
+
+	//This is our main loop, since it is run each time the game state changes, and must control the game flow.
 	gapi.hangout.data.onStateChanged.add( function(event) {
 		gameLoop();
 	});
-	
-	
-	//myHost = new Host();
 }
-
 
 function gameLoop() {
 	var currentState = game.getState();

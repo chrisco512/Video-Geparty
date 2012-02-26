@@ -32,7 +32,7 @@ end functions */
 //check if player is host
 game.isHost = function( /* insert player id var here */ ) {
 	var theHost = gapi.hangout.data.getValue("host");
-	var theParticipant = gapi.hangout.getParticipantId();
+	var theParticipant = getGoogleId();
 	
 	if( theParticipant == theHost ) {
 		console.log("You are " + theParticipant + " the host is " + theHost );
@@ -48,17 +48,15 @@ game.startGame = function()
 {
 	console.log("Running Start Game");
 	game.setHost();
-	game.setPlayers();
 	game.setState( cnst.SELECT );
 };
-//TODO: implement function so that a player id must be passed to it
-//set host function
-game.setHost = function( /* insert player id var here */ ) {
-	var newHost = gapi.hangout.getParticipantId();
-	var hostID = gapi.hangout.getParticipantById(newHost);
-	console.log("You just set the host to: " + newHost );
-	gapi.hangout.data.setValue( "host", hostID.person.id );
-	
+
+game.setHost = function() {   /* set host function */
+	console.log("running set host ");
+	var newHostId = getGoogleId();
+	gapi.hangout.data.setValue("host", newHostId);
+	gapi.hangout.data.submitDelta();
+	console.log( gapi.hangout.data.getValue("host") );
 };
 
 //sets the state of the gameboard
@@ -85,33 +83,43 @@ game.setState = function( newState ) {
 
 game.setPlayers = function()
 {
-	console.log("running set Players");
-	var length = gapi.hangout.getParticipants();
-	var playerNum = 1;
-	for(var i = 0; i < length.length; i++)
+	console.log("running set Players...........");
+	var temp1 = player.getGoogleIdByPlayerNum( 1 );
+	var temp2 = player.getGoogleIdByPlayerNum( 2 );
+	var temp3 = player.getGoogleIdByPlayerNum( 3 );
+	console.log("Player1: " + temp1);
+	console.log("Player2: " + temp2);
+	console.log("Player3: " + temp3);
+	
+	var arrParticipants = gapi.hangout.getParticipants();
+	var playerNumber = 1;
+	for(var i = 0; i < arrParticipants.length; i++)
 	{
-		console.log(length[i].person.id);
-		console.log(gapi.hangout.data.getValue( "host"));
+		console.log("Iterating through array......");
+			var temp1 = player.getGoogleIdByPlayerNum( 1 );
+			var temp2 = player.getGoogleIdByPlayerNum( 2 );
+			var temp3 = player.getGoogleIdByPlayerNum( 3 );
+			console.log("Player1: " + temp1);
+			console.log("Player2: " + temp2);
+			console.log("Player3: " + temp3);
+		console.log( "ID for Index " + i + ": " + arrParticipants[i].person.id );
 		
-		if( length[i].person.id == gapi.hangout.data.getValue( "host"))
+		if( arrParticipants[i].person.id == gapi.hangout.data.getValue("host"))
 		{
-			console.log("hhghghg");
-			continue;
+			console.log("current index is host, moving on...");
+			//continue;
 		}
 		else
 		{
-			var playerId = "" + length[i].person.id;
-		    gapi.hangout.data.setValue("Player" + playerNum + "Id", playerId);
+			var playerId = arrParticipants[i].person.id;
+			console.log("About to set...Player"+playerNumber+"Id to " + playerId);
+		    gapi.hangout.data.setValue( ("Player" + playerNumber + "Id") , playerId);
 			
-			console.log("PLAYER" + playerNum +"="+ gapi.hangout.data.getValue("Player" + playerNum + "Id"));
-			// player.setId(playerNum, length[i] id );
-			// player.setName(playerNum);
-			playerNum++;
-			//console.log( gapi.hangout.data.getValue("Player" + playerNum + "Id",""+ playerId);
+			console.log("PLAYER" + playerNumber + "="+ gapi.hangout.data.getValue("Player" + playerNumber + "Id"));
+			playerNumber = playerNumber + 1;
 		}
 	}
 };
-
 
 //gets the game's state variable
 game.getState = function() {

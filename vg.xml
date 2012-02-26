@@ -36,13 +36,213 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/player.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/printer.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/main.js"></script>
+
 </head>
 <body>
-<table id="board" class="imagetable">
-<div id="stuff">
-  
-</div>
+
+<table id="screen" class="screen" text-align="center" vertical-align="center">
+  <tr >
+    <td width="90%" height= "100%" >
+
+		<table id="board" class="imagetable">
+
+		
+		</table>
+    </td>
+	<!--This is a set of buttons for the host-->
+    <td width="20%" height="100%">
+      <table class="buttonTable">
+        <tr>
+          <td>
+            <button name="Help" class="button1" id="btnHelp" accesskey="h"><U>H</U>elp</button>
+          </td>
+        </tr>
+	<tr>
+          <td>
+            <button name="Buzzer" onclick="player.buzzIn();" class="button1"  id="btnBuzzer" accesskey="b" ><U>B</U>uzzer</button>
+          </td>
+        </tr>
+	 <tr>
+          <td>
+            <button name="Show Answer" onclick="host.showQuestion();" class="button1"  id="btnShow" accesskey="s" ><U>S</U>how Answer</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button name="Wrong Answer" class="button1" onclick="host.questionIncorrect();" id="btnWrong" accesskey="w" ><U>W</U>rong Answer</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button name="Control Panel" class="button1"  id="btnControl" accesskey="c" ><U>C</U>ontrol Panel</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button name="Release Buzzer" onclick="host.releaseBuzzers()" class="button1"  id="btnRelease" accesskey="r" ><U>R</U>elease Buzzer</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button name="Quit" class="button1"  id="btnQuit" accesskey="q" onclick="confirm('Are you sure you want to quit')"><U>Q</U>uit</button>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr height="20%">
+  <td colspan="3" width="100%">
+  	<table align="center">
+		<tr>
+			<td>
+				<table class = "podium">
+					<tr>
+						<td class="podiumTop" id="podiumlight1" colspan="9">
+						</td>
+					</tr>
+                    <tr>
+						<td class="podiumScore" colspan="9">
+							$0
+						</td>
+					</tr>
+                    <tr class = "podiumTimer">
+                      <td class="podium5">
+                  
+                      </td>
+                      <td class="podium4">
+                  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium1">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium4">
+		  
+                      </td>
+                      <td class="podium5">
+		  
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+				
+              
+            
+			<td>
+			<table class="podium">
+				<tr>
+					<td class="podiumTop"  id="podiumlight2" colspan="9">
+                    </td>
+	            </tr>
+	            <tr>
+					<td class="podiumScore" colspan="9">
+						$0
+					</td>
+	            </tr>
+                <tr class="podiumTimer">
+                      <td class="podium5">
+                  
+                      </td>
+                      <td class="podium4">
+                  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium1">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium4">
+		  
+                      </td>
+                      <td class="podium5">
+		  
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+				<td>
+			<table class="podium">
+				<tr>
+					<td class="podiumTop" id="podiumlight3" colspan="9">
+                    </td>
+	            </tr>
+	            <tr>
+					<td class="podiumScore" colspan="9">
+						$0
+		 </td>
+	        </tr> 
+                <tr class="podiumTimer">
+                      <td class="podium5">
+                  
+                      </td>
+                      <td class="podium4">
+                  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium1">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium4">
+		  
+                      </td>
+                      <td class="podium5">
+		  
+                      </td>
+                    </tr>
+                  </table>
+                </td>				
+		<td>
+ 		  <table class="podium">
+		    <tr>
+		      <td >
+			HOST
+		      </td>
+		    </tr>
+		  </table>
+	        </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 </table>
+
+<br />
+
 </body>
 </html>
 
