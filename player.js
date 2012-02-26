@@ -38,10 +38,13 @@ player.pullName = function(/*gets google name from api*/)
 	   var person = playerName.person.displayName;
        return(person);
 };
+
+
 player.getId = function(playerNum)/* gets player Id */
 {
 		return(gapi.hangout.data.getValue("Player" + playerNum + "Id"));
 };
+
 
 player.getName = function(playerNum)/* gets player Name */
 {
@@ -56,6 +59,10 @@ player.setName = function(playerNum)  /*sets player Name */
 	
 };
 
+// player.buzzIn = function()
+// {
+	// buzzOn(this.id);
+// };
 
 // player.buzzIn = function(/*buzzer call*/)
 // {
@@ -86,7 +93,4 @@ player.setName = function(playerNum)  /*sets player Name */
 	// var playerId = playerName.person.id;
      // gapi.hangout.data.setValue("Player" + playerNum + "Id",""+ playerId);
 // };
-
-
-
 

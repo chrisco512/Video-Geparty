@@ -65,7 +65,13 @@ host.questionUnanswered = function(){
 };
 
 host.releaseBuzzers = function(){
-//Later Release
+	if(game.isHost()){
+		console.log("Release buzzer");
+		gapi.hangout.data.setValue("Buzzer", "true");
+	}
+	else{
+		console.log("Bad Release - Ignoring");
+	}
 };
 
 host.removePlayer = function(playerId){
