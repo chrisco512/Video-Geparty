@@ -114,6 +114,7 @@ table.podium {
 	/*height: 10%;*/
 	position: relative;
 	text-align: center;
+	color: white;
 }
 
 table.podium tr {
@@ -145,6 +146,7 @@ td.podiumTop {
 	background:black;
 	width:95%;
 	height:18px;
+	color: white;
 }
 
 td.podiumScore {

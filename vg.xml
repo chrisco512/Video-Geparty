@@ -224,7 +224,7 @@
                   </table>
                 </td>				
 		<td>
- 		  <table class="podium">
+ 		  <table class="podium" id="hostpodium">
 		    <tr>
 		      <td >
 			HOST

@@ -54,7 +54,10 @@ game.startGame = function()
 game.setHost = function() {   /* set host function */
 	console.log("running set host ");
 	var newHostId = getGoogleId();
+	var newHostParticipant = getThisParticipant();
+	var newHostName = newHostParticipant.person.displayName;
 	gapi.hangout.data.setValue("host", newHostId);
+	gapi.hangout.data.setValue("hostName", newHostName);
 	gapi.hangout.data.submitDelta();
 	console.log( gapi.hangout.data.getValue("host") );
 };
@@ -112,10 +115,11 @@ game.setPlayers = function()
 		else
 		{
 			var playerId = arrParticipants[i].person.id;
+			var playerName = arrParticipants[i].person.displayName;
 			console.log("About to set...Player"+playerNumber+"Id to " + playerId);
 		    gapi.hangout.data.setValue( ("Player" + playerNumber + "Id") , playerId);
-			
-			console.log("PLAYER" + playerNumber + "="+ gapi.hangout.data.getValue("Player" + playerNumber + "Id"));
+			gapi.hangout.data.setValue( ("Player" + playerNumber + "Name") , playerName);
+			console.log("PLAYER" + playerNumber + "="+ gapi.hangout.data.getValue("Player" + playerNumber + "Name"));
 			playerNumber = playerNumber + 1;
 		}
 	}

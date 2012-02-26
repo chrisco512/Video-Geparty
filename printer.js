@@ -25,6 +25,16 @@ end attributes */
 end functions */
 
 printer.displayScores = function() {
+	var plr1 = player.getName(1);
+	var plr2 = player.getName(2);
+	var plr3 = player.getName(3);
+	var host = gapi.hangout.data.getValue("hostName");
+	console.log("1: "+plr1+"  2: "+plr2+"  3: "+plr3);
+	$("#podiumlight1").html(""+plr1);
+	$("#podiumlight2").html(""+plr2);
+	$("#podiumlight3").html(""+plr3);
+	$("#hostpodium").html("HOST<br />" + host);
+
 	console.log("Buzzedin.................is..........."+gapi.hangout.data.getValue("BuzzedIn"));
 	if(gapi.hangout.data.getValue("BuzzedIn") == "1") {
 		$("#podiumlight1").css("background-color","yellow");
