@@ -49,7 +49,7 @@ printer.display = function(currentState) {
 printer.displayStart = function() { 
 	console.log("RUNNING printer.displayStart");
 	$("#board").html( function() {
-		var startTable = "<tr><th><button type=\"button\" onclick=\"game.setHost();\">I am host!  Let us start the game!</button></th></tr>";
+		var startTable = "<tr><th><button type=\"button\" onclick=\"game.startGame();\">I am host!  Let us start the game!</button></th></tr>";
 		return(startTable);
 	});
 };

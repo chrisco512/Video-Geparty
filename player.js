@@ -38,29 +38,24 @@ player.pullName = function(/*gets google name from api*/)
 	   var person = playerName.person.displayName;
        return(person);
 };
-player.getId = function(/* gets player Id */)
+player.getId = function(playerNum)/* gets player Id */
 {
-		return(player.id);
-};
-player.setId = function(idNumber) /*sets player Id*/
-{
-	var playerName = gapi.hangout.getParticipantById(this.pullId());
-	var playerId = playerName.person.id;
-     player.id = playerId;
+		return(gapi.hangout.data.getValue("Player" + playerNum + "Id"));
 };
 
-player.getName = function(/* gets player Name */)
+player.getName = function(playerNum)/* gets player Name */
 {
-	return(player.name);
+	return(gapi.hangout.data.getValue("Player" + playerNum + "Name"));
 	
 };
-player.setName = function(playerName)  /*sets player Name */
+player.setName = function(playerNum)  /*sets player Name */
 {
 	var playerName = gapi.hangout.getParticipantById(this.pullId());
 	var person = playerName.person.displayName;
-	player.name = person;
+	gapi.hangout.data.setValue("Player" + playerNum + "Name",""+ person);
 	
 };
+
 
 // player.buzzIn = function(/*buzzer call*/)
 // {
@@ -79,6 +74,17 @@ player.setName = function(playerName)  /*sets player Name */
 // player.enterWager = function(int amount) /*allows player to enter wager for question */
 // {
 		//don't implement for first release
+// };
+
+
+
+//TRASH
+
+// player.setId = function( playerNum, playerId ) /*sets player Id*/
+// {
+	// var playerName = gapi.hangout.getParticipantById(this.pullId());
+	// var playerId = playerName.person.id;
+     // gapi.hangout.data.setValue("Player" + playerNum + "Id",""+ playerId);
 // };
 
 

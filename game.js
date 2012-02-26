@@ -33,6 +33,7 @@ end functions */
 game.isHost = function( /* insert player id var here */ ) {
 	var theHost = gapi.hangout.data.getValue("host");
 	var theParticipant = gapi.hangout.getParticipantId();
+	
 	if( theParticipant == theHost ) {
 		console.log("You are " + theParticipant + " the host is " + theHost );
 		return (true);
@@ -42,13 +43,22 @@ game.isHost = function( /* insert player id var here */ ) {
 		return (false);
 	}
 };
+
+game.startGame = function()
+{
+	console.log("Running Start Game");
+	game.setHost();
+	game.setPlayers();
+	game.setState( cnst.SELECT );
+};
 //TODO: implement function so that a player id must be passed to it
 //set host function
 game.setHost = function( /* insert player id var here */ ) {
 	var newHost = gapi.hangout.getParticipantId();
+	var hostID = gapi.hangout.getParticipantById(newHost);
 	console.log("You just set the host to: " + newHost );
-	gapi.hangout.data.setValue( "host", newHost );
-	game.setState( cnst.SELECT );
+	gapi.hangout.data.setValue( "host", hostID.person.id );
+	
 };
 
 //sets the state of the gameboard
@@ -72,6 +82,37 @@ game.setState = function( newState ) {
 		console.log("Bad State: " + newState );
 	}
 };
+
+game.setPlayers = function()
+{
+	console.log("running set Players");
+	var length = gapi.hangout.getParticipants();
+	var playerNum = 1;
+	for(var i = 0; i < length.length; i++)
+	{
+		console.log(length[i].person.id);
+		console.log(gapi.hangout.data.getValue( "host"));
+		
+		if( length[i].person.id == gapi.hangout.data.getValue( "host"))
+		{
+			console.log("hhghghg");
+			continue;
+		}
+		else
+		{
+			var playerId = "" + length[i].person.id;
+		    gapi.hangout.data.setValue("Player" + playerNum + "Id", playerId);
+			
+			console.log("PLAYER" + playerNum +"="+ gapi.hangout.data.getValue("Player" + playerNum + "Id"));
+			// player.setId(playerNum, length[i] id );
+			// player.setName(playerNum);
+			playerNum++;
+			//console.log( gapi.hangout.data.getValue("Player" + playerNum + "Id",""+ playerId);
+		}
+	}
+};
+
+
 //gets the game's state variable
 game.getState = function() {
 	var currentState = gapi.hangout.data.getValue("state");
