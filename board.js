@@ -81,6 +81,12 @@ board.setBoard = function() {
 		gapi.hangout.data.setValue(questionID, question);
 	});
 	
+	gapi.hangout.data.setValue("cat0_grid", "11111");
+	gapi.hangout.data.setValue("cat1_grid", "11111");
+	gapi.hangout.data.setValue("cat2_grid", "11111");
+	gapi.hangout.data.setValue("cat3_grid", "11111");
+	gapi.hangout.data.setValue("cat4_grid", "11111");
+	gapi.hangout.data.setValue("cat5_grid", "11111");
 };
 
 
@@ -125,4 +131,15 @@ board.getCategory = function( catNum ) {
 		return( gapi.hangout.data.getValue( "cat" + catNum ) );
 	else
 		console.log("ERROR: Category number out of range.");
+};
+
+//updates shared state so that printer object will not show questions already presented
+board.removeFromGrid = function(cat,q) {
+		// var cat = gapi.hangout.data.getValue("currentCat");
+	// var q = gapi.hangout.data.getValue("currentQ");
+	var qNum = parseInt(q);
+	var gridStr = gapi.hangout.data.getValue( "cat" + cat + "_grid" );
+	gridStr = (gridStr.substr(0, qNum) + "0" + gridStr.substr(qNum+1));
+	gapi.hangout.data.setValue( "cat"+cat+"_grid", gridStr );
+	console.log("hiding cat"+cat+"_q"+q+": cat"+cat+"_grid = "+gridStr);
 };

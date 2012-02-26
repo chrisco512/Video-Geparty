@@ -129,7 +129,12 @@ printer.displayBoard = function() {
 		for( var i = 0; i < 5; i++ ) {
 			boardTable += "<tr>";
 			for( var j = 0; j < 6; j++ ) {
-				boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
+				if( (gapi.hangout.data.getValue( "cat" + j + "_grid" ).charAt(i)) == '1')
+					boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
+				else
+					boardTable += "<td id=\"cat" + j + "_q" + i + "\"></td>";
+					
+				//boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
 			}
 			boardTable += "</tr>";
 		}

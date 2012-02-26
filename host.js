@@ -73,6 +73,7 @@ host.removePlayer = function(playerId){
 host.selectAnswer = function( cat, q ){
 	gapi.hangout.data.setValue("currentCat",""+cat);
 	gapi.hangout.data.setValue("currentQ", ""+q);	
+	board.removeFromGrid(cat,q);
 };
 
 host.showQuestion = function(){
