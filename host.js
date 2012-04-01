@@ -57,10 +57,11 @@ host.questionUnanswered = function(){
 };
 
 host.releaseBuzzers = function(){
-	if(game.isHost()){
+	if(game.isHost() && gapi.hangout.data.getValue("AlreadyReleased") == "false" && game.getState() == cnst.ANSWER){
 		console.log("Release buzzer");
 		gapi.hangout.data.setValue("Buzzer", "true");
 		console.log("Starting timer - Lockout in 5 sec");
+		gapi.hangout.data.setValue("AlreadyReleased", "true");
 		var t = setTimeout("buzzerLockout()",5000); // Lockout after 5 secs
 	}
 	else{
@@ -75,7 +76,7 @@ function buzzerLockout(){
 		gapi.hangout.data.setValue("BuzzedIn","");
 		host.showQuestion();
 	}
-}
+};
 
 host.removePlayer = function(playerId){
 //Later Release

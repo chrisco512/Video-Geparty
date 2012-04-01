@@ -60,6 +60,7 @@ function initGame() {
 	game.setState( cnst.START );
 	board.setBoard();
 	gapi.hangout.data.setValue("Buzzer", "false");
+	gapi.hangout.data.setValue("AlreadyReleased", "true");
 
 	//This is our main loop, since it is run each time the game state changes, and must control the game flow.
 	gapi.hangout.data.onStateChanged.add( function(event) {

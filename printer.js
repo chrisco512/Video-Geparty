@@ -58,6 +58,7 @@ printer.displayScores = function() {
 printer.display = function(currentState) {
 	if( currentState == cnst.START ) {
 		console.log("Calling printer.displayStart");
+		gapi.hangout.data.setValue("AlreadyReleased", "false");
 		printer.displayStart();
 	}
 	else if( currentState == cnst.ANSWER ) {
@@ -73,6 +74,7 @@ printer.display = function(currentState) {
 	} 
 	else if( currentState == cnst.SELECT ) {
 		console.log("Select your question, host");
+		gapi.hangout.data.setValue("AlreadyReleased", "false");
 		printer.displayBoard();
 		board.setUpJQuery();
 		
@@ -83,7 +85,6 @@ printer.display = function(currentState) {
 	printer.displayScores();
 	printer.displayBuzzerLights();
 	printer.displayBuzzerReleaseLight();
-	printer.podiumAlign();
 };
 
 printer.displayBuzzerReleaseLight = function(){
@@ -232,23 +233,5 @@ printer.displayQuestion = function() {
 			answerTable += ("<tr><th>" + board.getQuestion() + "</tr></th>");		
 			return (answerTable);
 		});
-	}
-};
-
-printer.podiumAlign = function() {
-	console.log("RUNNING printer.podiumAlign");
-	if(gapi.hangout.layout.isChatPaneVisible()) {
-		console.log("Testing with 10%");
-		for(var i = 1; i < 5; i++) {
-			console.log("Moving right");
-			$("#podium" + i).css("left","-68px");
-		}
-	}
-	else{
-		for(var i = 1; i < 5; i++) {
-			console.log("Moving left");
-			$("#podium" + i).css("left","46px");
-
-		}
 	}
 };
