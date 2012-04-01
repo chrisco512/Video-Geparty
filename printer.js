@@ -81,6 +81,62 @@ printer.display = function(currentState) {
 	}
 	printer.displayControls();
 	printer.displayScores();
+	printer.displayBuzzerLights();
+	printer.displayBuzzerReleaseLight();
+	printer.podiumAlign();
+};
+
+printer.displayBuzzerReleaseLight = function(){
+	if(gapi.hangout.data.getValue("Buzzer") == "true"){
+		$("#hostpodium").css("background-color","green");
+	}
+	else{
+		$("#hostpodium").css("background-color","red");
+	}
+};
+
+printer.displayBuzzerLights = function(){
+	var count = gapi.hangout.data.getValue("CountdownNum");
+	var id = gapi.hangout.data.getValue("BuzzedIn");
+	console.log("about to try the count switch");
+	switch(count){
+		case "6":
+			console.log("made it into case 6");
+			$(".PodiumTimer" + id).css("background-color","red"); // Make the whole bar red
+			break;
+		case "5":
+			console.log("made it into case 5");
+			$(".Podium5" + id).css("background-color","black");
+			break;
+		case "4":
+			console.log("made it into case 4");
+			$(".Podium5" + id).css("background-color","black");
+			$(".Podium4" + id).css("background-color","black");
+			break;
+		case "3":
+			console.log("made it into case 3");
+			$(".Podium5" + id).css("background-color","black");
+			$(".Podium4" + id).css("background-color","black");
+			$(".Podium3" + id).css("background-color","black");
+			break;
+		case "2":
+			console.log("made it into case 2");
+			$(".Podium5" + id).css("background-color","black");
+			$(".Podium4" + id).css("background-color","black");
+			$(".Podium3" + id).css("background-color","black");
+			$(".Podium2" + id).css("background-color","black");
+			break;
+		case "1":
+			console.log("made it into case 1");
+			$(".Podium5" + id).css("background-color","black");
+			$(".Podium4" + id).css("background-color","black");
+			$(".Podium3" + id).css("background-color","black");
+			$(".Podium2" + id).css("background-color","black");
+			$(".Podium1" + id).css("background-color","black");
+			break;
+		default:
+			console.log("Invalid value in displayBuzzerLights");
+	}
 };
 
 printer.displayControls = function() {
@@ -176,5 +232,23 @@ printer.displayQuestion = function() {
 			answerTable += ("<tr><th>" + board.getQuestion() + "</tr></th>");		
 			return (answerTable);
 		});
+	}
+};
+
+printer.podiumAlign = function() {
+	console.log("RUNNING printer.podiumAlign");
+	if(gapi.hangout.layout.isChatPaneVisible()) {
+		console.log("Testing with 10%");
+		for(var i = 1; i < 5; i++) {
+			console.log("Moving right");
+			$("#podium" + i).css("left","-68px");
+		}
+	}
+	else{
+		for(var i = 1; i < 5; i++) {
+			console.log("Moving left");
+			$("#podium" + i).css("left","46px");
+
+		}
 	}
 };

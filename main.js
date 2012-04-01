@@ -34,8 +34,24 @@ function buzzOn( id ){
 		gapi.hangout.data.setValue("Buzzer", "false");
 		gapi.hangout.data.setValue("BuzzedIn",(""+LocalPlayerNum));
 		console.log("buzzed in set to "+gapi.hangout.data.getValue("BuzzedIn"));
+		podiumCountdown();
 	}
 };
+
+function podiumCountdown(){
+	console.log("Podium counting down now");
+	setCountdown(6);
+	var t = setTimeout("setCountdown(5)",1000); // 1 sec later, make the outermost cells black
+	var t = setTimeout("setCountdown(4)",2000); // 2 sec later, make the next cells black
+	var t = setTimeout("setCountdown(3)",3000); // 3 sec later, make the next cells black
+	var t = setTimeout("setCountdown(2)",4000); // 4 sec later, make the next cells black
+	var t = setTimeout("setCountdown(1)",5000); // 5 sec later, make the inner cells black
+}
+
+function setCountdown(num){
+	console.log("Podium countdown set to " + num);
+	gapi.hangout.data.setValue("CountdownNum", ""+num);
+}
 
 //set up initial variables on game load 
 function initGame() {
@@ -47,6 +63,9 @@ function initGame() {
 
 	//This is our main loop, since it is run each time the game state changes, and must control the game flow.
 	gapi.hangout.data.onStateChanged.add( function(event) {
+		gameLoop();
+	});
+	gapi.hangout.layout.onChatPaneVisible.add( function(event) {
 		gameLoop();
 	});
 }

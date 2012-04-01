@@ -60,11 +60,22 @@ host.releaseBuzzers = function(){
 	if(game.isHost()){
 		console.log("Release buzzer");
 		gapi.hangout.data.setValue("Buzzer", "true");
+		console.log("Starting timer - Lockout in 5 sec");
+		var t = setTimeout("buzzerLockout()",5000); // Lockout after 5 secs
 	}
 	else{
 		console.log("Bad Release - Ignoring");
 	}
 };
+
+function buzzerLockout(){
+	if(gapi.hangout.data.getValue("Buzzer") == "true"){ // If no one has buzzed in
+		console.log("Locking out buzzer");
+		gapi.hangout.data.setValue("Buzzer", "false");
+		gapi.hangout.data.setValue("BuzzedIn","");
+		host.showQuestion();
+	}
+}
 
 host.removePlayer = function(playerId){
 //Later Release
