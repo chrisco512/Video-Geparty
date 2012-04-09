@@ -25,45 +25,47 @@ end attributes */
 end functions */
 
 printer.displayScores = function() {
-	var plr1 = player.getName(1);
-	var plr2 = player.getName(2);
-	var plr3 = player.getName(3);
+	console.log("running display host");
 	var host = gapi.hangout.data.getValue("hostName");
-	console.log("1: "+plr1+"  2: "+plr2+"  3: "+plr3);
-	$("#podiumlight1").html(""+plr1);
-	$("#podiumlight2").html(""+plr2);
-	$("#podiumlight3").html(""+plr3);
-	$("#hostpodium").html("HOST<br />" + host);
-
-	console.log("Buzzedin.................is..........."+gapi.hangout.data.getValue("BuzzedIn"));
-	if(gapi.hangout.data.getValue("BuzzedIn") == "1") {
-		$("#podiumlight1").css("background-color","yellow");
-		$("#podiumlight2").css("background-color","black");
-		$("#podiumlight3").css("background-color","black");
-	} else if(gapi.hangout.data.getValue("BuzzedIn") == "2") {
-		$("#podiumlight1").css("background-color","black");
-		$("#podiumlight2").css("background-color","yellow");
-		$("#podiumlight3").css("background-color","black");
-	} else if(gapi.hangout.data.getValue("BuzzedIn") == "3") {
-		$("#podiumlight1").css("background-color","black");
-		$("#podiumlight2").css("background-color","black");
-		$("#podiumlight3").css("background-color","yellow");
-	} else  {
-		$("#podiumlight1").css("background-color","black");
-		$("#podiumlight2").css("background-color","black");
-		$("#podiumlight3").css("background-color","black");
-	} 
+	//console.log("1: "+plr1+"  2: "+plr2+"  3: "+plr3);
+	var hostIndex = gapi.hangout.data.getValue("HostIndex");
+	
+	for( var i = 0; i < 4; i++ ) {
+		if( i == parseInt(hostIndex) ) {
+			$("#podium"+i).html("HOST<br />" + host);
+		}
+		else
+		{
+			$("#podiumlight"+i).html(""+player.getName(i));
+			$(".podium" + i + "Score").html("$"+gapi.hangout.data.getValue("Player"+i+"Score"));
+			console.log("Buzzedin.................is..........."+gapi.hangout.data.getValue("BuzzedIn"));
+			var temp = parseInt(gapi.hangout.data.getValue("BuzzedIn"));
+			if(i == temp){
+				$("#podiumlight"+i).css("background-color","orange");
+			}
+			else{
+				$("#podiumlight"+i).css("background-color","black");
+			}
+			
+		}
+	}
 };
 
 printer.display = function(currentState) {
 	if( currentState == cnst.START ) {
 		console.log("Calling printer.displayStart");
+		gapi.hangout.data.setValue("AlreadyReleased", "false");
 		printer.displayStart();
+	}
+	else if( currentState == cnst.SETUP ) {
+		game.setPlayers();
+		setLocalPlayerNum();
+		game.setState( cnst.SELECT );
 	}
 	else if( currentState == cnst.ANSWER ) {
 		console.log("Attempting to display answer...");
 		console.log("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
-		setLocalPlayerNum();
+		//setLocalPlayerNum();
 		if(gapi.hangout.data.getValue("displayQuestion") == "1"){
 			printer.displayQuestion();
 		}
@@ -73,26 +75,90 @@ printer.display = function(currentState) {
 	} 
 	else if( currentState == cnst.SELECT ) {
 		console.log("Select your question, host");
+		gapi.hangout.data.setValue("AlreadyReleased", "false");
 		printer.displayBoard();
 		board.setUpJQuery();
 		
-		game.setPlayers();
+		//game.setPlayers();
 		//host.releaseBuzzers();
 	}
 	printer.displayControls();
 	printer.displayScores();
+	printer.displayBuzzerLights();
+	printer.displayBuzzerReleaseLight();
+	printer.podiumAlign();
+};
+
+printer.displayBuzzerReleaseLight = function(){
+	var hostIndex = gapi.hangout.data.getValue("HostIndex");
+	console.log("buzzer release light, hostindex is: " + hostIndex);
+	if(gapi.hangout.data.getValue("Buzzer") == "true"){
+		$("#podium"+hostIndex).css("background-color","green");
+	}
+	else{
+		$("#podium"+hostIndex).css("background-color","red");
+	}
+};
+
+printer.displayBuzzerLights = function(){
+	var count = gapi.hangout.data.getValue("CountdownNum");
+	var id = gapi.hangout.data.getValue("BuzzedIn");
+	console.log("about to try the count switch for count: " + count);
+	switch(count){
+		case "6":
+			console.log("made it into case 6");
+			$(".podium5" + id).css("background-color","red");
+			$(".podium4" + id).css("background-color","red");
+			$(".podium3" + id).css("background-color","red");
+			$(".podium2" + id).css("background-color","red");
+			$(".podium1" + id).css("background-color","red");
+			//$(".podiumTimer" + id).css("background-color","red"); // Make the whole bar red
+			break;
+		case "5":
+			console.log("made it into case 5");
+			$(".podium5" + id).css("background-color","black");
+			break;
+		case "4":
+			console.log("made it into case 4");
+			$(".podium5" + id).css("background-color","black");
+			$(".podium4" + id).css("background-color","black");
+			break;
+		case "3":
+			console.log("made it into case 3");
+			$(".podium5" + id).css("background-color","black");
+			$(".podium4" + id).css("background-color","black");
+			$(".podium3" + id).css("background-color","black");
+			break;
+		case "2":
+			console.log("made it into case 2");
+			$(".podium5" + id).css("background-color","black");
+			$(".podium4" + id).css("background-color","black");
+			$(".podium3" + id).css("background-color","black");
+			$(".podium2" + id).css("background-color","black");
+			break;
+		case "1":
+			console.log("made it into case 1");
+			$(".podium5" + id).css("background-color","black");
+			$(".podium4" + id).css("background-color","black");
+			$(".podium3" + id).css("background-color","black");
+			$(".podium2" + id).css("background-color","black");
+			$(".podium1" + id).css("background-color","black");
+			break;
+		default:
+			console.log("Invalid value in displayBuzzerLights");
+	}
 };
 
 printer.displayControls = function() {
 	//$("#btnHelp").hide();
 	$("#btnBuzzer").hide();
-	$("#btnShow").hide();
+	$("#btnRight").hide();
 	$("#btnWrong").hide();
 	$("#btnControl").hide();
 	$("#btnRelease").hide();
 	//$("#btnQuit").hide();
 	if( game.isHost() ) {
-		$("#btnShow").show();
+		$("#btnRight").show();
 		$("#btnWrong").show();
 		$("#btnControl").show();
 		$("#btnRelease").show();
@@ -115,31 +181,41 @@ printer.displayBoard = function() {
 	console.log("RUNNING printer.displayBoard");
 	gapi.hangout.data.setValue("BuzzedIn","");
 	gapi.hangout.data.setValue("displayQuestion","0");
-	$("#board").html( function() {
-		var boardTable = "";
-		boardTable += "<tr>";
-		for( var i = 0; i < 6; i++ ){
-			boardTable += "<th id=\"";
-			boardTable += ("cat" + i );
-			boardTable += "\">";
-			boardTable += board.getCategory( i );
-			boardTable += "</th>";
-		}
-		boardTable += "</tr>";
-		for( var i = 0; i < 5; i++ ) {
+	if( game.isHost() && gapi.hangout.data.getValue("displayControl") == "true" ) 
+	{
+		$("#board").html( function() {
+			var controlTable = "";
+			controlTable += "<table class=\"controlpanel\"><tr><td><form><tr><td><p class=\"pInstr\">Please choose a player.<br> You can either remove that player <br> or edit that player's score.</p><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg\" alt=\"Player 1\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\">Player 1</button></td><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg \" alt=\"Player 2\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\"> Player 2</button></td><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg \" alt=\"Player 3\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\"> Player 3</button></td></tr><tr><td><br><label for=\"score\">Last Score</label><br><input type=\"text\" name=\"score\" value = \"$0\" readonly = \"readonly\" /><br><input type = \"text\" name = \"adjustScore\" value = \"playerscore\" /><br><button name=\"EditScore\" class=\"button2\"  id=\"btnEditScore\" height=\"20\" width=\"60\" accesskey=\"e\" ><U>E</U>dit Score</button></td><td></td><td><br><button name=\"RemovePlayer\" class=\"button2\"  id=\"btnRemovePlayer\" accesskey=\"r\" ><U>R</U>emove</button><br><br><br><button name=\"Close\" class=\"button2\"  id=\"btnClose\" accesskey=\"c\" onclick=\"toggle();\"><U>C</U>lose</button></td></tr></form></td></tr></table>";
+			
+			return(controlTable);
+		});
+	} else {
+		$("#board").html( function() {
+			var boardTable = "";
 			boardTable += "<tr>";
-			for( var j = 0; j < 6; j++ ) {
-				if( (gapi.hangout.data.getValue( "cat" + j + "_grid" ).charAt(i)) == '1')
-					boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
-				else
-					boardTable += "<td id=\"cat" + j + "_q" + i + "\"></td>";
-					
-				//boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
+			for( var i = 0; i < 6; i++ ){
+				boardTable += "<th id=\"";
+				boardTable += ("cat" + i );
+				boardTable += "\">";
+				boardTable += board.getCategory( i );
+				boardTable += "</th>";
 			}
 			boardTable += "</tr>";
-		}
-		return (boardTable);
-	});
+			for( var i = 0; i < 5; i++ ) {
+				boardTable += "<tr>";
+				for( var j = 0; j < 6; j++ ) {
+					if( (gapi.hangout.data.getValue( "cat" + j + "_grid" ).charAt(i)) == '1')
+						boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
+					else
+						boardTable += "<td id=\"cat" + j + "_q" + i + "\"></td>";
+						
+					//boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
+				}
+				boardTable += "</tr>";
+			}
+			return (boardTable);
+		});
+	}
 };
 
 //Alters the display of the game grid during the Answer state.  A player will see only
@@ -176,5 +252,21 @@ printer.displayQuestion = function() {
 			answerTable += ("<tr><th>" + board.getQuestion() + "</tr></th>");		
 			return (answerTable);
 		});
+	}
+};
+
+printer.podiumAlign = function() {
+	console.log("RUNNING printer.podiumAlign");
+	if(gapi.hangout.layout.isChatPaneVisible()) {
+		for(var i = 0; i < 4; i++) {
+			console.log("Moving left");
+			$("#podium" + i).css("left","-68px");
+		}
+	}
+	else{
+		for(var i = 0; i < 4; i++) {
+			console.log("Moving right");
+			$("#podium" + i).css("left","46px");
+		}
 	}
 };

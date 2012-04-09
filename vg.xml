@@ -22,72 +22,137 @@
   <Content type="html">
   
     <![CDATA[
-	<script src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=0.2"></script>
+	<script src="//talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
 	<!-- The hangout API JavaScript. Always include this first -->
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/vg.css" />
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/cnst.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/jquery.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/board.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/game.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/host.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/player.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/printer.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/main.js"></script>
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Ron/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/main.js"></script>
 
 </head>
-<body>
+<body onkeydown="getkey(event);">
 
 <table id="screen" class="screen" text-align="center" vertical-align="center">
   <tr >
     <td width="90%" height= "100%" >
-
-		<table id="board" class="imagetable">
-
-		
-		</table>
+	<table id="board" class="imagetable">
+	</table>
     </td>
 	<!--This is a set of buttons for the host-->
     <td width="20%" height="100%">
       <table class="buttonTable">
         <tr>
           <td>
-            <button name="Help" class="button1" id="btnHelp" accesskey="h"><U>H</U>elp</button>
+            <INPUT
+		type="image"
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/help_icon.png"
           </td>
         </tr>
 	<tr>
           <td>
-            <button name="Buzzer" onclick="player.buzzIn();" class="button1"  id="btnBuzzer" accesskey="b" ><U>B</U>uzzer</button>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png'"
+		onclick="player.buzzIn();"
+		name="Buzzer" 
+		id="btnBuzzer" 
+		accesskey = "b" 
+		value ="">
           </td>
         </tr>
 	 <tr>
           <td>
-            <button name="Show Answer" onclick="host.showQuestion();" class="button1"  id="btnShow" accesskey="s" ><U>S</U>how Answer</button>
+             <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png'"
+		onclick="host.questionCorrect();"
+		name="Correct Answer" 
+		id="btnRight"
+		accesskey = "a" 
+		value ="">
           </td>
         </tr>
         <tr>
           <td>
-            <button name="Wrong Answer" class="button1" onclick="host.questionIncorrect();" id="btnWrong" accesskey="w" ><U>W</U>rong Answer</button>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png'"
+		onclick="host.questionIncorrect();"
+		name="Wrong Answer" 
+		id="btnWrong"
+		accesskey = "w" 
+		value ="">
+
           </td>
         </tr>
         <tr>
           <td>
-            <button name="Control Panel" class="button1"  id="btnControl" accesskey="c" ><U>C</U>ontrol Panel</button>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png'"
+		onclick="toggle();"
+		name="Control Panel" 
+		id="btnControl"
+		accesskey = "c" 
+		value ="">
           </td>
         </tr>
         <tr>
           <td>
-            <button name="Release Buzzer" onclick="host.releaseBuzzers()" class="button1"  id="btnRelease" accesskey="r" ><U>R</U>elease Buzzer</button>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png'"
+		id="btnRelease" 
+		onclick="host.releaseBuzzers();"
+		name="Release_Buzzer" 
+		accesskey = "r" 
+		value ="">
           </td>
         </tr>
         <tr>
-          <td>
-            <button name="Quit" class="button1"  id="btnQuit" accesskey="q" onclick="confirm('Are you sure you want to quit')"><U>Q</U>uit</button>
+         <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png'"
+		onclick="javascript:confirm('Are you sure you want to quit')"
+		id="btnQuit"
+		name="Quit" 
+		accesskey = "q" 
+		value ="">
           </td>
-        </tr>
-      </table>
+        </tr>      </table>
     </td>
   </tr>
   <tr height="20%">
@@ -95,141 +160,26 @@
   	<table align="center">
 		<tr>
 			<td>
-				<table class = "podium">
-					<tr>
-						<td class="podiumTop" id="podiumlight1" colspan="9">
-						</td>
-					</tr>
-                    <tr>
-						<td class="podiumScore" colspan="9">
-							$0
-						</td>
-					</tr>
-                    <tr class = "podiumTimer">
-                      <td class="podium5">
-                  
-                      </td>
-                      <td class="podium4">
-                  
-                      </td>
-                      <td class="podium3">
-		  
-                      </td>
-                      <td class="podium2">
-		  
-                      </td>
-                      <td class="podium1">
-		  
-                      </td>
-                      <td class="podium2">
-		  
-                      </td>
-                      <td class="podium3">
-		  
-                      </td>
-                      <td class="podium4">
-		  
-                      </td>
-                      <td class="podium5">
-		  
-                      </td>
-                    </tr>
+				<table class="podium" id="podium0">
+					
                   </table>
                 </td>
 				
               
             
 			<td>
-			<table class="podium">
-				<tr>
-					<td class="podiumTop"  id="podiumlight2" colspan="9">
-                    </td>
-	            </tr>
-	            <tr>
-					<td class="podiumScore" colspan="9">
-						$0
-					</td>
-	            </tr>
-                <tr class="podiumTimer">
-                      <td class="podium5">
-                  
-                      </td>
-                      <td class="podium4">
-                  
-                      </td>
-                      <td class="podium3">
-		  
-                      </td>
-                      <td class="podium2">
-		  
-                      </td>
-                      <td class="podium1">
-		  
-                      </td>
-                      <td class="podium2">
-		  
-                      </td>
-                      <td class="podium3">
-		  
-                      </td>
-                      <td class="podium4">
-		  
-                      </td>
-                      <td class="podium5">
-		  
-                      </td>
-                    </tr>
+			<table class="podium" id="podium1">
+				
                   </table>
                 </td>
 				<td>
-			<table class="podium">
-				<tr>
-					<td class="podiumTop" id="podiumlight3" colspan="9">
-                    </td>
-	            </tr>
-	            <tr>
-					<td class="podiumScore" colspan="9">
-						$0
-		 </td>
-	        </tr> 
-                <tr class="podiumTimer">
-                      <td class="podium5">
-                  
-                      </td>
-                      <td class="podium4">
-                  
-                      </td>
-                      <td class="podium3">
-		  
-                      </td>
-                      <td class="podium2">
-		  
-                      </td>
-                      <td class="podium1">
-		  
-                      </td>
-                      <td class="podium2">
-		  
-                      </td>
-                      <td class="podium3">
-		  
-                      </td>
-                      <td class="podium4">
-		  
-                      </td>
-                      <td class="podium5">
-		  
-                      </td>
-                    </tr>
+			<table class="podium" id="podium2">
+				
                   </table>
                 </td>				
 		<td>
- 		  <table class="podium" id="hostpodium">
-		    <tr>
-		      <td >
-			HOST
-		      </td>
-		    </tr>
+ 		  <table class="podium" id="podium3">
+		    
 		  </table>
 	        </td>
               </tr>

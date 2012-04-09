@@ -17,6 +17,7 @@ constant, the cnst prefix should be a flag to us so that we do not assign
 any value to these vars.
 */
 cnst.START = "START";
+cnst.SETUP = "SETUP";
 cnst.SELECT = "SELECT";
 cnst.ANSWER = "ANSWER";
 

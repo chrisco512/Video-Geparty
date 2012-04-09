@@ -18,13 +18,15 @@ LocalPlayerNum = 0;
 function setLocalPlayerNum() {
 	
 	console.log("Running setlocalplayernum.................................");
+	var temp0 = player.getGoogleIdByPlayerNum( 0 );
 	var temp1 = player.getGoogleIdByPlayerNum( 1 );
 	var temp2 = player.getGoogleIdByPlayerNum( 2 );
 	var temp3 = player.getGoogleIdByPlayerNum( 3 );
+	console.log("Player1: " + temp0);
 	console.log("Player1: " + temp1);
 	console.log("Player2: " + temp2);
 	console.log("Player3: " + temp3);
-	for( var i = 1; i < 4; i++ ) {
+	for( var i = 0; i < 4; i++ ) {
 		var temp = getGoogleId();
 		var temp2 = player.getGoogleIdByPlayerNum( i );
 		if( temp == temp2 ) {

@@ -9,6 +9,27 @@ table.screen {
 	background:url("Background.png");
 }
 
+table.controlpanel {
+	font-family: verdana,arial,sans-serif;
+	font-size:14px;
+	color:#FFFFFF;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+	/*height: 400px;*/
+	height: 0%;
+	/*width: 800px;*/
+	width: 0%;
+	/*
+	position: absolute;
+	*/
+	position: relative;
+	text-align: center;
+	background:url("Background.png");
+	background-color: blue;
+	
+}
+
 table.imagetable {
 	font-family: verdana,arial,sans-serif;
 	font-size:14px;
