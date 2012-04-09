@@ -7,10 +7,10 @@
 	<script>
 	    var socket = new EasyWebSocket("ws://jeopardy.bvdtech.com");
 	    socket.onopen = function(){
-			socket.send("hello world!")
+		socket.send("hello world!")
 	    }
 	    socket.onmessage = function(event){
-			alert("received "+ event.data)
+		alert("received "+ event.data)
 	    }
 	function displaymessage(){
 		socket.send("hello trebek")
