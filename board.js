@@ -1,4 +1,4 @@
-//board.js...test comment
+//board.js...another test comment!
 // think of these as includes
 if (typeof board == 'undefined') { board = {}; }
 if (typeof player == 'undefined') { player = {}; }
