@@ -42,9 +42,30 @@ end functions */
 board.setBoard = function() {
 	console.log("CALLING SETBOARD");
 
+	var gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=SG";
+
+	// Get game mode (single, double, final)
+	var gameMode = gapi.hangout.data.getValue("Mode");
+	console.log(gameMode);
+
+	// Get correct game
+	
+	if(gameMode == cnst.SINGLE){
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=SG";
+	}
+	else if(gameMode == cnst.DOUBLE){
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=DG";
+	}
+	else if(gameMode == cnst.FINAL){
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=FG";
+	}
+	else{
+		console.log("ERROR DETERMINING GAMEMODE (SINGLE, DOUBLE, FINAL). USING SINGLE.);
+	}
+
 	// Get content
 	var content = $.ajax({
-                url: "https://bvdtechcom.ipage.com/geparty/gameboard.php",
+                url: gameboardURL,
                 async: false
             }).responseText;
 
@@ -61,8 +82,6 @@ board.setBoard = function() {
 
 		gapi.hangout.data.setValue(id, category);
   	});
-
-	// TODO - switch question-answer , add answer ID
 
 	$(xmlDoc).find("entry").each(function()
  	{
@@ -88,7 +107,6 @@ board.setBoard = function() {
 	gapi.hangout.data.setValue("cat4_grid", "11111");
 	gapi.hangout.data.setValue("cat5_grid", "11111");
 };
-
 
 board.setUpJQuery = function() {
 	for(var i = 0; i < 6; i++){
