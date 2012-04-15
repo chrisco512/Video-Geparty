@@ -34,7 +34,7 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/game.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/host.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/main.js"></script>
 
 </head>
@@ -54,6 +54,11 @@
             <INPUT
 		type="image"
 		src="https://bvdtechcom.ipage.com/jeopardy/Joel/help_icon.png"
+		name="Help"
+		id="btnHelp"
+		accesskey = "h"
+		value = ""
+		title = "Help"
           </td>
         </tr>
 	<tr>
@@ -69,7 +74,7 @@
 		name="Buzzer" 
 		id="btnBuzzer" 
 		accesskey = "b" 
-		value ="">
+		value = "" >
           </td>
         </tr>
 	 <tr>
@@ -85,7 +90,8 @@
 		name="Correct Answer" 
 		id="btnRight"
 		accesskey = "a" 
-		value ="">
+		value =""
+		title = "Correct Answer">
           </td>
         </tr>
         <tr>
@@ -101,7 +107,8 @@
 		name="Wrong Answer" 
 		id="btnWrong"
 		accesskey = "w" 
-		value ="">
+		value =""
+		title = "Wrong Answer">
 
           </td>
         </tr>
@@ -150,7 +157,8 @@
 		id="btnQuit"
 		name="Quit" 
 		accesskey = "q" 
-		value ="">
+		value =""
+		title = "Quit">
           </td>
         </tr>      </table>
     </td>
