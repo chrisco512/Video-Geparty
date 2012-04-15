@@ -173,7 +173,7 @@ function buzzerLockout(){
 }
 
 host.removePlayer = function(playerId){
-//Later Release
+	//Use playerId to remove them from the player array. Bump them from room?
 };
  
 host.selectAnswer = function( cat, q ){

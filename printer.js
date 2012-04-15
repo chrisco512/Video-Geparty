@@ -82,6 +82,19 @@ printer.display = function(currentState) {
 		//game.setPlayers();
 		//host.releaseBuzzers();
 	}
+	else if( currentState == cnst.DAILY ){
+		console.log("You've found the daily double for this round!");
+		console.log("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
+		//setLocalPlayerNum();
+		if(gapi.hangout.data.getValue("displayQuestion") == "1"){
+		//If not host, show the solution
+			printer.displayQuestion();
+		}
+		else{
+		//Show the problem, with solution for host
+			printer.displayDaily();
+		}		
+	}
 	printer.displayControls();
 	printer.displayScores();
 	printer.displayBuzzerLights();
@@ -253,6 +266,24 @@ printer.displayQuestion = function() {
 			return (answerTable);
 		});
 	}
+};
+
+printer.displayDaily = function() {
+	console.log("RUNNING printer.displayDaily");
+	$("#board").html( function(){
+		
+		console.log("trying to display the daily info");
+		var answerTable = "<tr><th>This is the Daily Double!</tr></th>"
+		//answerTable += "<input onkeydown=\"player.buzzIn()\" />";
+		//working up to isHost func
+		if( game.isHost() ) {
+			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
+		}
+		else{
+			answerTable += "";
+		}
+		return (answerTable);
+	});
 };
 
 printer.podiumAlign = function() {
