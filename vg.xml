@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Module>
+    <!-- /*
+ * Copyright (c) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */ -->
+  <ModulePrefs title="Starter App">
+	  <Require feature="rpc"/>
+	  <Require feature="views"/>
+  </ModulePrefs>
+  <Content type="html">
+  
+    <![CDATA[
+	<script src="//talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
+	<!-- The hangout API JavaScript. Always include this first -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Jesua/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/main.js"></script>
+
+</head>
+<body onkeydown="getkey(event);">
+
+<table id="screen" class="screen" text-align="center" vertical-align="center">
+  <tr >
+    <td width="90%" height= "100%" >
+	<table id="board" class="imagetable">
+	</table>
+    </td>
+	<!--This is a set of buttons for the host-->
+    <td width="20%" height="100%">
+      <table class="buttonTable">
+        <tr>
+          <td>
+            <INPUT
+		type="image"
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/help_icon.png"
+          </td>
+        </tr>
+	<tr>
+          <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png'"
+		onclick="player.buzzIn();"
+		name="Buzzer" 
+		id="btnBuzzer" 
+		accesskey = "b" 
+		value ="">
+          </td>
+        </tr>
+	 <tr>
+          <td>
+             <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png'"
+		onclick="host.questionCorrect();"
+		name="Correct Answer" 
+		id="btnRight"
+		accesskey = "a" 
+		value ="">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png'"
+		onclick="host.questionIncorrect();"
+		name="Wrong Answer" 
+		id="btnWrong"
+		accesskey = "w" 
+		value ="">
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png'"
+		onclick="toggle();"
+		name="Control Panel" 
+		id="btnControl"
+		accesskey = "c" 
+		value ="">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png'"
+		id="btnRelease" 
+		onclick="host.releaseBuzzers();"
+		name="Release_Buzzer" 
+		accesskey = "r" 
+		value ="">
+          </td>
+        </tr>
+        <tr>
+         <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png'"
+		onclick="javascript:confirm('Are you sure you want to quit')"
+		id="btnQuit"
+		name="Quit" 
+		accesskey = "q" 
+		value ="">
+          </td>
+        </tr>      </table>
+    </td>
+  </tr>
+  <tr height="20%">
+  <td colspan="3" width="100%">
+  	<table align="center">
+		<tr>
+			<td>
+				<table class="podium" id="podium0">
+					
+                  </table>
+                </td>
+				
+              
+            
+			<td>
+			<table class="podium" id="podium1">
+				
+                  </table>
+                </td>
+				<td>
+			<table class="podium" id="podium2">
+				
+                  </table>
+                </td>				
+		<td>
+ 		  <table class="podium" id="podium3">
+		    
+		  </table>
+	        </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+</body>
+</html>
+
+
+]]></Content>
+</Module>
+
