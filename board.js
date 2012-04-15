@@ -1,4 +1,4 @@
-//board.js...test Sue
+//board.js
 // think of these as includes
 if (typeof board == 'undefined') { board = {}; }
 if (typeof player == 'undefined') { player = {}; }
@@ -40,11 +40,32 @@ end functions */
 };*/
 
 board.setBoard = function() {
-	console.log("CALLING SETBOARD");
+	console.log("CALLING SETBOARD WITH MODE");
+
+	var gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=SG";
+
+	// Get game mode (single, double, final)
+	var gameMode = gapi.hangout.data.getValue("Mode");
+	console.log(gameMode);
+
+	// Get correct game
+
+	if(gameMode == cnst.SINGLE){
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=SG";
+	}
+	else if(gameMode == cnst.DOUBLE){
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=DG";
+	}
+	else if(gameMode == cnst.FINAL){
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=FG";
+	}
+	else{
+		console.log("ERROR DETERMINING GAMEMODE (SINGLE, DOUBLE, FINAL). USING SINGLE.);
+	}
 
 	// Get content
 	var content = $.ajax({
-                url: "https://bvdtechcom.ipage.com/geparty/gameboard.php",
+                url: gameboardURL,
                 async: false
             }).responseText;
 
@@ -62,8 +83,6 @@ board.setBoard = function() {
 		gapi.hangout.data.setValue(id, category);
   	});
 
-	// TODO - switch question-answer , add answer ID
-
 	$(xmlDoc).find("entry").each(function()
  	{
 		var answerID = $(this).attr("aID");
@@ -80,6 +99,7 @@ board.setBoard = function() {
 
 		gapi.hangout.data.setValue(questionID, question);
 	});
+	
 	console.log("Board listed");
 	gapi.hangout.data.setValue("cat0_grid", "11111");
 	gapi.hangout.data.setValue("cat1_grid", "11111");
@@ -102,8 +122,8 @@ board.assignDailyDouble = function(){
 	var q = Math.floor(Math.random() * (max - min + 1)) + min;
 	console.log("Q"+q);	
 	console.log("DAILY DOUBLE is CAT"+c+"Q"+q);
-//	gapi.hangout.data.setValue("dailyDoubleCat", ""+c);
-//	gapi.hangout.data.setValue("dailyDoubleQ", ""+q);
+	gapi.hangout.data.setValue("dailyDoubleCat", ""+c);
+	gapi.hangout.data.setValue("dailyDoubleQ", ""+q);
 };
 
 board.setUpJQuery = function() {
@@ -119,8 +139,15 @@ board.setUpJQuery = function() {
 					var ifbutton = gapi.hangout.data.getValue(button);						
 				    console.log(ifbutton+ " j = " +n);
 					if(ifbutton.charAt(n) == '1'){
-						console.log("setUpJQuery: attempting to set state...");
-						game.setState( cnst.ANSWER );
+						var cat = gapi.hangout.data.getValue("dailyDoubleCat");
+						var ques = gapi.hangout.data.getValue("dailyDoubleQ");		
+						console.log("setUpJQuery: attempting to set state...");						
+						if(cat == m && ques == n){
+							game.setState( cnst.DAILY );
+						}
+						else{
+							game.setState( cnst.ANSWER );
+						}
 						host.selectAnswer(m,n);
 						console.log("state is now..." + game.getState() );
 					}
