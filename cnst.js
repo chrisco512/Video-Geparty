@@ -21,6 +21,8 @@ cnst.SETUP = "SETUP";
 cnst.SELECT = "SELECT";
 cnst.ANSWER = "ANSWER";
 
+cnst.DAILY = "DAILY";
+
 cnst.SINGLE = "SINGLE";
 cnst.DOUBLE = "DOUBLE";
 cnst.FINAL = "FINAL";

@@ -80,29 +80,53 @@ board.setBoard = function() {
 
 		gapi.hangout.data.setValue(questionID, question);
 	});
-	
+	console.log("Board listed");
 	gapi.hangout.data.setValue("cat0_grid", "11111");
 	gapi.hangout.data.setValue("cat1_grid", "11111");
 	gapi.hangout.data.setValue("cat2_grid", "11111");
 	gapi.hangout.data.setValue("cat3_grid", "11111");
 	gapi.hangout.data.setValue("cat4_grid", "11111");
 	gapi.hangout.data.setValue("cat5_grid", "11111");
+	console.log("Assigning Daily Double");
+	board.assignDailyDouble();
 };
 
+board.assignDailyDouble = function(){
+	var min = 0;
+	var max = 5;
+	console.log("Generating random numbers");	
+	var c = Math.floor(Math.random() * (max - min + 1)) + min;
+	console.log("Cat"+c);
+	min = 2;
+	max = 4;
+	var q = Math.floor(Math.random() * (max - min + 1)) + min;
+	console.log("Q"+q);	
+	console.log("DAILY DOUBLE is CAT"+c+"Q"+q);
+//	gapi.hangout.data.setValue("dailyDoubleCat", ""+c);
+//	gapi.hangout.data.setValue("dailyDoubleQ", ""+q);
+};
 
 board.setUpJQuery = function() {
 	for(var i = 0; i < 6; i++){
 		for(var j = 0; j < 5; j++){
-			var check = "#cat"+i+"_q"+j;
+			var check = "#cat"+i+"_q"+j;		
 			$(check).click( function(){
 				if( game.isHost() ){
-					console.log("setUpJQuery: attempting to set state...");
-					game.setState( cnst.ANSWER );
 					var hold = $(this).attr('id');
 					var m = hold[3];
-					var n = hold[6];
-					host.selectAnswer(m,n);
-					console.log("state is now..." + game.getState() );
+					var n = hold[6];	
+					var button = "cat"+m+"_grid";
+					var ifbutton = gapi.hangout.data.getValue(button);						
+				    console.log(ifbutton+ " j = " +n);
+					if(ifbutton.charAt(n) == '1'){
+						console.log("setUpJQuery: attempting to set state...");
+						game.setState( cnst.ANSWER );
+						host.selectAnswer(m,n);
+						console.log("state is now..." + game.getState() );
+					}
+					else{
+
+					}
 				}
 			});
 		}
@@ -143,3 +167,14 @@ board.removeFromGrid = function(cat,q) {
 	gapi.hangout.data.setValue( "cat"+cat+"_grid", gridStr );
 	console.log("hiding cat"+cat+"_q"+q+": cat"+cat+"_grid = "+gridStr);
 };
+
+/*board.removeButton = function(){
+	var cat = gapi.hangout.data.getValue("currentCat");
+	var q = gapi.hangout.data.getValue("currentQ");	
+//Disable button
+	var check = "#cat"+cat+"_q"+q;
+	$(check).click( function(){
+		console.log("REMOVED BUTTON");
+	});	
+	game.setState(cnst.SELECT);	
+};*/

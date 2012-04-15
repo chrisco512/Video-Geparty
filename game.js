@@ -89,6 +89,11 @@ game.setState = function( newState ) {
 		gapi.hangout.data.setValue( "state", newState );
 		//console.log("now state is " + game.getState() );
 		break;
+	case cnst.DAILY:
+		console.log("DAILY");
+		gapi.hangout.data.setValue( "state", newState );
+		//console.log("now state is " + game.getState() );
+		break;			
 	default:
 		console.log("Bad State: " + newState );
 	}
