@@ -12,23 +12,20 @@ table.screen {
 table.controlpanel {
 	font-family: verdana,arial,sans-serif;
 	font-size:14px;
-	color:#FFFFFF;
 	border-width: 1px;
 	border-color: #999999;
 	border-collapse: collapse;
-	/*height: 400px;*/
 	height: 0%;
-	/*width: 800px;*/
 	width: 0%;
-	/*
-	position: absolute;
-	*/
 	position: relative;
 	text-align: center;
-	background:url("Background.png");
-	background-color: blue;
+	background:#041692;
+	color:white;
+	
 	
 }
+
+
 
 table.imagetable {
 	font-family: verdana,arial,sans-serif;
@@ -122,6 +119,7 @@ button.button1 {
 button.button2 {
 	width:85%;
 	background:#041692;
+	color:#FFFFFF;
 }
 
 table.podium {
