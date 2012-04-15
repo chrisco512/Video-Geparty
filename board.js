@@ -40,7 +40,7 @@ end functions */
 };*/
 
 board.setBoard = function() {
-	console.log("CALLING SETBOARD");
+	console.log("CALLING SETBOARD WITH MODE");
 
 	var gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=SG";
 
