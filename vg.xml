@@ -27,14 +27,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Jesua/vg.css" />
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Sue/vg.css" />
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/jquery.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/board.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/game.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/host.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
+=======
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/printer.js"></script>
+>>>>>>> origin/master
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/main.js"></script>
 
 </head>
@@ -46,6 +50,7 @@
 	<table id="board" class="imagetable">
 	</table>
     </td>
+	
 	<!--This is a set of buttons for the host-->
     <td width="20%" height="100%">
       <table class="buttonTable">
@@ -109,7 +114,6 @@
 		accesskey = "w" 
 		value =""
 		title = "Wrong Answer">
-
           </td>
         </tr>
         <tr>
@@ -125,6 +129,7 @@
 		name="Control Panel" 
 		id="btnControl"
 		accesskey = "c" 
+		
 		value ="">
           </td>
         </tr>
@@ -141,6 +146,7 @@
 		onclick="host.releaseBuzzers();"
 		name="Release_Buzzer" 
 		accesskey = "r" 
+		
 		value ="">
           </td>
         </tr>
