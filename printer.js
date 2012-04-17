@@ -284,7 +284,7 @@ printer.displayDaily = function() {
 			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
 		}
 		else{
-			answerTable += "<tr><th> <input type=\"text\" name=\"Bid Text Box\" value=\"Enter Bid Here\" />" + "</tr></th>";
+			answerTable += "<tr><th> <input type=\"text\" id=\"bidtext\" name=\"Bid Text Box\" value=\"Enter Bid Here\" />" + "</tr></th>";
 		}
 		return (answerTable);
 	});
