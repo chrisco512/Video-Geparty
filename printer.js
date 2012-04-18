@@ -202,7 +202,7 @@ printer.displayBoard = function() {
 		$("#board").addClass("controlpanel");
 		$("#board").html( function() {
 			var controlTable = "";
-			controlTable += "<table class=\"controlpanel\"><tr><td><form><tr><td><p class=\"pInstr\">Please choose a player.<br> You can either remove that player <br> or edit that player's score.</p><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg\" alt=\"Player 1\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\">Player 1</button></td><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg \" alt=\"Player 2\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\"> Player 2</button></td><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg \" alt=\"Player 3\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\"> Player 3</button></td></tr><tr><td><br><label for=\"score\">Last Score</label><br><input type=\"text\" name=\"score\" value = \"$0\" readonly = \"readonly\" /><br><input type = \"text\" name = \"adjustScore\" value = \"playerscore\" /><br><button name=\"EditScore\" class=\"button2\"  id=\"btnEditScore\" height=\"20\" width=\"60\" accesskey=\"e\" ><U>E</U>dit Score</button></td><td></td><td><br><button name=\"RemovePlayer\" class=\"button2\"  id=\"btnRemovePlayer\" accesskey=\"r\" ><U>R</U>emove</button><br><br><br><button name=\"Close\" class=\"button2\"  id=\"btnClose\" accesskey=\"c\" onclick=\"toggle();\"><U>C</U>lose</button></td></tr></form></td></tr></table>";
+			controlTable += "<table class=\"controlpanel\"><tr><td><form><tr><td><p class=\"pInstr\">Please choose a player.<br> You can either remove that player <br> or edit that player's score.</p><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg\" alt=\"Player 1\" width =\"100\" height=\"130\"><br><input type=\"Radio\" accesskey=\"p\" name = \"RadioButtons\">Player 1</button></td><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg \" alt=\"Player 2\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\"> Player 2</button></td><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg \" alt=\"Player 3\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\"> Player 3</button></td></tr><tr><td><br><label for=\"score\">Last Score</label><br><input accesskey=\"s\" type=\"text\" name=\"score\" value = \"$0\" readonly = \"readonly\" /><br><input type = \"text\" name = \"adjustScore\" value = \"playerscore\" /><br><button name=\"EditScore\" class=\"button2\"  id=\"btnEditScore\" height=\"20\" width=\"60\" accesskey=\"e\" ><U>E</U>dit Score</button></td><td></td><td><br><button name=\"RemovePlayer\" class=\"button2\"  id=\"btnRemovePlayer\" accesskey=\"r\" ><U>R</U>emove</button><br><br><br><button name=\"Close\" class=\"button2\"  id=\"btnClose\" accesskey=\"c\" onclick=\"toggle();\"><U>C</U>lose</button></td></tr></form></td></tr></table>";
 			
 			return(controlTable);
 		});
@@ -273,6 +273,7 @@ printer.displayQuestion = function() {
 };
 
 printer.displayDaily = function() {
+	playSound('https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3');
 	console.log("RUNNING printer.displayDaily");
 	$("#board").html( function(){
 		
@@ -284,7 +285,7 @@ printer.displayDaily = function() {
 			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
 		}
 		else{
-			answerTable += "";
+			answerTable += "<tr><th> <input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"Enter Bid Here\" />" + "</tr></th>";
 		}
 		return (answerTable);
 	});
