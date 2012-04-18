@@ -34,11 +34,7 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/game.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/host.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
-=======
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/printer.js"></script>
->>>>>>> origin/master
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/main.js"></script>
 
 </head>
