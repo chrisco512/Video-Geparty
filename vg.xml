@@ -35,11 +35,11 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/host.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/main.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
 
 </head>
 <body onkeydown="getkey(event);">
-
+<span id="dummy"></span>
 <table id="screen" class="screen" text-align="center" vertical-align="center">
   <tr >
     <td width="90%" height= "100%" >

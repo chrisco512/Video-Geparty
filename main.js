@@ -54,6 +54,11 @@ function toggle() {
 		gapi.hangout.data.setValue("displayControl","true");
 } 
 
+function playSound(soundfile) 
+{
+ document.getElementById("dummy").innerHTML="<embed src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+ }
+
 function confirmQuit() {
 	var quit = confirm('Are you sure you want to quit')
 	if (quit == true)

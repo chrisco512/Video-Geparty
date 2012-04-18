@@ -273,6 +273,7 @@ printer.displayQuestion = function() {
 };
 
 printer.displayDaily = function() {
+	playSound('https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3');
 	console.log("RUNNING printer.displayDaily");
 	$("#board").html( function(){
 		
