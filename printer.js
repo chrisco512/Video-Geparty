@@ -281,7 +281,7 @@ printer.displayDaily = function() {
 		var answerTable = "<tr><th>" + gapi.hangout.data.getValue("cat"+gapi.hangout.data.getValue("currentCat")) + "</tr></th>"
 		//answerTable += "<input onkeydown=\"player.buzzIn()\" />";
 		//working up to isHost func
-		if( !game.isHost() ) {
+		if( game.isHost() ) {
 			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
 		}
 		else{
