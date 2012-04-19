@@ -33,7 +33,7 @@ function getkey(e)
 		if(key == 32)
 		{
 			player.buzzIn();
-			return null;
+			return e.which;
 		}
 	}
 	else if (e)

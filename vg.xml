@@ -32,14 +32,18 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/jquery.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/board.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/game.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel\/host.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
 
 </head>
 <body onkeydown="getkey(event);">
-<span id="dummy"></span>
+<!-- <span id="dummy"></span> -->
+<audio id="dailyDouble" >
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.ogg" type="audio/ogg"/>
+</audio>
 <table id="screen" class="screen" text-align="center" vertical-align="center">
   <tr >
     <td width="90%" height= "100%" >

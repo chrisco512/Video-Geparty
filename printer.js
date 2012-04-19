@@ -92,6 +92,8 @@ printer.display = function(currentState) {
 		}
 		else{
 		//Show the problem, with solution for host
+			//playSound('https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3');
+			$("#dailyDouble").get(0).play();
 			printer.displayDaily();
 		}		
 	}
@@ -273,7 +275,6 @@ printer.displayQuestion = function() {
 };
 
 printer.displayDaily = function() {
-	playSound('https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3');
 	console.log("RUNNING printer.displayDaily");
 	$("#board").html( function(){
 		
@@ -284,8 +285,9 @@ printer.displayDaily = function() {
 		if( game.isHost() ) {
 			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
 		}
-		else{
-			answerTable += "<tr><th> <input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"Enter Bid Here\" />" + "</tr></th>";
+		else
+		{
+			answerTable += "<tr><th> <input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"Enter Bid Here\" />" + "<input type=\"button\" value=\"submit\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
 		}
 		return (answerTable);
 	});
