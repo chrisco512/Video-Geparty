@@ -279,18 +279,26 @@ printer.displayDaily = function() {
 	$("#board").html( function(){
 		
 		console.log("trying to display the daily info");
-		var answerTable = "<tr><th>This is the Daily Double!</tr></th>"
+		var answerTable = "<tr><th>" + gapi.hangout.data.getValue("cat"+gapi.hangout.data.getValue("currentCat")) + "</tr></th>"
 		//answerTable += "<input onkeydown=\"player.buzzIn()\" />";
 		//working up to isHost func
 		if( game.isHost() ) {
 			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
 		}
+
+
 		else
 		{
-			answerTable += "<tr><th> <input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"Enter Bid Here\" />" + "<input type=\"button\" value=\"submit\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
+			answerTable += "<tr><th>  Enter Bid: $<input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"\" />" + "<br><br><input type=\"button\" value=\"Submit Bid Now\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
+
 		}
 		return (answerTable);
 	});
+};
+
+printer.displayDaily2 = function() {
+	console.log("RUNNING printer.displayDaily2");
+	var answerTable = "<tr><th>" + "";//finish this
 };
 
 printer.podiumAlign = function() {
