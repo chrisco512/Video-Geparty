@@ -285,14 +285,9 @@ printer.displayDaily = function() {
 		if( game.isHost() ) {
 			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
 		}
-<<<<<<< HEAD
 		else
 		{
 			answerTable += "<tr><th> <input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"Enter Bid Here\" />" + "<input type=\"button\" value=\"submit\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
-=======
-		else{
-			answerTable += "";
->>>>>>> origin/master
 		}
 		return (answerTable);
 	});

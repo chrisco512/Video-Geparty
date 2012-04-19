@@ -38,7 +38,6 @@ host.adjustScore = function(playerId, amount){
 };
 
 host.questionCorrect = function(){
-	
 	console.log( "running qcorr mode is " + gapi.hangout.data.getValue("Mode") );
 	if( gapi.hangout.data.getValue("Mode") == cnst.SINGLE )
 	{

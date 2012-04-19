@@ -31,23 +31,22 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/jquery.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/board.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/game.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel\/host.js"></script>
-=======
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/game.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/host.js"></script>
->>>>>>> origin/master
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/host.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/printer.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/main.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
 
 </head>
 <body onkeydown="getkey(event);">
 <!-- <span id="dummy"></span> -->
-<audio id="dailyDouble" >
+<audio id="dailyDouble" preload="auto">
 	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.ogg" type="audio/ogg"/>
+</audio>
+<audio id="Applause" preload="auto">
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.ogg" type="audio/ogg"/>
 </audio>
 <table id="screen" class="screen" text-align="center" vertical-align="center">
   <tr >
