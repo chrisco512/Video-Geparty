@@ -60,7 +60,7 @@ board.setBoard = function() {
 		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=FG";
 	}
 	else{
-		console.log("ERROR DETERMINING GAMEMODE (SINGLE, DOUBLE, FINAL). USING SINGLE.);
+		console.log("ERROR DETERMINING GAMEMODE (SINGLE, DOUBLE, FINAL). USING SINGLE.");
 	}
 
 	// Get content
