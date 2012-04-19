@@ -128,4 +128,9 @@ function gameLoop() {
 	//console.log(myHost.id + " " + myHost.name );
 }
 
+function help() {
+	window.open("https://bvdtechcom.ipage.com/jeopardy/Sue/help.html")
+ 
+}
+
 

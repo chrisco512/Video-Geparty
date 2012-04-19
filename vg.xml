@@ -31,11 +31,16 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/jquery.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/board.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/game.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel\/host.js"></script>
+=======
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/host.js"></script>
+>>>>>>> origin/master
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/main.js"></script>
 
 </head>
 <body onkeydown="getkey(event);">
@@ -62,6 +67,7 @@
 		name="Help"
 		id="btnHelp"
 		accesskey = "h"
+		onclick = "game.help();"
 		value = ""
 		title = "Help"
           </td>
