@@ -57,7 +57,8 @@ host.questionCorrect = function(){
 		//find out who is selected
 		var buzzed = gapi.hangout.data.getValue("BuzzedIn");
 		if ( buzzed != null && parseInt(buzzed) >= 0 && parseInt(buzzed) <= 3 ) {
-			game.playSound("Applause");
+			//play Applause sound effect when returning to game loop
+			gapi.hangout.data.setValue("soundEffect", "Applause");
 			host.adjustScore( buzzed, amount );
 		}
 		else {
@@ -91,6 +92,8 @@ host.questionCorrect = function(){
 	{
 		//for next release
 	} 
+	var controller = gapi.hangout.data.getValue("BuzzedIn");
+	gapi.hangout.data.setValue("boardController", controller);
 };
 
 host.questionIncorrect = function(){

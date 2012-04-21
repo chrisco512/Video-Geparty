@@ -80,7 +80,7 @@ function buzzOn( id ){
 		console.log("Bad Buzz - Ignoring");
 	}
 	else{
-		game.playSound("buzzIn");
+		gapi.hangout.data.setValue("soundEffect", "BuzzIn");
 		console.log("buzz in from player: " + id );
 		gapi.hangout.data.setValue("Buzzer", "false");
 		gapi.hangout.data.setValue("BuzzedIn",(""+LocalPlayerNum));
@@ -124,6 +124,7 @@ function initGame() {
 function gameLoop() {
 	var currentState = game.getState();
 	console.log("RUNNING gameLoop.  State is currently " + currentState );
+	printer.playSounds();
 	printer.display(currentState);
 	//console.log("score init: "  + gapi.hangout.data.getValue("Player1Score") );
 	//console.log(myHost.id + " " + myHost.name );

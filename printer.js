@@ -91,8 +91,8 @@ printer.display = function(currentState) {
 			printer.displayQuestion();
 		}
 		else{
-		//Show the problem, with solution for host
-			game.playSound("dailyDouble");
+		//Show the problem, with solution for host. Set the sound effect to play the Daily Double sound when returning to game loop
+			gapi.hangout.data.setValue("soundEffect", "dailyDouble");
 			printer.displayDaily();
 		}		
 	}
@@ -278,18 +278,26 @@ printer.displayDaily = function() {
 	$("#board").html( function(){
 		
 		console.log("trying to display the daily info");
-		var answerTable = "<tr><th>This is the Daily Double!</tr></th>"
+		var answerTable = "<tr><th>" + gapi.hangout.data.getValue("cat"+gapi.hangout.data.getValue("currentCat")) + "</tr></th>"
 		//answerTable += "<input onkeydown=\"player.buzzIn()\" />";
 		//working up to isHost func
 		if( game.isHost() ) {
 			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
 		}
+
+
 		else
 		{
-			answerTable += "<tr><th> <input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"Enter Bid Here\" />" + "<input type=\"button\" value=\"submit\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
+			answerTable += "<tr><th>  Enter Bid: $<input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"\" />" + "<br><br><input type=\"button\" value=\"Submit Bid Now\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
+
 		}
 		return (answerTable);
 	});
+};
+
+printer.displayDaily2 = function() {
+	console.log("RUNNING printer.displayDaily2");
+	var answerTable = "<tr><th>" + "";//finish this
 };
 
 printer.podiumAlign = function() {
@@ -307,3 +315,16 @@ printer.podiumAlign = function() {
 		}
 	}
 };
+//check to see if a sound effect needs to be played, if so, then call the game.playSound function
+printer.playSounds = function()
+{
+	var	curSound = gapi.hangout.data.getValue("soundEffect");
+	if(curSound != "")
+	{
+		game.playSound(curSound)
+	}
+	else
+	{
+		gapi.hangout.data.setValue("");
+	}
+}
