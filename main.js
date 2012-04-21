@@ -54,11 +54,6 @@ function toggle() {
 		gapi.hangout.data.setValue("displayControl","true");
 } 
 
-function playSound(soundfile) 
-{
- document.getElementById("dummy").innerHTML="<embed src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
- }
-
 function confirmQuit() {
 	var quit = confirm('Are you sure you want to quit')
 	if (quit == true)
@@ -80,10 +75,10 @@ function buzzOn( id ){
 		console.log("Bad Buzz - Ignoring");
 	}
 	else{
-		gapi.hangout.data.setValue("soundEffect", "BuzzIn");
 		console.log("buzz in from player: " + id );
 		gapi.hangout.data.setValue("Buzzer", "false");
 		gapi.hangout.data.setValue("BuzzedIn",(""+LocalPlayerNum));
+		gapi.hangout.data.setValue("soundEffect", "BuzzIn");
 		console.log("buzzed in set to "+gapi.hangout.data.getValue("BuzzedIn"));
 		podiumCountdown();
 	}

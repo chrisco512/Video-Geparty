@@ -144,6 +144,7 @@ board.setUpJQuery = function() {
 						var ques = gapi.hangout.data.getValue("dailyDoubleQ");		
 						console.log("setUpJQuery: attempting to set state...");						
 						if(cat == m && ques == n){
+							gapi.hangout.data.setValue("soundEffect", "dailyDouble");
 							game.setState( cnst.DAILY );
 						}
 						else{

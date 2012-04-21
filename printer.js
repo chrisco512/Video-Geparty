@@ -91,8 +91,6 @@ printer.display = function(currentState) {
 			printer.displayQuestion();
 		}
 		else{
-		//Show the problem, with solution for host. Set the sound effect to play the Daily Double sound when returning to game loop
-			gapi.hangout.data.setValue("soundEffect", "dailyDouble");
 			printer.displayDaily();
 		}		
 	}
@@ -303,7 +301,8 @@ printer.displayDaily2 = function() {
 printer.podiumAlign = function() {
 	console.log("RUNNING printer.podiumAlign");
 	if(gapi.hangout.layout.isChatPaneVisible()) {
-		for(var i = 0; i < 4; i++) {
+		for(var i = 0; i < 4
+		; i++) {
 			console.log("Moving left");
 			$("#podium" + i).css("left","-68px");
 		}
@@ -318,13 +317,25 @@ printer.podiumAlign = function() {
 //check to see if a sound effect needs to be played, if so, then call the game.playSound function
 printer.playSounds = function()
 {
-	var	curSound = gapi.hangout.data.getValue("soundEffect");
-	if(curSound != "")
+	var curSound = gapi.hangout.data.getValue("soundEffect");
+	if(curSound == "Applause")
 	{
-		game.playSound(curSound)
+		console.log("Playing Applause Sound");
+		$("#Applause").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+
 	}
-	else
+	else if(curSound == "BuzzIn")
 	{
-		gapi.hangout.data.setValue("");
+		console.log("Playing BuzzIn Sound");
+		$("#buzzIn").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+
 	}
-}
+	else if(curSound == "dailyDouble")
+	{
+		console.log("Playing dailyDouble Sound");
+		$("#dailyDouble").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+	}
+};
