@@ -76,8 +76,14 @@ printer.display = function(currentState) {
 	else if( currentState == cnst.SELECT ) {
 		console.log("Select your question, host");
 		gapi.hangout.data.setValue("AlreadyReleased", "false");
-		printer.displayBoard();
-		board.setUpJQuery();
+		if(board.isEmpty()){
+			console.log("*** END OF ROUND ***");
+			printer.displayIntermission();
+		}
+		else{
+			printer.displayBoard();
+			board.setUpJQuery();
+		}
 		
 		//game.setPlayers();
 		//host.releaseBuzzers();
@@ -299,6 +305,35 @@ printer.displayDaily = function() {
 printer.displayDaily2 = function() {
 	console.log("RUNNING printer.displayDaily2");
 	var answerTable = "<tr><th>" + "";//finish this
+};
+
+printer.displayIntermission = function() { 
+	console.log("RUNNING printer.displayIntermission");
+	if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE ) {
+		$("#board").html( function() {
+			var startTable = "<tr><th>END OF SINGLE JEOPARDY</th></tr>";
+			if(game.isHost()){
+				startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameDouble();\">Start Double Jeopardy</button></th></tr>";
+			}
+			return(startTable);
+		});
+	}
+	else if(gapi.hangout.data.getValue("Mode") == cnst.DOUBLE ) {
+		$("#board").html( function() {
+			var startTable = "<tr><th>END OF DOUBLE JEOPARDY</th></tr>";
+			if(game.isHost()){
+				startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameFinal();\">Start Final Jeopardy</button></th></tr>";
+			}
+			return(startTable);
+		});
+	}
+	else {
+		$("#board").html( function() {
+			var startTable = "<tr><th>END OF FINAL JEOPARDY</th></tr>";
+			startTable += "<tr><th>Dee Bug McPlaceholderson wins!</th></tr>";
+			return(startTable);
+		});
+	}
 };
 
 printer.podiumAlign = function() {
