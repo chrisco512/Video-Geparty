@@ -118,6 +118,14 @@ game.setPlayers = function()
 
 	console.log("in setplayers function...host is: " + gapi.hangout.data.getValue("host") );
 	var arrParticipants = gapi.hangout.getParticipants();
+	var players = arrParticipants.length;
+	$("#podiums").html( function(){
+		var podiums;
+		for(var i = 0; i < players; i++) {
+			podiums += "<td><table class=\"podium\" id=\"podium" + i +"\"></table></td>";
+		}
+		return (podiums);
+	});
 	var playerNumber;
 	for(var i = 0; i < arrParticipants.length; i++)
 	{

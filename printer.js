@@ -296,23 +296,19 @@ printer.displayDaily = function() {
 	});
 };
 
-printer.displayDaily2 = function() {
-	console.log("RUNNING printer.displayDaily2");
-	var answerTable = "<tr><th>" + "";//finish this
-};
-
 printer.podiumAlign = function() {
 	console.log("RUNNING printer.podiumAlign");
+	var players = gapi.hangout.getParticipants().length;
 	if(gapi.hangout.layout.isChatPaneVisible()) {
-		for(var i = 0; i < 4; i++) {
-			console.log("Moving left");
-			$("#podium" + i).css("left","-68px");
+		console.log("Moving left");
+		for(var i = 0; i < players; i++) {	
+			$("#podium" + i).css("left","-5%");
 		}
 	}
 	else{
-		for(var i = 0; i < 4; i++) {
-			console.log("Moving right");
-			$("#podium" + i).css("left","46px");
+		console.log("Moving right");
+		for(var i = 0; i < players; i++) {
+			//$("#podium" + i).css("left","0px");
 		}
 	}
 };
