@@ -42,7 +42,7 @@ end functions */
 board.setBoard = function() {
 	console.log("CALLING SETBOARD WITH MODE");
 
-	var gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=SG";
+	var gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=SG";
 
 	// Get game mode (single, double, final)
 	var gameMode = gapi.hangout.data.getValue("Mode");
@@ -51,16 +51,17 @@ board.setBoard = function() {
 	// Get correct game
 
 	if(gameMode == cnst.SINGLE){
-		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=SG";
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=SG";
 	}
 	else if(gameMode == cnst.DOUBLE){
-		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=DG";
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=DG";
 	}
 	else if(gameMode == cnst.FINAL){
-		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard_new.php?type=FG";
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=FG";
 	}
 	else{
-		console.log("ERROR DETERMINING GAMEMODE (SINGLE, DOUBLE, FINAL). USING SINGLE.);
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=SG";
+		console.log("ERROR DETERMINING GAMEMODE (SINGLE, DOUBLE, FINAL). USING SINGLE. JEFF - MAKE THE GAME MODES!");
 	}
 
 	// Get content
