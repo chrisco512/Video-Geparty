@@ -97,9 +97,6 @@ printer.display = function(currentState) {
 			printer.displayQuestion();
 		}
 		else{
-		//Show the problem, with solution for host
-			playSound('https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3');
-			$("#dailyDouble").get(0).play();
 			printer.displayDaily();
 		}		
 	}
@@ -347,5 +344,30 @@ printer.podiumAlign = function() {
 		for(var i = 0; i < players; i++) {
 			//$("#podium" + i).css("left","0px");
 		}
+	}
+};
+//check to see if a sound effect needs to be played, if so, then call the game.playSound function
+printer.playSounds = function()
+{
+	var curSound = gapi.hangout.data.getValue("soundEffect");
+	if(curSound == "Applause")
+	{
+		console.log("Playing Applause Sound");
+		$("#Applause").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+
+	}
+	else if(curSound == "BuzzIn")
+	{
+		console.log("Playing BuzzIn Sound");
+		$("#buzzIn").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+
+	}
+	else if(curSound == "dailyDouble")
+	{
+		console.log("Playing dailyDouble Sound");
+		$("#dailyDouble").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
 	}
 };
