@@ -1,17 +1,16 @@
 <NotepadPlus>
     <Session activeView="0">
-        <mainView activeIndex="10">
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="CSS" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\vg.css" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\board.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\cnst.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\easyWebSocket.min.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\game.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\host.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\jquery.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\main.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\player.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\printer.js" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="776" startPos="544" endPos="544" selMode="0" lang="XML" encoding="28591" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\vg.xml" />
+        <mainView activeIndex="3">
+            <File firstVisibleLine="12" xOffset="0" scrollWidth="336" startPos="396" endPos="396" selMode="0" lang="CSS" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\vg.css" />
+            <File firstVisibleLine="17" xOffset="0" scrollWidth="1016" startPos="2392" endPos="2392" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\board.js" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="600" startPos="544" endPos="544" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\cnst.js" />
+            <File firstVisibleLine="78" xOffset="0" scrollWidth="5784" startPos="632" endPos="632" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\game.js" />
+            <File firstVisibleLine="80" xOffset="0" scrollWidth="1256" startPos="2519" endPos="2523" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\host.js" />
+            <File firstVisibleLine="0" xOffset="2625" scrollWidth="262152" startPos="544" endPos="544" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\jquery.js" />
+            <File firstVisibleLine="30" xOffset="0" scrollWidth="768" startPos="538" endPos="544" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\main.js" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="624" startPos="544" endPos="544" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\player.js" />
+            <File firstVisibleLine="273" xOffset="0" scrollWidth="1472" startPos="10992" endPos="10992" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\printer.js" />
+            <File firstVisibleLine="1" xOffset="0" scrollWidth="840" startPos="544" endPos="544" selMode="0" lang="XML" encoding="28591" filename="C:\Users\Cordle\Desktop\hangout\frontend\Video-Geparty\vg.xml" />
         </mainView>
         <subView activeIndex="0" />
     </Session>

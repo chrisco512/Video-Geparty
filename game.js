@@ -11,6 +11,7 @@ The game object determines the flow of the game by tracking and setting the vari
 state values.  In VG, there is a concept of a game STATE and game MODE.  STATE
 can vary between:
 START: which is meant to be the initial state where a host is selected
+SETUP: Calls the setup functions to populate board questions from server
 SELECT: state enables host functions such as selecting the next question.
 ANSWER: displays answer and fires buzzer timer and buzzer enable functions 
 A MODE state variable tracks the Geparty round, whether Single, Double, or Final.
