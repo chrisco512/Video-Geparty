@@ -90,8 +90,9 @@ host.questionCorrect = function(){
 	{
 		//for next release
 	} 
-	
-	
+
+	var controller = gapi.hangout.data.getValue("BuzzedIn");
+	gapi.hangout.data.setValue("boardController", controller);
 };
 
 host.questionIncorrect = function(){

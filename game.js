@@ -164,3 +164,10 @@ game.getState = function() {
 	var currentState = gapi.hangout.data.getValue("state");
 	return (currentState);
 };
+
+game.help = function() {
+	window.open("https://bvdtechcom.ipage.com/jeopardy/Sue/help.html");
+	//window.open("http://www.w3schools.com");
+ 
+ 
+};

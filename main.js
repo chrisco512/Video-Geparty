@@ -33,7 +33,7 @@ function getkey(e)
 		if(key == 32)
 		{
 			player.buzzIn();
-			return null;
+			return e.which;
 		}
 	}
 	else if (e)
@@ -53,6 +53,11 @@ function toggle() {
 	else
 		gapi.hangout.data.setValue("displayControl","true");
 } 
+
+function playSound(soundfile) 
+{
+ document.getElementById("dummy").innerHTML="<embed src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+ }
 
 function confirmQuit() {
 	var quit = confirm('Are you sure you want to quit')
@@ -121,6 +126,11 @@ function gameLoop() {
 	printer.display(currentState);
 	//console.log("score init: "  + gapi.hangout.data.getValue("Player1Score") );
 	//console.log(myHost.id + " " + myHost.name );
+}
+
+function help() {
+	window.open("https://bvdtechcom.ipage.com/jeopardy/Sue/help.html")
+ 
 }
 
 
