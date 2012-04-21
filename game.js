@@ -170,3 +170,9 @@ game.help = function() {
  
  
 };
+
+game.playSound = function(soundId)
+{
+		console.log("Playing " + soundId + " Sound");
+		$("#"+soundId).get(0).play();
+}

@@ -80,6 +80,7 @@ function buzzOn( id ){
 		console.log("Bad Buzz - Ignoring");
 	}
 	else{
+		game.playSound("buzzIn");
 		console.log("buzz in from player: " + id );
 		gapi.hangout.data.setValue("Buzzer", "false");
 		gapi.hangout.data.setValue("BuzzedIn",(""+LocalPlayerNum));
@@ -132,5 +133,6 @@ function help() {
 	window.open("https://bvdtechcom.ipage.com/jeopardy/Sue/help.html")
  
 }
+
 
 

@@ -57,6 +57,7 @@ host.questionCorrect = function(){
 		//find out who is selected
 		var buzzed = gapi.hangout.data.getValue("BuzzedIn");
 		if ( buzzed != null && parseInt(buzzed) >= 0 && parseInt(buzzed) <= 3 ) {
+			game.playSound("Applause");
 			host.adjustScore( buzzed, amount );
 		}
 		else {
