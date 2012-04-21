@@ -303,7 +303,7 @@ printer.displayDaily = function() {
 };
 
 
-=======
+
 printer.displayIntermission = function() { 
 	console.log("RUNNING printer.displayIntermission");
 	if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE ) {
@@ -339,7 +339,7 @@ printer.podiumAlign = function() {
 	if(gapi.hangout.layout.isChatPaneVisible()) {
 		console.log("Moving left");
 		for(var i = 0; i < players; i++) {	
-			$("#podium" + i).css("left","-5%");
+			$("#podium" + i).css("left","-56%");
 		}
 	}
 	else{
