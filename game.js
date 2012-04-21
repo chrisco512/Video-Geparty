@@ -11,6 +11,7 @@ The game object determines the flow of the game by tracking and setting the vari
 state values.  In VG, there is a concept of a game STATE and game MODE.  STATE
 can vary between:
 START: which is meant to be the initial state where a host is selected
+SETUP: Calls the setup functions to populate board questions from server
 SELECT: state enables host functions such as selecting the next question.
 ANSWER: displays answer and fires buzzer timer and buzzer enable functions 
 A MODE state variable tracks the Geparty round, whether Single, Double, or Final.
@@ -46,12 +47,29 @@ game.isHost = function( /* insert player id var here */ ) {
 
 game.startGame = function()
 {
-	board.setBoard();
+	gapi.hangout.data.setValue("Mode",cnst.SINGLE);
 	console.log("Running Start Game");
 	game.setHost();
-	gapi.hangout.data.setValue("Mode",cnst.SINGLE);
+	host.growMustache();
 	// game.setPlayers();
 	// setLocalPlayerNum();
+	setTimeout("board.setBoard()", 200);
+	game.setState( cnst.SETUP );
+};
+
+game.startGameDouble = function()
+{
+	gapi.hangout.data.setValue("Mode",cnst.DOUBLE);
+	console.log("Running Start Game Double");
+	setTimeout("board.setBoard()", 200);
+	game.setState( cnst.SETUP );
+};
+
+game.startGameFinal = function()
+{
+	gapi.hangout.data.setValue("Mode",cnst.FINAL);
+	console.log("Running Start Game Final");
+	setTimeout("board.setBoard()", 200);
 	game.setState( cnst.SETUP );
 };
 

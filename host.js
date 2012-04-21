@@ -18,6 +18,20 @@ game.isHost() function.
 	-name
 end attributes */
 
+host.growMustache = function() {
+	var imageResource = gapi.hangout.av.effects.createImageResource("https://bvdtechcom.ipage.com/jeopardy/Jeff/trebek_transparent.png");
+	var overlay = imageResource.createFaceTrackingOverlay({
+		trackingFeature: gapi.hangout.av.effects.FaceTrackingFeature.NOSE_TIP,
+		scaleWithFace: true,
+		rotateWithFace: true,
+		//offset: {x: 0, y: 0},
+		//scale: 1,
+		//rotation: 0
+	});
+	overlay.setVisible(true);
+	console.log("mustache grown");
+};
+
 host.pullID = function(){
 	return (gapi.hangout.getParticipantId());
 };
@@ -90,6 +104,7 @@ host.questionCorrect = function(){
 	{
 		//for next release
 	} 
+
 	var controller = gapi.hangout.data.getValue("BuzzedIn");
 	gapi.hangout.data.setValue("boardController", controller);
 };

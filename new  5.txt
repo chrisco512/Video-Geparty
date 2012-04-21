@@ -1,0 +1,23 @@
+Player1
+googleId
+displayIndex
+Name
+
+Player2
+...
+
+Player3
+...
+
+Host
+...
+
+plyr1index: 2
+hostindex: 1
+
+"12H3"
+
+if( 
+
+
+https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&response_type=token&client_id=812741506391.apps.googleusercontent.com
