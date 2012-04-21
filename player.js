@@ -81,7 +81,7 @@ player.buzzIn = function()
 	buzzOn( LocalPlayerNum );
 };
 
-player.isController(){
+player.isController = function(){
 	if(gapi.hangout.data.getValue("boardController") == getGoogleId){
 		return true;
 	}
