@@ -6,7 +6,8 @@ if (typeof host == 'undefined') { host = {}; }
 if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
-
+if (typeof effects == 'undefined') { effects = {}; }
+if (typeof explode == 'undefined') { explode = {}; }
 /*
 The player object stores pertinent functions to be accessed by the players.  
 In Video Geparty, players have relatively few functions, as most of the game

@@ -5,7 +5,8 @@ if (typeof host == 'undefined') { host = {}; }
 if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
-
+if (typeof effects == 'undefined') { effects = {}; }
+if (typeof explode == 'undefined') { explode = {}; }
 /*
 Note to Team: When coding and testing, make extensive use of console.log for debugging purposes.
 Javascript can be a messy language and outputs to the console (hidden from browser view)
