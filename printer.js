@@ -92,12 +92,8 @@ printer.display = function(currentState) {
 		}
 		else{
 		//Show the problem, with solution for host
-<<<<<<< HEAD
 			playSound('https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3');
-=======
-			//playSound('https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3');
 			$("#dailyDouble").get(0).play();
->>>>>>> 41348fb4dfafc30cdf823f8b9ed7e49ee04e4d91
 			printer.displayDaily();
 		}		
 	}
