@@ -145,6 +145,7 @@ board.setUpJQuery = function() {
 						var ques = gapi.hangout.data.getValue("dailyDoubleQ");		
 						console.log("setUpJQuery: attempting to set state...");						
 						if(cat == m && ques == n){
+							gapi.hangout.data.setValue("soundEffect", "dailyDouble");
 							game.setState( cnst.DAILY );
 						}
 						else{
@@ -195,6 +196,26 @@ board.removeFromGrid = function(cat,q) {
 	gridStr = (gridStr.substr(0, qNum) + "0" + gridStr.substr(qNum+1));
 	gapi.hangout.data.setValue( "cat"+cat+"_grid", gridStr );
 	console.log("hiding cat"+cat+"_q"+q+": cat"+cat+"_grid = "+gridStr);
+};
+
+board.isEmpty = function() {
+	return(
+		gapi.hangout.data.getValue("cat0_grid") == "00000" &&
+		gapi.hangout.data.getValue("cat1_grid") == "00000" &&
+		gapi.hangout.data.getValue("cat2_grid") == "00000" &&
+		gapi.hangout.data.getValue("cat3_grid") == "00000" &&
+		gapi.hangout.data.getValue("cat4_grid") == "00000" &&
+		gapi.hangout.data.getValue("cat5_grid") == "00000"
+		);
+};
+
+board.makeEmpty = function() {
+	gapi.hangout.data.setValue("cat0_grid","00000");
+	gapi.hangout.data.setValue("cat1_grid","00000");
+	gapi.hangout.data.setValue("cat2_grid","00000");
+	gapi.hangout.data.setValue("cat3_grid","00000");
+	gapi.hangout.data.setValue("cat4_grid","00000");
+	gapi.hangout.data.setValue("cat5_grid","00000");
 };
 
 /*board.removeButton = function(){

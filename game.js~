@@ -53,8 +53,7 @@ game.startGame = function()
 	host.growMustache();
 	// game.setPlayers();
 	// setLocalPlayerNum();
-	//setTimeout("board.setBoard()", 200);
-	board.setBoard();
+	setTimeout("board.setBoard()", 200);
 	game.setState( cnst.SETUP );
 };
 
@@ -197,5 +196,12 @@ game.help = function() {
  
  
 };
+<<<<<<< HEAD
+=======
 
-
+game.playSound = function(soundId)
+{
+		console.log("Playing " + soundId + " Sound");
+		$("#"+soundId).get(0).play();
+}
+>>>>>>> 78b3f538d712cdb27c463ab505999ef7104892ee

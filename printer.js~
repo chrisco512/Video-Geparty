@@ -290,13 +290,10 @@ printer.displayDaily = function() {
 		}
 
 
-		else if(player.isController())
+		else
 		{
 			answerTable += "<tr><th>  Enter Bid: $<input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"\" />" + "<br><br><input type=\"button\" value=\"Submit Bid Now\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
-		}
-		
-		else{
-			answerTable += "<tr><th> Please wait </tr></th>";
+
 		}
 		return (answerTable);
 	});
@@ -337,15 +334,22 @@ printer.podiumAlign = function() {
 	console.log("RUNNING printer.podiumAlign");
 	var players = gapi.hangout.getParticipants().length;
 	if(gapi.hangout.layout.isChatPaneVisible()) {
+<<<<<<< HEAD
 		console.log("Moving left");
 		for(var i = 0; i < players; i++) {	
 			$("#podium" + i).css("left","-56%");
+=======
+		for(var i = 0; i < 4
+		; i++) {
+			console.log("Moving left");
+			$("#podium" + i).css("left","-68px");
+>>>>>>> 78b3f538d712cdb27c463ab505999ef7104892ee
 		}
 	}
 	else{
 		console.log("Moving right");
 		for(var i = 0; i < players; i++) {
-			$("#podium" + i).css("left","0%");
+			//$("#podium" + i).css("left","0px");
 		}
 	}
 };

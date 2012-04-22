@@ -27,6 +27,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Michael/vg.css" />
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/jquery.js"></script>
@@ -36,7 +37,17 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/player.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/printer.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/main.js"></script>
-
+=======
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Joel/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
+>>>>>>> 78b3f538d712cdb27c463ab505999ef7104892ee
 
 </head>
 <body onkeydown="getkey(event);">
