@@ -19,7 +19,7 @@ game.isHost() function.
 end attributes */
 
 host.growMustache = function() {
-	var imageResource = gapi.hangout.av.effects.createImageResource("https://bvdtechcom.ipage.com/jeopardy/Jeff/trebek_transparent.png");
+	var imageResource = gapi.hangout.av.effects.createImageResource("https://bvdtechcom.ipage.com/jeopardy/Michael/trebek_transparent.png");
 	var overlay = imageResource.createFaceTrackingOverlay({
 		trackingFeature: gapi.hangout.av.effects.FaceTrackingFeature.NOSE_TIP,
 		scaleWithFace: true,

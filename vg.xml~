@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Module>
+    <!-- /*
+ * Copyright (c) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */ -->
+  <ModulePrefs title="Starter App">
+	  <Require feature="rpc"/>
+	  <Require feature="views"/>
+  </ModulePrefs>
+  <Content type="html">
+  
+    <![CDATA[
+	<script src="//talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
+	<!-- The hangout API JavaScript. Always include this first -->
+<!DOCTYPE html>
+<html>
+<head>
+<<<<<<< HEAD
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Michael/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/main.js"></script>
+=======
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Joel/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
+>>>>>>> 78b3f538d712cdb27c463ab505999ef7104892ee
+
+</head>
+<body onkeydown="getkey(event);">
+<audio id="dailyDouble" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Michael/Daily Double.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Michael/Daily Double.ogg" type="audio/ogg"/>
+</audio>
+<audio id="Applause" preload="auto">
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Michael/Applause.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Michael/Applause.ogg" type="audio/ogg"/>
+</audio>
+<audio id="buzzIn" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/BuzzIn.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/BuzzIn.ogg" type="audio/ogg"/>
+</audio>
+<audio id="Final Reveal" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final Reveal.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final Reveal.ogg" type="audio/ogg"/>
+</audio>
+<audio id="Final" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.ogg" type="audio/ogg"/>
+</audio>
+<audio id="Time is up" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.ogg" type="audio/ogg"/>
+</audio>
+<table id="screen" class="screen" text-align="center" vertical-align="center">
+  <tr >
+    <td width="90%" height= "100%" >
+	<table id="board" class="imagetable">
+	</table>
+    </td>
+	
+	<!--This is a set of buttons for the host-->
+    <td width="20%" height="100%">
+      <table class="buttonTable">
+        <tr>
+          <td>
+            <INPUT
+		type="image"
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/help_icon.png"
+		name="Help"
+		id="btnHelp"
+		accesskey = "h"
+		onclick = "game.help();"
+		value = ""
+		title = "Help"
+          </td>
+        </tr>
+	<tr>
+          <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Unpressed.png'"
+		onclick="player.buzzIn();"
+		name="Buzzer" 
+		id="btnBuzzer" 
+		accesskey = "b" 
+		value = "" >
+          </td>
+        </tr>
+	 <tr>
+          <td>
+             <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Unpressed.png'"
+		onclick="host.questionCorrect();"
+		name="Correct Answer" 
+		id="btnRight"
+		accesskey = "a" 
+		value =""
+		title = "Correct Answer">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Unpressed.png'"
+		onclick="host.questionIncorrect();"
+		name="Wrong Answer" 
+		id="btnWrong"
+		accesskey = "w" 
+		value =""
+		title = "Wrong Answer">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Unpressed.png'"
+		onclick="toggle();"
+		name="Control Panel" 
+		id="btnControl"
+		accesskey = "c" 
+		
+		value ="">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Unpressed.png'"
+		id="btnRelease" 
+		onclick="host.releaseBuzzers();"
+		name="Release_Buzzer" 
+		accesskey = "r" 
+		
+		value ="">
+          </td>
+        </tr>
+        <tr>
+         <td>
+            <INPUT 
+		type="image" 
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Unpressed.png'"
+		onclick="javascript:confirm('Are you sure you want to quit')"
+		id="btnQuit"
+		name="Quit" 
+		accesskey = "q" 
+		value =""
+		title = "Quit">
+          </td>
+        </tr>      </table>
+    </td>
+  </tr>
+  <tr height="20%">
+  <td colspan="3" width="100%">
+  	<table align="center">
+		<tr id="podiums">
+			
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+</body>
+</html>
+
+
+]]></Content>
+</Module>
+
