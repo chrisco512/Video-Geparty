@@ -287,10 +287,13 @@ printer.displayDaily = function() {
 		}
 
 
-		else
+		else if(player.isController())
 		{
 			answerTable += "<tr><th>  Enter Bid: $<input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"\" />" + "<br><br><input type=\"button\" value=\"Submit Bid Now\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
-
+		}
+		
+		else{
+			answerTable += "<tr><th> Please wait </tr></th>";
 		}
 		return (answerTable);
 	});
