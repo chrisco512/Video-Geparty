@@ -90,7 +90,7 @@ printer.display = function(currentState) {
 	}
 	else if( currentState == cnst.DAILY ){
 		console.log("You've found the daily double for this round!");
-		console.log("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
+		console.lg("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
 		//setLocalPlayerNum();
 		if(gapi.hangout.data.getValue("displayQuestion") == "1"){
 		//If not host, show the solution
@@ -161,6 +161,9 @@ printer.displayBuzzerLights = function(){
 			$(".podium3" + id).css("background-color","black");
 			$(".podium2" + id).css("background-color","black");
 			$(".podium1" + id).css("background-color","black");
+			gapi.hangout.data.setValue("CountdownNum", "0");
+			console.log("sound value is loaded");
+			gapi.hangout.data.setValue("soundEffect", "Time_is_up");
 			break;
 		default:
 			console.log("Invalid value in displayBuzzerLights");
@@ -368,6 +371,12 @@ printer.playSounds = function()
 	{
 		console.log("Playing dailyDouble Sound");
 		$("#dailyDouble").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+	}
+	else if(curSound == "Time_is_up")
+	{
+		console.log("Playing Time is up sound");
+		$("#Time_is_up").get(0).play();
 		gapi.hangout.data.setValue("soundEffect", "");
 	}
 };

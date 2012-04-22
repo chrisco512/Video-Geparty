@@ -27,26 +27,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Michael/vg.css" />
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/cnst.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/jquery.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/board.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/game.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/host.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/player.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/printer.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/main.js"></script>
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Joel/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
 
 
 </head>
 <body onkeydown="getkey(event);">
 <audio id="dailyDouble" preload="auto">
-	<source	src="https://bvdtechcom.ipage.com/jeopardy/Michael/Daily Double.mp3" type="audio/mp3"/>
-	<source src="https://bvdtechcom.ipage.com/jeopardy/Michael/Daily Double.ogg" type="audio/ogg"/>
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.ogg" type="audio/ogg"/>
 </audio>
 <audio id="Applause" preload="auto">
-	<source src="https://bvdtechcom.ipage.com/jeopardy/Michael/Applause.mp3" type="audio/mp3"/>
-	<source src="https://bvdtechcom.ipage.com/jeopardy/Michael/Applause.ogg" type="audio/ogg"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.ogg" type="audio/ogg"/>
 </audio>
 <audio id="buzzIn" preload="auto">
 	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/BuzzIn.mp3" type="audio/mp3"/>
@@ -60,7 +60,7 @@
 	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.ogg" type="audio/ogg"/>
 </audio>
-<audio id="Time is up" preload="auto">
+<audio id="Time_is_up" preload="auto">
 	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.ogg" type="audio/ogg"/>
 </audio>
