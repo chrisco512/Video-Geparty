@@ -55,11 +55,6 @@ function toggle() {
 		gapi.hangout.data.setValue("displayControl","true");
 } 
 
-function playSound(soundfile) 
-{
- document.getElementById("dummy").innerHTML="<embed src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
- }
-
 function confirmQuit() {
 	var quit = confirm('Are you sure you want to quit')
 	if (quit == true)
@@ -84,6 +79,7 @@ function buzzOn( id ){
 		console.log("buzz in from player: " + id );
 		gapi.hangout.data.setValue("Buzzer", "false");
 		gapi.hangout.data.setValue("BuzzedIn",(""+LocalPlayerNum));
+		gapi.hangout.data.setValue("soundEffect", "BuzzIn");
 		console.log("buzzed in set to "+gapi.hangout.data.getValue("BuzzedIn"));
 		podiumCountdown();
 	}
@@ -124,6 +120,7 @@ function initGame() {
 function gameLoop() {
 	var currentState = game.getState();
 	console.log("RUNNING gameLoop.  State is currently " + currentState );
+	printer.playSounds();
 	printer.display(currentState);
 	//console.log("score init: "  + gapi.hangout.data.getValue("Player1Score") );
 	//console.log(myHost.id + " " + myHost.name );
@@ -133,5 +130,6 @@ function help() {
 	window.open("https://bvdtechcom.ipage.com/jeopardy/Sue/help.html")
  
 }
+
 
 

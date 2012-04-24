@@ -77,24 +77,27 @@ printer.display = function(currentState) {
 	else if( currentState == cnst.SELECT ) {
 		console.log("Select your question, host");
 		gapi.hangout.data.setValue("AlreadyReleased", "false");
-		printer.displayBoard();
-		board.setUpJQuery();
+		if(board.isEmpty()){
+			console.log("*** END OF ROUND ***");
+			printer.displayIntermission();
+		}
+		else{
+			printer.displayBoard();
+			board.setUpJQuery();
+		}
 		
 		//game.setPlayers();
 		//host.releaseBuzzers();
 	}
 	else if( currentState == cnst.DAILY ){
 		console.log("You've found the daily double for this round!");
-		console.log("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
+		console.lg("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
 		//setLocalPlayerNum();
 		if(gapi.hangout.data.getValue("displayQuestion") == "1"){
 		//If not host, show the solution
 			printer.displayQuestion();
 		}
 		else{
-		//Show the problem, with solution for host
-			playSound('https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3');
-			$("#dailyDouble").get(0).play();
 			printer.displayDaily();
 		}		
 	}
@@ -159,6 +162,9 @@ printer.displayBuzzerLights = function(){
 			$(".podium3" + id).css("background-color","black");
 			$(".podium2" + id).css("background-color","black");
 			$(".podium1" + id).css("background-color","black");
+			gapi.hangout.data.setValue("CountdownNum", "0");
+			console.log("sound value is loaded");
+			gapi.hangout.data.setValue("soundEffect", "Time_is_up");
 			break;
 		default:
 			console.log("Invalid value in displayBuzzerLights");
@@ -297,23 +303,81 @@ printer.displayDaily = function() {
 	});
 };
 
-printer.displayDaily2 = function() {
-	console.log("RUNNING printer.displayDaily2");
-	var answerTable = "<tr><th>" + "";//finish this
+
+
+printer.displayIntermission = function() { 
+	console.log("RUNNING printer.displayIntermission");
+	if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE ) {
+		$("#board").html( function() {
+			var startTable = "<tr><th>END OF SINGLE JEOPARDY</th></tr>";
+			if(game.isHost()){
+				startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameDouble();\">Start Double Jeopardy</button></th></tr>";
+			}
+			return(startTable);
+		});
+	}
+	else if(gapi.hangout.data.getValue("Mode") == cnst.DOUBLE ) {
+		$("#board").html( function() {
+			var startTable = "<tr><th>END OF DOUBLE JEOPARDY</th></tr>";
+			if(game.isHost()){
+				startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameFinal();\">Start Final Jeopardy</button></th></tr>";
+			}
+			return(startTable);
+		});
+	}
+	else {
+		$("#board").html( function() {
+			var startTable = "<tr><th>END OF FINAL JEOPARDY</th></tr>";
+			startTable += "<tr><th>Dee Bug McPlaceholderson wins!</th></tr>";
+			return(startTable);
+		});
+	}
 };
 
 printer.podiumAlign = function() {
 	console.log("RUNNING printer.podiumAlign");
+	var players = gapi.hangout.getParticipants().length;
 	if(gapi.hangout.layout.isChatPaneVisible()) {
-		for(var i = 0; i < 4; i++) {
-			console.log("Moving left");
-			$("#podium" + i).css("left","-68px");
+		console.log("Moving left");
+		for(var i = 0; i < players; i++) {	
+			$("#podium" + i).css("left","-56%");
 		}
 	}
 	else{
-		for(var i = 0; i < 4; i++) {
-			console.log("Moving right");
-			$("#podium" + i).css("left","46px");
+		console.log("Moving right");
+		for(var i = 0; i < players; i++) {
+			$("#podium" + i).css("left","0%");
 		}
+	}
+};
+//check to see if a sound effect needs to be played, if so, then call the game.playSound function
+printer.playSounds = function()
+{
+	var curSound = gapi.hangout.data.getValue("soundEffect");
+	if(curSound == "Applause")
+	{
+		console.log("Playing Applause Sound");
+		$("#Applause").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+
+	}
+	else if(curSound == "BuzzIn")
+	{
+		console.log("Playing BuzzIn Sound");
+		$("#buzzIn").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+
+	}
+	else if(curSound == "dailyDouble")
+	{
+		console.log("Playing dailyDouble Sound");
+		$("#dailyDouble").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
+	}
+	else if(curSound == "Time_is_up")
+	{
+		console.log("Playing Time is up sound");
+		$("#Time_is_up").get(0).play();
+		gapi.hangout.data.setValue("soundEffect", "");
 	}
 };

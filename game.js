@@ -48,12 +48,30 @@ game.isHost = function( /* insert player id var here */ ) {
 
 game.startGame = function()
 {
-	board.setBoard();
+	gapi.hangout.data.setValue("Mode",cnst.SINGLE);
 	console.log("Running Start Game");
 	game.setHost();
-	gapi.hangout.data.setValue("Mode",cnst.SINGLE);
+	host.growMustache();
 	// game.setPlayers();
 	// setLocalPlayerNum();
+	//setTimeout("board.setBoard()", 200);
+	board.setBoard();
+	game.setState( cnst.SETUP );
+};
+
+game.startGameDouble = function()
+{
+	gapi.hangout.data.setValue("Mode",cnst.DOUBLE);
+	console.log("Running Start Game Double");
+	setTimeout("board.setBoard()", 200);
+	game.setState( cnst.SETUP );
+};
+
+game.startGameFinal = function()
+{
+	gapi.hangout.data.setValue("Mode",cnst.FINAL);
+	console.log("Running Start Game Final");
+	setTimeout("board.setBoard()", 200);
 	game.setState( cnst.SETUP );
 };
 
@@ -120,6 +138,14 @@ game.setPlayers = function()
 
 	console.log("in setplayers function...host is: " + gapi.hangout.data.getValue("host") );
 	var arrParticipants = gapi.hangout.getParticipants();
+	var players = arrParticipants.length;
+	$("#podiums").html( function(){
+		var podiums;
+		for(var i = 0; i < players; i++) {
+			podiums += "<td><table class=\"podium\" id=\"podium" + i +"\"></table></td>";
+		}
+		return (podiums);
+	});
 	var playerNumber;
 	for(var i = 0; i < arrParticipants.length; i++)
 	{
@@ -172,3 +198,5 @@ game.help = function() {
  
  
 };
+
+

@@ -27,6 +27,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Sue/vg.css" />
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/jquery.js"></script>
@@ -36,10 +37,21 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/player.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/printer.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Sue/main.js"></script>
+=======
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Joel/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
+>>>>>>> origin/master
+
 
 </head>
 <body onkeydown="getkey(event);">
-<!-- <span id="dummy"></span> -->
 <audio id="dailyDouble" preload="auto">
 	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.ogg" type="audio/ogg"/>
@@ -47,6 +59,22 @@
 <audio id="Applause" preload="auto">
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.ogg" type="audio/ogg"/>
+</audio>
+<audio id="buzzIn" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/BuzzIn.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/BuzzIn.ogg" type="audio/ogg"/>
+</audio>
+<audio id="Final Reveal" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final Reveal.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final Reveal.ogg" type="audio/ogg"/>
+</audio>
+<audio id="Final" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.ogg" type="audio/ogg"/>
+</audio>
+<audio id="Time_is_up" preload="auto">
+	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.mp3" type="audio/mp3"/>
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.ogg" type="audio/ogg"/>
 </audio>
 <table id="screen" class="screen" text-align="center" vertical-align="center">
   <tr >
@@ -62,7 +90,7 @@
           <td>
             <INPUT
 		type="image"
-		src="https://bvdtechcom.ipage.com/jeopardy/Joel/help_icon.png"
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/help_icon.png"
 		name="Help"
 		id="btnHelp"
 		accesskey = "h"
@@ -75,11 +103,11 @@
           <td>
             <INPUT 
 		type="image" 
-		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png" 
-		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Pressed.png'" 
-		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png'" 
-		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Highlighted.png'"
-		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Buzzer_Button_Unpressed.png'"
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Buzzer_Button_Unpressed.png'"
 		onclick="player.buzzIn();"
 		name="Buzzer" 
 		id="btnBuzzer" 
@@ -91,11 +119,11 @@
           <td>
              <INPUT 
 		type="image" 
-		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png" 
-		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Pressed.png'" 
-		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png'" 
-		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Highlighted.png'"
-		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Correct_Answer_Unpressed.png'"
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Correct_Answer_Unpressed.png'"
 		onclick="host.questionCorrect();"
 		name="Correct Answer" 
 		id="btnRight"
@@ -108,11 +136,11 @@
           <td>
             <INPUT 
 		type="image" 
-		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png" 
-		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Pressed.png'" 
-		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png'" 
-		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Highlighted.png'"
-		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Wrong_Answer_Unpressed.png'"
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Wrong_Answer_Unpressed.png'"
 		onclick="host.questionIncorrect();"
 		name="Wrong Answer" 
 		id="btnWrong"
@@ -125,11 +153,11 @@
           <td>
             <INPUT 
 		type="image" 
-		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png" 
-		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Pressed.png'" 
-		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png'" 
-		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Highlighted.png'"
-		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Control_Panel_Unpressed.png'"
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Control_Panel_Unpressed.png'"
 		onclick="toggle();"
 		name="Control Panel" 
 		id="btnControl"
@@ -142,11 +170,11 @@
           <td>
             <INPUT 
 		type="image" 
-		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png" 
-		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Pressed.png'" 
-		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png'" 
-		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Highlighted.png'"
-		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Release_Buzzer_Unpressed.png'"
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Release_Buzzer_Unpressed.png'"
 		id="btnRelease" 
 		onclick="host.releaseBuzzers();"
 		name="Release_Buzzer" 
@@ -159,11 +187,11 @@
          <td>
             <INPUT 
 		type="image" 
-		src="https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png" 
-		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Pressed.png'" 
-		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png'" 
-		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Highlighted.png'"
-		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Joel/Quit_Button_Unpressed.png'"
+		src="https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Unpressed.png" 
+		onmousedown="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Pressed.png'" 
+		onmouseup="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Unpressed.png'" 
+		onmouseover="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Highlighted.png'"
+		onmouseout="this.src='https://bvdtechcom.ipage.com/jeopardy/Michael/Quit_Button_Unpressed.png'"
 		onclick="javascript:confirm('Are you sure you want to quit')"
 		id="btnQuit"
 		name="Quit" 
@@ -177,30 +205,8 @@
   <tr height="20%">
   <td colspan="3" width="100%">
   	<table align="center">
-		<tr>
-			<td>
-				<table class="podium" id="podium0">
-					
-                  </table>
-                </td>
-				
-              
-            
-			<td>
-			<table class="podium" id="podium1">
-				
-                  </table>
-                </td>
-				<td>
-			<table class="podium" id="podium2">
-				
-                  </table>
-                </td>				
-		<td>
- 		  <table class="podium" id="podium3">
-		    
-		  </table>
-	        </td>
+		<tr id="podiums">
+			
               </tr>
             </table>
           </td>
