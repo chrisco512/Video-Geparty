@@ -26,7 +26,6 @@
 	<!-- The hangout API JavaScript. Always include this first -->
 <!DOCTYPE html>
 <html>
-
 <link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Jesua/vg.css" />
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/jquery.js"></script>
