@@ -190,7 +190,7 @@ printer.displayControls = function() {
 printer.displayStart = function() { 
 	console.log("RUNNING printer.displayStart");
 	$("#board").html( function() {
-		var startTable = "<tr><th><div style=\"font-size:40px;\">GEPARTY!</div><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><br /><br /><button type=\"button\" onclick=\"game.startGame();\">Play Original</button><br /><br /><button type=\"button\" onclick=\"printer.displayCustom();setInputValueWithGoogleID();\">Play Custom</button><br /><br /></th></tr>";
+		var startTable = "<tr><th><div style=\"font-size:40px;\">GEPARTY!</div><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><br /><br /><button type=\"button\" onclick=\"game.startGame();\">Play Original</button><br /><br /><button type=\"button\" onclick=\"printer.displayCustom();setInputValueWithGoogleID();game.setCustomGame();\">Play Custom</button><br /><br /></th></tr>";
 		return(startTable);
 	});
 };

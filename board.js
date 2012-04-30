@@ -60,6 +60,11 @@ board.setBoard = function() {
 	else if(gameMode == cnst.FINAL){
 		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=FG";
 	}
+	else if(gameMode == cnst.CUSTOM){
+		var gameID = getGameID();
+		console.log("GameID is " + gameID);
+		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=CG&gameID=" + gameID;
+	}
 	else{
 		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=SG";
 		console.log("ERROR DETERMINING GAMEMODE (SINGLE, DOUBLE, FINAL). USING SINGLE. JEFF - MAKE THE GAME MODES!");
