@@ -13,8 +13,10 @@ there should be as few changes to the sharedState as possible.
 */
 
 /*attributes to be implemented
-	NO ATTRIBUTES IN PRINTER OBJECT
+	NO ATTRIBUTES IN PRINTER OBJECT (except for alreadyDisplayed)
 end attributes */
+
+var alreadyDisplayed = false;
 
 /* functions to be implemented
 	-display() --master function, assesses state and fires appropriate display functions
@@ -319,30 +321,35 @@ printer.displayDaily = function() {
 
 printer.displayIntermission = function() { 
 	console.log("RUNNING printer.displayIntermission");
-	if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE ) {
-		$("#board").html( function() {
-			var startTable = "<tr><th>END OF SINGLE JEOPARDY</th></tr>";
-			if(game.isHost()){
-				startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameDouble();\">Start Double Jeopardy</button></th></tr>";
-			}
-			return(startTable);
-		});
-	}
-	else if(gapi.hangout.data.getValue("Mode") == cnst.DOUBLE ) {
-		$("#board").html( function() {
-			var startTable = "<tr><th>END OF DOUBLE JEOPARDY</th></tr>";
-			if(game.isHost()){
-				startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameFinal();\">Start Final Jeopardy</button></th></tr>";
-			}
-			return(startTable);
-		});
-	}
-	else {
-		$("#board").html( function() {
-			var startTable = "<tr><th>END OF FINAL JEOPARDY</th></tr>";
-			startTable += "<tr><th>Dee Bug McPlaceholderson wins!</th></tr>";
-			return(startTable);
-		});
+	if(!alreadyDisplayed) {
+		if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE ) {
+			$("#board").html( function() {
+				var startTable = "<tr><th>END OF SINGLE JEOPARDY</th></tr>";
+				if(game.isHost()){
+					startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameDouble();\">Start Double Jeopardy</button></th></tr>";
+				}
+				alreadyDisplayed = true;
+				return(startTable);
+			});
+		}
+		else if(gapi.hangout.data.getValue("Mode") == cnst.DOUBLE ) {
+			$("#board").html( function() {
+				var startTable = "<tr><th>END OF DOUBLE JEOPARDY</th></tr>";
+				if(game.isHost()){
+					startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameFinal();\">Start Final Jeopardy</button></th></tr>";
+				}
+				alreadyDisplayed = true;
+				return(startTable);
+			});
+		}
+		else {
+			$("#board").html( function() {
+				var startTable = "<tr><th>END OF FINAL JEOPARDY</th></tr>";
+				startTable += "<tr><th>Dee Bug McPlaceholderson wins!</th></tr>";
+				alreadyDisplayed = true;
+				return(startTable);
+			});
+		}
 	}
 };
 

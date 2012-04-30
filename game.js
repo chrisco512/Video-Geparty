@@ -80,6 +80,7 @@ game.startGameDouble = function()
 	gapi.hangout.data.setValue("Mode",cnst.DOUBLE);
 	console.log("Running Start Game Double");
 	setTimeout("board.setBoard()", 200);
+	setTimeout("alreadyDisplayed = false", 9001);
 	game.setState( cnst.SETUP );
 };
 
@@ -88,6 +89,7 @@ game.startGameFinal = function()
 	gapi.hangout.data.setValue("Mode",cnst.FINAL);
 	console.log("Running Start Game Final");
 	setTimeout("board.setBoard()", 200);
+	setTimeout("alreadyDisplayed = false", 9001);
 	game.setState( cnst.SETUP );
 };
 
