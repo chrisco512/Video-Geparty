@@ -6,7 +6,8 @@ if (typeof host == 'undefined') { host = {}; }
 if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
-
+if (typeof effects == 'undefined') { effects = {}; }
+if (typeof explode == 'undefined') { explode = {}; }
 /*
 The host object stores pertinent functions to be accessed by the host.  
 These functions should only be accessed by a player verified by the 
@@ -19,14 +20,14 @@ game.isHost() function.
 end attributes */
 
 host.growMustache = function() {
-	var imageResource = gapi.hangout.av.effects.createImageResource("https://bvdtechcom.ipage.com/jeopardy/Michael/trebek_transparent.png");
+	var imageResource = gapi.hangout.av.effects.createImageResource("https://bvdtechcom.ipage.com/jeopardy/Jeff/trebek_transparent.png");
 	var overlay = imageResource.createFaceTrackingOverlay({
 		trackingFeature: gapi.hangout.av.effects.FaceTrackingFeature.NOSE_TIP,
 		scaleWithFace: true,
 		rotateWithFace: true,
-		//offset: {x: 0, y: 0},
-		//scale: 1,
-		//rotation: 0
+		offset: {x: .04, y: .34},
+		scale: .42,
+		rotation: .08
 	});
 	overlay.setVisible(true);
 	console.log("mustache grown");

@@ -6,7 +6,8 @@ if (typeof host == 'undefined') { host = {}; }
 if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
-
+if (typeof effects == 'undefined') { effects = {}; }
+if (typeof explode == 'undefined') { explode = {}; }
 /*
 The board object is meant to store functions that deal with the question and answer sets
 for each game.  It retrieves questions from the server, returns questions from the current

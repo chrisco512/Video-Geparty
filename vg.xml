@@ -26,7 +26,7 @@
 	<!-- The hangout API JavaScript. Always include this first -->
 <!DOCTYPE html>
 <html>
-<head>
+
 <link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Jesua/vg.css" />
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/cnst.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/jquery.js"></script>
@@ -37,8 +37,6 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/printer.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/main.js"></script>
 
-
-</head>
 <body onkeydown="getkey(event);">
 <audio id="dailyDouble" preload="auto">
 	<source	src="https://bvdtechcom.ipage.com/jeopardy/Michael/Daily Double.mp3" type="audio/mp3"/>
