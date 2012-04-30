@@ -6,8 +6,7 @@ if (typeof host == 'undefined') { host = {}; }
 if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
-if (typeof effects == 'undefined') { effects = {}; }
-if (typeof explode == 'undefined') { explode = {}; }
+
 /*
 The player object stores pertinent functions to be accessed by the players.  
 In Video Geparty, players have relatively few functions, as most of the game
@@ -62,7 +61,7 @@ function getGoogleId() { /* Returns the Google Id for the local user */
 	var thisLocalId = gapi.hangout.getParticipantId();
 	//console.log("thisLocalId: " + thisLocalId );
 	var thisParticipant = gapi.hangout.getParticipantById( thisLocalId );
-	//console.log("thisParticipant.person.id: " + thisParticipant.person.id );
+	console.log("thisParticipant.person.id: " + thisParticipant.person.id );
 	return( thisParticipant.person.id );
 }
 
@@ -70,7 +69,41 @@ function getThisParticipant() {   /* Returns the Participant Object for the loca
 	var thisLocalId = gapi.hangout.getParticipantId();
 	var thisParticipant = gapi.hangout.getParticipantById( thisLocalId );
 	return(thisParticipant);
-} 
+}
+
+function loadGames(){
+       var userID = getGoogleId();
+
+       var gameURL = "https://bvdtechcom.ipage.com/geparty/custom/usergames.php?userID=" + userID;
+
+       var content = $.ajax({
+               url: gameURL,
+               async: false
+           }).responseText;
+
+       console.log(content);
+       document.getElementById('gameDropDown').innerHTML = content;
+}
+
+function setInputValueWithGoogleID(){
+	$('input[name=userID]').val(getGoogleId());
+}
+
+function setInputValueWithGameID(){
+	$('input[name=gameID]').val(getGameID());
+	console.log("Setting gameID to: " + $('input[name=gameID]').val(getGameId()));
+}
+
+function getGameID(){
+	var GameID = $('#gameDropDown option:selected').attr('gameID');
+	return(GameID);
+}
+
+function getPlayableStatus(){
+	var playable = $('#gameDropDown option:selected').attr('playable');
+	console.log("Playable status is: " + playable);
+	return(playable);
+}
 
 // player.setName = function(playerNum) {   /*sets player Name */
 	// var playerName = gapi.hangout.getParticipantById(this.pullId());
