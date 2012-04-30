@@ -27,15 +27,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Jesua/vg.css" />
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/cnst.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/jquery.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/board.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/game.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/host.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/player.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Michael/printer.js"></script>
-<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Joel/main.js"></script>
+<link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/chris/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/chris/cnst.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/chris/jquery.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/chris/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/chris/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/chris/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/chris/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/chris/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/chris/main.js"></script>
 
 </head>
 <body onkeydown="getkey(event);">
