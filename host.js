@@ -6,7 +6,8 @@ if (typeof host == 'undefined') { host = {}; }
 if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
-
+if (typeof effects == 'undefined') { effects = {}; }
+if (typeof explode == 'undefined') { explode = {}; }
 /*
 The host object stores pertinent functions to be accessed by the host.  
 These functions should only be accessed by a player verified by the 
@@ -17,6 +18,20 @@ game.isHost() function.
 	-id
 	-name
 end attributes */
+
+host.growMustache = function() {
+	var imageResource = gapi.hangout.av.effects.createImageResource("https://bvdtechcom.ipage.com/jeopardy/Jeff/trebek_transparent.png");
+	var overlay = imageResource.createFaceTrackingOverlay({
+		trackingFeature: gapi.hangout.av.effects.FaceTrackingFeature.NOSE_TIP,
+		scaleWithFace: true,
+		rotateWithFace: true,
+		offset: {x: .04, y: .34},
+		scale: .42,
+		rotation: .08
+	});
+	overlay.setVisible(true);
+	console.log("mustache grown");
+};
 
 host.pullID = function(){
 	return (gapi.hangout.getParticipantId());
@@ -57,6 +72,8 @@ host.questionCorrect = function(){
 		//find out who is selected
 		var buzzed = gapi.hangout.data.getValue("BuzzedIn");
 		if ( buzzed != null && parseInt(buzzed) >= 0 && parseInt(buzzed) <= 3 ) {
+			//play Applause sound effect when returning to game loop
+			gapi.hangout.data.setValue("soundEffect", "Applause");
 			host.adjustScore( buzzed, amount );
 		}
 		else {
