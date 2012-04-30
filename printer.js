@@ -13,7 +13,7 @@ there should be as few changes to the sharedState as possible.
 */
 
 /*attributes to be implemented
-	NO ATTRIBUTES IN PRINTER OBJECT (except for alreadyDisplayed)
+	NO ATTRIBUTES IN PRINTER OBJECT (except for alreadyDisplayed, of course)
 end attributes */
 
 var alreadyDisplayed = false;

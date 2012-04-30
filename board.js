@@ -214,8 +214,8 @@ board.isEmpty = function() {
 		);
 };
 
-board.makeEmpty = function() {
-	gapi.hangout.data.setValue("cat0_grid","00000");
+board.makeEmptyish = function() { //makes testing fast but realistic (called from Wrong Answer button)
+	gapi.hangout.data.setValue("cat0_grid","00001");
 	gapi.hangout.data.setValue("cat1_grid","00000");
 	gapi.hangout.data.setValue("cat2_grid","00000");
 	gapi.hangout.data.setValue("cat3_grid","00000");
