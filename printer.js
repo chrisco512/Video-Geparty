@@ -227,11 +227,20 @@ printer.displayBoard = function() {
 				boardTable += "</th>";
 			}
 			boardTable += "</tr>";
+			
+			var boardVals = 0;
+			if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE)
+				boardVals = 2;
+			else if(gapi.hangout.data.getValue("Mode") == cnst.DOUBLE)
+				boardVals = 4;
+			else
+				boardVals = -42;
+			
 			for( var i = 0; i < 5; i++ ) {
 				boardTable += "<tr>";
 				for( var j = 0; j < 6; j++ ) {
 					if( (gapi.hangout.data.getValue( "cat" + j + "_grid" ).charAt(i)) == '1')
-						boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (2*i+2) + "00</td>";
+						boardTable += "<td id=\"cat" + j + "_q" + i + "\">$" + (boardVals*i+boardVals) + "00</td>";
 					else
 						boardTable += "<td id=\"cat" + j + "_q" + i + "\"></td>";
 						
