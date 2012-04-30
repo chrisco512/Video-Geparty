@@ -5,7 +5,8 @@ if (typeof host == 'undefined') { host = {}; }
 if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
-
+if (typeof effects == 'undefined') { effects = {}; }
+if (typeof explode == 'undefined') { explode = {}; }
 /*
 The printer object determines the output to each users screen.
 It is called each time the sharedState object changes.  For performance/latency reasons,
@@ -161,6 +162,9 @@ printer.displayBuzzerLights = function(){
 			$(".podium3" + id).css("background-color","black");
 			$(".podium2" + id).css("background-color","black");
 			$(".podium1" + id).css("background-color","black");
+			gapi.hangout.data.setValue("CountdownNum", "0");
+			console.log("sound value is loaded");
+			gapi.hangout.data.setValue("soundEffect", "Time_is_up");
 			break;
 		default:
 			console.log("Invalid value in displayBuzzerLights");
@@ -190,18 +194,9 @@ printer.displayControls = function() {
 printer.displayStart = function() { 
 	console.log("RUNNING printer.displayStart");
 	$("#board").html( function() {
-		var startTable = "<tr><th><div style=\"font-size:40px;\">GEPARTY!</div><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><br /><br /><button type=\"button\" onclick=\"game.startGame();\">Play Original</button><br /><br /><button type=\"button\" onclick=\"printer.displayCustom();setInputValueWithGoogleID();\">Play Custom</button><br /><br /></th></tr>";
+		var startTable = "<tr><th><button type=\"button\" onclick=\"game.startGame();\">I am host!  Let us start the game!</button></th></tr>";
 		return(startTable);
 	});
-};
-
-printer.displayCustom = function() { 
-	console.log("RUNNING printer.displayCustom");
-	$("#board").html( function() {
-		var startTable = "<tr><th><div style=\"font-size:40px;\">GEPARTY!</div><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><br /><br /><button type=\"button\" onclick=\"printer.displayStart();\">Back to Main Menu</button><br /><br /><form id = \"createGameForm\" action=\"https://bvdtechcom.ipage.com/geparty/custom/CustomGame.php\" method=\"POST\"><input type=\"hidden\" name=\"userID\" /><input type=\"hidden\" name=\"gameID\" value=\"-1\"/><input type=\"submit\" value=\"Create new Game\" /></form><br /><br />Game: <select name=\"gameDropDown\" id=\"gameDropDown\" onchange=\"setInputValueWithGameID()\"></select><br /><br /><button type=\"button\" onclick=\"game.startCustomGame();\">Play</button><form id = \"createGameForm\" action=\"https://bvdtechcom.ipage.com/geparty/custom/CustomGame.php\" method=\"POST\"><input type=\"hidden\" name=\"userID\" /><input type=\"hidden\" name=\"gameID\" /><input type=\"submit\" value=\"Edit\" /></form></th></tr>";
-		return(startTable);
-	});
-	loadGames();
 };
 
 printer.displayBoard = function() {
@@ -295,21 +290,25 @@ printer.displayDaily = function() {
 		//answerTable += "<input onkeydown=\"player.buzzIn()\" />";
 		//working up to isHost func
 		if( game.isHost() ) {
-			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"printer.displayAnswer();\">Move on</button>" + "</tr></th>";			
+			answerTable += "<tr><th> Wait until player has entered their bet! <button type=\"button\" onclick=\"host.checkBet();\">Move on</button>" + "</tr></th>";			
 		}
 
 
 		else if(player.isController())
 		{
-			answerTable += "<tr><th>  Enter Bid: $<input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"\" />" + "<br><br><input type=\"button\" value=\"Submit Bid Now\" id=\"dailysubmit\" onclick=\"player.isValidBet(getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
+			answerTable += "<tr><th>  Enter Bid: $<input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"\" />" + "<br><br><input type=\"button\" value=\"Submit Bid Now\" id=\"dailysubmit\" onclick=\"gapi.hangout.data.setValue(\"dailyBet\",getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
+
 		}
 		
 		else{
-			answerTable += "<tr><th> Please wait </tr></th>";
+			answerTable += "<tr><th>Please wait while the Daily Double is resolved.</tr></th>";
 		}
+		
 		return (answerTable);
 	});
 };
+
+
 
 printer.displayIntermission = function() { 
 	console.log("RUNNING printer.displayIntermission");
@@ -342,16 +341,17 @@ printer.displayIntermission = function() {
 
 printer.podiumAlign = function() {
 	console.log("RUNNING printer.podiumAlign");
+	var players = gapi.hangout.getParticipants().length;
 	if(gapi.hangout.layout.isChatPaneVisible()) {
-		for(var i = 0; i < 4; i++) {
-			console.log("Moving left");
-			$("#podium" + i).css("left","-68px");
+		console.log("Moving left");
+		for(var i = 0; i < players; i++) {	
+			$("#podium" + i).css("left","-56%");
 		}
 	}
 	else{
-		for(var i = 0; i < 4; i++) {
-			console.log("Moving right");
-			$("#podium" + i).css("left","46px");
+		console.log("Moving right");
+		for(var i = 0; i < players; i++) {
+			$("#podium" + i).css("left","0%");
 		}
 	}
 };

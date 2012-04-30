@@ -5,12 +5,14 @@ if (typeof host == 'undefined') { host = {}; }
 if (typeof printer == 'undefined') { printer = {}; }
 if (typeof game == 'undefined') { game = {}; }
 if (typeof cnst == 'undefined') { cnst = {}; }
-
+if (typeof effects == 'undefined') { effects = {}; }
+if (typeof explode == 'undefined') { explode = {}; }
 /*
 The game object determines the flow of the game by tracking and setting the various
 state values.  In VG, there is a concept of a game STATE and game MODE.  STATE
 can vary between:
 START: which is meant to be the initial state where a host is selected
+SETUP: Calls the setup functions to populate board questions from server
 SELECT: state enables host functions such as selecting the next question.
 ANSWER: displays answer and fires buzzer timer and buzzer enable functions 
 A MODE state variable tracks the Geparty round, whether Single, Double, or Final.
@@ -41,24 +43,6 @@ game.isHost = function( /* insert player id var here */ ) {
 	else {
 		console.log("False: You are " + theParticipant + " the host is " + theHost );
 		return (false);
-	}
-};
-
-game.startCustomGame = function(){
-	if(getPlayableStatus() == '1'){
-		console.log("Playing game with GameID: " + getGameID());
-		gapi.hangout.data.setValue("Mode",cnst.SINGLE);
-		console.log("Running Start Game");
-		game.setHost();
-		host.growMustache();
-		// game.setPlayers();
-		// setLocalPlayerNum();
-		//setTimeout("board.setBoard()", 200);
-		board.setBoard();
-		game.setState( cnst.SETUP );
-	}
-	else{
-		console.log("Playable status is 0");
 	}
 };
 
@@ -152,8 +136,6 @@ game.setPlayers = function()
 		console.log("i is " + i + ", and displayIndex is " + arrParticipants[i].displayIndex);
 	}*/
 
-	
-	
 	console.log("in setplayers function...host is: " + gapi.hangout.data.getValue("host") );
 	var arrParticipants = gapi.hangout.getParticipants();
 	var players = arrParticipants.length;
@@ -196,7 +178,7 @@ game.setPlayers = function()
 			playerNumber = arrParticipants[i].displayIndex;
 			$("#podium" + playerNumber).html("<tr><td class=\"podiumTop\" id=\"podiumlight" + playerNumber + "\" colspan=\"9\"></td></tr><tr><td class=\"podium" + playerNumber + "Score\" colspan=\"9\">$0</td></tr><tr class=\"podiumTimer" + playerNumber + "\" style=\"background-color:black\"><td class=\"podium5" + playerNumber + "\"></td><td class=\"podium4" + playerNumber + "\"></td><td class=\"podium3" + playerNumber + "\"></td><td class=\"podium2" + playerNumber + "\"></td><td class=\"podium1" + playerNumber + "\"></td><td class=\"podium2" + playerNumber + "\"></td><td class=\"podium3" + playerNumber + "\"></td><td class=\"podium4" + playerNumber + "\"></td><td class=\"podium5" + playerNumber + "\"></td></tr>");
 			console.log("About to set...Player"+playerNumber+"Id to " + playerId);
-		    gapi.hangout.data.setValue( ("Player" + playerNumber + "Id") , playerId);
+		    	gapi.hangout.data.setValue( ("Player" + playerNumber + "Id") , playerId);
 			gapi.hangout.data.setValue( ("Player" + playerNumber + "Name") , playerName);
 			gapi.hangout.data.setValue( ("Player" + playerNumber + "Score") , "0");
 			console.log("PLAYER" + playerNumber + "="+ gapi.hangout.data.getValue("Player" + playerNumber + "Name"));
@@ -216,3 +198,5 @@ game.help = function() {
  
  
 };
+
+

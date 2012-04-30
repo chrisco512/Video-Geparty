@@ -54,7 +54,11 @@ host.adjustScore = function(playerId, amount){
 
 host.questionCorrect = function(){
 	console.log( "running qcorr mode is " + gapi.hangout.data.getValue("Mode") );
-	if( gapi.hangout.data.getValue("Mode") == cnst.SINGLE )
+	if( game.getState == cnst.DAILY ){
+		gapi.hangout.data.setValue("soundEffect","Applause");
+		host.adjustScore(gapi.hangout.data.getValue("boardController"),gapi.hangout.getValue("dailyBet"));
+	}
+	else if( gapi.hangout.data.getValue("Mode") == cnst.SINGLE )
 	{
 		var q = parseInt(gapi.hangout.data.getValue("currentQ"));		//find out how much question is worth
 		console.log( "current question is:" + q );
@@ -80,7 +84,7 @@ host.questionCorrect = function(){
 			console.log("Not one of the players");
 		}
 	}
-	else if ("running qcorr mode is " + gapi.hangout.data.getValue("Mode") == cnst.DOUBLE )
+	else if (gapi.hangout.data.getValue("Mode") == cnst.DOUBLE )
 	{
 		var q = parseInt(gapi.hangout.data.getValue("currentQ"));  //find out how much question is worth
 		var amount = 0;
@@ -115,7 +119,13 @@ host.questionCorrect = function(){
 host.questionIncorrect = function(){
 	console.log("Firing question incorrect...");
 	console.log(gapi.hangout.data.getValue("Mode"));
-	if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE )
+	
+	if( game.getState == cnst.DAILY ){
+		gapi.hangout.data.setValue("soundEffect","Applause");
+		host.adjustScore(gapi.hangout.data.getValue("boardController"), 0 - gapi.hangout.getValue("dailyBet"));
+	}	
+	
+	else if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE )
 	{
 		var q = parseInt(gapi.hangout.data.getValue("currentQ"));		//find out how much question is worth
 		console.log( "current question is:" + q);
@@ -208,6 +218,12 @@ host.showQuestion = function(){
 	gapi.hangout.data.setValue("BuzzedIn","");
 };
 
+host.checkBet = function(){
+	var bet = gapi.hangout.data.getValue("dailyBet");
+	if(player.isValidBet(bet)){
+		printer.displayAnswer();
+	}
+};
  
 /* functions to be implemented
 	-constructor

@@ -61,7 +61,6 @@ board.setBoard = function() {
 		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=FG";
 	}
 	else{
-		game.setState(cnst.SELECT);
 		gameboardURL = "https://bvdtechcom.ipage.com/geparty/gameboard.php?type=SG";
 		console.log("ERROR DETERMINING GAMEMODE (SINGLE, DOUBLE, FINAL). USING SINGLE. JEFF - MAKE THE GAME MODES!");
 	}
