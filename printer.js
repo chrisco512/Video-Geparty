@@ -91,7 +91,7 @@ printer.display = function(currentState) {
 	}
 	else if( currentState == cnst.DAILY ){
 		console.log("You've found the daily double for this round!");
-		console.lg("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
+		console.log("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
 		//setLocalPlayerNum();
 		if(gapi.hangout.data.getValue("displayQuestion") == "1"){
 		//If not host, show the solution
