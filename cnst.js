@@ -27,3 +27,4 @@ cnst.DAILY = "DAILY";
 cnst.SINGLE = "SINGLE";
 cnst.DOUBLE = "DOUBLE";
 cnst.FINAL = "FINAL";
+cnst.CUSTOM = "CUSTOM";

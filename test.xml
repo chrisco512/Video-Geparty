@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Module>
+    <!-- /*
+ * Copyright (c) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */ -->
+  <ModulePrefs title="Starter App">
+	  <Require feature="rpc"/>
+	  <Require feature="views"/>
+  </ModulePrefs>
+  <Content type="html">
+  
+    <![CDATA[
+	<script src="//talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
+	<!-- The hangout API JavaScript. Always include this first -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" type="text/css" href="https://bvdtechcom.ipage.com/jeopardy/Ron/vg.css" />
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/cnst.js"></script> -->
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/jquery.js"></script>
+<!-- <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/board.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/game.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/host.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/player.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/printer.js"></script>
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/main.js"></script> -->
+<script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Ron/custom.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">
+$(document).ready( function(){	
+	console.log("DOCUMENT READY");
+	
+	initPage();
+	
+	//displayHideBox('0'); return false;
+	
+	/*<div id="grayBG" class="grayBox" style="display:none;"></div>
+	<div id="LightBox0" class="box_content" style="display:none;">
+		<table cellpadding="3" cellspacing="0" border="0">
+			<tr align="left">
+				<td colspan="2" bgcolor="#FFFFFF" style="padding:10px;"><div onclick="displayHideBox('0'); return false;" style="cursor:pointer;" align="right">X</div><p><form>Name of Game: <input type="text" name="name" /><br /></form> </p></td>
+			</tr>
+		</table>
+	</div>
+	<a href="#" onclick="displayHideBox('0'); return false;" id="cat1" style="color:grey">Category 1</a>*/
+	
+})
+</script>
+
+<style>
+.grayBox{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+.box_content {
+    position: fixed;
+    top: 25%;
+    left: 30%;
+    right: 30%;
+    width: 40%;
+    padding: 16px;
+    z-index:1002;
+    overflow: auto;
+}
+table.imagetable {
+	font-family: verdana,arial,sans-serif;
+	font-size:14px;
+	color:#FFFFFF;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+	/*height: 400px;*/
+	height: 100%;
+	/*width: 800px;*/
+	width: 100%;
+	
+	//left: 10 px;
+	//right: 10px;
+	//top: 4px;
+	/*
+	position: absolute;
+	*/
+	position: relative;
+	text-align: center;
+}
+table.imagetable tr {
+	height: 10%;
+}
+table.imagetable th {
+	background:#041692 url("cell-blue.jpg");
+	background-size: 100% 100%;
+	border-width: 3px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #000000;
+	width: 16.6%;
+	color: #eb9c31;
+	font-size: 1em;
+	height: 30%;
+}
+table.imagetable td {
+	background:#041692 url("cell-blue.jpg");
+	background-size: 100% 100%;
+	border-width: 3px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #000000;
+	font-size:2em;
+	color: #eb9c31;
+}
+table.screen {
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:0px;
+	margin-top:auto;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background:url("Background.png");
+}
+table.lightbox td{
+	background:#0000CC;
+	padding-top:30px;
+	padding-bottom:30px;
+	padding-left:70px;
+	padding-right:70px;
+	border-color:white;
+	border-width:5px;
+	border-style:solid;
+}
+div.cells{
+	font-size:20px;
+}
+TEXTAREA{
+	font-size:15px;
+	resize:none;
+}
+</style>
+
+</head>
+<body>
+<form action="javascript: changeSpan();" id="form">
+
+<!-- <table id="screen" class="screen" text-align="center" vertical-align="center">
+  <tr>
+    <td width="100%" height= "100%"> -->
+		<table id="board" class="imagetable">
+			<tr>
+				<td colspan="6">
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox0" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Name of Game:</div><TEXTAREA rows=1 cols=30 name="title" id="title"></TEXTAREA><br /><button type="button" onclick="displayHideBox('0'); changeTitleColor(); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					
+					</div>
+					<a href="#" onclick="displayHideBox('0'); changeTitleColor(); return false;" id="titlebox" style="color:grey">Name of Game</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox1" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Category:</div><TEXTAREA rows=1 cols=30 name="cat1" id="cat1"></TEXTAREA><br /><button type="button" onclick="displayHideBox('1'); changeCategoryColor('1'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('1'); changeCategoryColor('1'); return false;" id="catbox1" style="color:grey">Category 1</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox2" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Category:</div><TEXTAREA rows=1 cols=30 name="cat2" id="cat2"></TEXTAREA><br /><button type="button" onclick="displayHideBox('2'); changeCategoryColor('2'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('2'); changeCategoryColor('2'); return false;" id="catbox2" style="color:grey">Category 2</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox3" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Category:</div><TEXTAREA rows=1 cols=30 name="cat3" id="cat3"></TEXTAREA><br /><button type="button" onclick="displayHideBox('3'); changeCategoryColor('3'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('3'); changeCategoryColor('3'); return false;" id="catbox3" style="color:grey">Category 3</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox4" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Category:</div><TEXTAREA rows=1 cols=30 name="cat4" id="cat4"></TEXTAREA><br /><button type="button" onclick="displayHideBox('4'); changeCategoryColor('4'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('4'); changeCategoryColor('4'); return false;" id="catbox4" style="color:grey">Category 4</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox5" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Category:</div><TEXTAREA rows=1 cols=30 name="cat5" id="cat5"></TEXTAREA><br /><button type="button" onclick="displayHideBox('5'); changeCategoryColor('5'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('5'); changeCategoryColor('5'); return false;" id="catbox5" style="color:grey">Category 5</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox6" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Category:</div><TEXTAREA rows=1 cols=30 name="cat6" id="cat6"></TEXTAREA><br /><button type="button" onclick="displayHideBox('6'); changeCategoryColor('6'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('6'); changeCategoryColor('6'); return false;" id="catbox6" style="color:grey">Category 6</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox7" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat1_q1" id="cat1_q1"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat1_a1" id="cat1_a1"></TEXTAREA><br /><button type="button" onclick="displayHideBox('7'); changeQuestionColor('1','1'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('7'); changeQuestionColor('1','1'); return false;" id="cat1_q1box" style="color:grey">100</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox8" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat2_q1" id="cat2_q1"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat2_a1" id="cat2_a1"></TEXTAREA><br /><button type="button" onclick="displayHideBox('8'); changeQuestionColor('2','1'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('8'); changeQuestionColor('2','1'); return false;" id="cat2_q1box" style="color:grey">100</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox9" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat3_q1" id="cat3_q1"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat3_a1" id="cat3_a1"></TEXTAREA><br /><button type="button" onclick="displayHideBox('9'); changeQuestionColor('3','1'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('9'); changeQuestionColor('3','1'); return false;" id="cat3_q1box" style="color:grey">100</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox10" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat4_q1" id="cat4_q1"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat4_a1" id="cat4_a1"></TEXTAREA><br /><button type="button" onclick="displayHideBox('10'); changeQuestionColor('4','1'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('10'); changeQuestionColor('4','1'); return false;" id="cat4_q1box" style="color:grey">100</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox11" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat5_q1" id="cat5_q1"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat5_a1" id="cat5_a1"></TEXTAREA><br /><button type="button" onclick="displayHideBox('11'); changeQuestionColor('5','1'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('11'); changeQuestionColor('5','1'); return false;" id="cat5_q1box" style="color:grey">100</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox12" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat6_q1" id="cat6_q1"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat6_a1" id="cat6_a1"></TEXTAREA><br /><button type="button" onclick="displayHideBox('12'); changeQuestionColor('6','1'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('12'); changeQuestionColor('6','1'); return false;" id="cat6_q1box" style="color:grey">100</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox13" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat1_q2" id="cat1_q2"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat1_a2" id="cat1_a2"></TEXTAREA><br /><button type="button" onclick="displayHideBox('13'); changeQuestionColor('1','2'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('13'); changeQuestionColor('1','2'); return false;" id="cat1_q2box" style="color:grey">200</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox14" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat2_q2" id="cat2_q2"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat2_a2" id="cat2_a2"></TEXTAREA><br /><button type="button" onclick="displayHideBox('14'); changeQuestionColor('2','2'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('14'); changeQuestionColor('2','2'); return false;" id="cat2_q2box" style="color:grey">200</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox15" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat3_q2" id="cat3_q2"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat3_a2" id="cat3_a2"></TEXTAREA><br /><button type="button" onclick="displayHideBox('15'); changeQuestionColor('3','2'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('15'); changeQuestionColor('3','2'); return false;" id="cat3_q2box" style="color:grey">200</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox16" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat4_q2" id="cat4_q2"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat4_a2" id="cat4_a2"></TEXTAREA><br /><button type="button" onclick="displayHideBox('16'); changeQuestionColor('4','2'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('16'); changeQuestionColor('4','2'); return false;" id="cat4_q2box" style="color:grey">200</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox17" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat5_q2" id="cat5_q2"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat5_a2" id="cat5_a2"></TEXTAREA><br /><button type="button" onclick="displayHideBox('17'); changeQuestionColor('5','2'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('17'); changeQuestionColor('5','2'); return false;" id="cat5_q2box" style="color:grey">200</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox18" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat6_q2" id="cat6_q2"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat6_a2" id="cat6_a2"></TEXTAREA><br /><button type="button" onclick="displayHideBox('18'); changeQuestionColor('6','2'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('18'); changeQuestionColor('6','2'); return false;" id="cat6_q2box" style="color:grey">200</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox19" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat1_q3" id="cat1_q3"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat1_a3" id="cat1_a3"></TEXTAREA><br /><button type="button" onclick="displayHideBox('19'); changeQuestionColor('1','3'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('19'); changeQuestionColor('1','3'); return false;" id="cat1_q3box" style="color:grey">300</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox20" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat2_q3" id="cat2_q3"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat2_a3" id="cat2_a3"></TEXTAREA><br /><button type="button" onclick="displayHideBox('20'); changeQuestionColor('2','3'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('20'); changeQuestionColor('2','3'); return false;" id="cat2_q3box" style="color:grey">300</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox21" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat3_q3" id="cat3_q3"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat3_a3" id="cat3_a3"></TEXTAREA><br /><button type="button" onclick="displayHideBox('21'); changeQuestionColor('3','3'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('21'); changeQuestionColor('3','3'); return false;" id="cat3_q3box" style="color:grey">300</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox22" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat4_q3" id="cat4_q3"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat4_a3" id="cat4_a3"></TEXTAREA><br /><button type="button" onclick="displayHideBox('22'); changeQuestionColor('4','3'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('22'); changeQuestionColor('4','3'); return false;" id="cat4_q3box" style="color:grey">300</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox23" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat5_q3" id="cat5_q3"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat5_a3" id="cat5_a3"></TEXTAREA><br /><button type="button" onclick="displayHideBox('23'); changeQuestionColor('5','3'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('23'); changeQuestionColor('5','3'); return false;" id="cat5_q3box" style="color:grey">300</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox24" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat6_q3" id="cat6_q3"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat6_a3" id="cat6_a3"></TEXTAREA><br /><button type="button" onclick="displayHideBox('24'); changeQuestionColor('6','3'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('24'); changeQuestionColor('6','3'); return false;" id="cat6_q3box" style="color:grey">300</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox25" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat1_q4" id="cat1_q4"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat1_a4" id="cat1_a4"></TEXTAREA><br /><button type="button" onclick="displayHideBox('25'); changeQuestionColor('1','4'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('25'); changeQuestionColor('1','4'); return false;" id="cat1_q4box" style="color:grey">400</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox26" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat2_q4" id="cat2_q4"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat2_a4" id="cat2_a4"></TEXTAREA><br /><button type="button" onclick="displayHideBox('26'); changeQuestionColor('2','4'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('26'); changeQuestionColor('2','4'); return false;" id="cat2_q4box" style="color:grey">400</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox27" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat3_q4" id="cat3_q4"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat3_a4" id="cat3_a4"></TEXTAREA><br /><button type="button" onclick="displayHideBox('27'); changeQuestionColor('3','4'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('27'); changeQuestionColor('3','4'); return false;" id="cat3_q4box" style="color:grey">400</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox28" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat4_q4" id="cat4_q4"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat4_a4" id="cat4_a4"></TEXTAREA><br /><button type="button" onclick="displayHideBox('28'); changeQuestionColor('4','4'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('28'); changeQuestionColor('4','4'); return false;" id="cat4_q4box" style="color:grey">400</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox29" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat5_q4" id="cat5_q4"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat5_a4" id="cat5_a4"></TEXTAREA><br /><button type="button" onclick="displayHideBox('29'); changeQuestionColor('5','4'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('29'); changeQuestionColor('5','4'); return false;" id="cat5_q4box" style="color:grey">400</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox30" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat6_q4" id="cat6_q4"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat6_a4" id="cat6_a4"></TEXTAREA><br /><button type="button" onclick="displayHideBox('30'); changeQuestionColor('6','4'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('30'); changeQuestionColor('6','4'); return false;" id="cat6_q4box" style="color:grey">400</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox31" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat1_q5" id="cat1_q5"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat1_a5" id="cat1_a5"></TEXTAREA><br /><button type="button" onclick="displayHideBox('31'); changeQuestionColor('1','5'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('31'); changeQuestionColor('1','5'); return false;" id="cat1_q5box" style="color:grey">500</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox32" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat2_q5" id="cat2_q5"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat2_a5" id="cat2_a5"></TEXTAREA><br /><button type="button" onclick="displayHideBox('32'); changeQuestionColor('2','5'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('32'); changeQuestionColor('2','5'); return false;" id="cat2_q5box" style="color:grey">500</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox33" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat3_q5" id="cat3_q5"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat3_a5" id="cat3_a5"></TEXTAREA><br /><button type="button" onclick="displayHideBox('33'); changeQuestionColor('3','5'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('33'); changeQuestionColor('3','5'); return false;" id="cat3_q5box" style="color:grey">500</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox34" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat4_q5" id="cat4_q5"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat4_a5" id="cat4_a5"></TEXTAREA><br /><button type="button" onclick="displayHideBox('34'); changeQuestionColor('4','5'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('34'); changeQuestionColor('4','5'); return false;" id="cat4_q5box" style="color:grey">500</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox35" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat5_q5" id="cat5_q5"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat5_a5" id="cat5_a5"></TEXTAREA><br /><button type="button" onclick="displayHideBox('35'); changeQuestionColor('5','5'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('35'); changeQuestionColor('5','5'); return false;" id="cat5_q5box" style="color:grey">500</a>
+				</td>
+				<td>
+					<div id="grayBG" class="grayBox" style="display:none;"></div>
+					<div id="LightBox36" class="box_content" style="display:none;">
+						<table cellpadding="3" cellspacing="0" border="0" class="lightbox">
+							<tr align="left">
+								<td colspan="2" bgcolor="#FFFFFF" align="center"><div class="cells">Question:</div><TEXTAREA rows=1 cols=30 name="cat6_q5" id="cat6_q5"></TEXTAREA><br /><div class="cells">Response:</div><TEXTAREA rows=1 cols=30 name="cat6_a5" id="cat6_a5"></TEXTAREA><br /><button type="button" onclick="displayHideBox('36'); changeQuestionColor('6','5'); return false;" style="cursor:pointer; float:right">SAVE</button></td>
+							</tr>
+						</table>
+					</div>
+					<a href="#" onclick="displayHideBox('36'); changeQuestionColor('6','5'); return false;" id="cat6_q5box" style="color:grey">500</a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="6" style="background:#0000CC">
+					<p style="font-size:20px;color:white">Make sure to fill in all fields before submitting!</p>
+					<div align="center"><input type="submit" name="customgame" value="Submit!" style="cursor:pointer"/></div>
+					<span style="color:red" id="spanID"></span>
+				</td>
+			</tr>
+		</table>
+    <!-- </td>
+  </tr>
+</table>
+      <!-- <table class="buttonTable">
+        <tr>
+          <td>
+            <button name="Help" class="button1" id="btnHelp" accesskey="h"><U>H</U>elp</button>
+          </td>
+        </tr>
+	<tr>
+          <td>
+            <button name="Buzzer" onclick="player.buzzIn();" class="button1"  id="btnBuzzer" accesskey="b" ><U>B</U>uzzer</button>
+          </td>
+        </tr>
+	 <tr>
+          <td>
+            <button name="Show Answer" onclick="host.showQuestion();" class="button1"  id="btnShow" accesskey="s" ><U>S</U>how Answer</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button name="Wrong Answer" class="button1" onclick="host.questionIncorrect();" id="btnWrong" accesskey="w" ><U>W</U>rong Answer</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button name="Control Panel" class="button1"  id="btnControl" accesskey="c" ><U>C</U>ontrol Panel</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button name="Release Buzzer" onclick="host.releaseBuzzers()" class="button1"  id="btnRelease" accesskey="r" ><U>R</U>elease Buzzer</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button name="Quit" class="button1"  id="btnQuit" accesskey="q" onclick="confirm('Are you sure you want to quit')"><U>Q</U>uit</button>
+          </td>
+        </tr>
+      </table> -->
+  <!-- <tr height="20%">
+  <td colspan="3" width="100%">
+  	<!-- <table align="center">
+		<tr>
+			<td>
+				<table class = "podium">
+					<tr>
+						<td class="podiumTop" id="podiumlight1" colspan="9">
+						</td>
+					</tr>
+                    <tr>
+						<td class="podiumScore" colspan="9">
+							$0
+						</td>
+					</tr>
+                    <tr class = "podiumTimer">
+                      <td class="podium5">
+                  
+                      </td>
+                      <td class="podium4">
+                  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium1">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium4">
+		  
+                      </td>
+                      <td class="podium5">
+		  
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+				
+              
+            
+			<td>
+			<table class="podium">
+				<tr>
+					<td class="podiumTop"  id="podiumlight2" colspan="9">
+                    </td>
+	            </tr>
+	            <tr>
+					<td class="podiumScore" colspan="9">
+						$0
+					</td>
+	            </tr>
+                <tr class="podiumTimer">
+                      <td class="podium5">
+                  
+                      </td>
+                      <td class="podium4">
+                  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium1">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium4">
+		  
+                      </td>
+                      <td class="podium5">
+		  
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+				<td>
+			<table class="podium">
+				<tr>
+					<td class="podiumTop" id="podiumlight3" colspan="9">
+                    </td>
+	            </tr>
+	            <tr>
+					<td class="podiumScore" colspan="9">
+						$0
+		 </td>
+	        </tr> 
+                <tr class="podiumTimer">
+                      <td class="podium5">
+                  
+                      </td>
+                      <td class="podium4">
+                  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium1">
+		  
+                      </td>
+                      <td class="podium2">
+		  
+                      </td>
+                      <td class="podium3">
+		  
+                      </td>
+                      <td class="podium4">
+		  
+                      </td>
+                      <td class="podium5">
+		  
+                      </td>
+                    </tr>
+                  </table>
+                </td>				
+		<td>
+ 		  <table class="podium" id="hostpodium">
+		    <tr>
+		      <td >
+			HOST
+		      </td>
+		    </tr>
+		  </table>
+	        </td>
+              </tr>
+            </table> -->
+          <!-- </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table> -->
+
+</form>
+</body>
+</html>
+
+
+
+]]></Content>
+</Module>
