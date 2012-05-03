@@ -14,8 +14,10 @@ there should be as few changes to the sharedState as possible.
 */
 
 /*attributes to be implemented
-	NO ATTRIBUTES IN PRINTER OBJECT
+	NO ATTRIBUTES IN PRINTER OBJECT (except for alreadyDisplayed, of course)
 end attributes */
+
+var alreadyDisplayed = false;
 
 /* functions to be implemented
 	-display() --master function, assesses state and fires appropriate display functions
@@ -197,7 +199,15 @@ printer.displayControls = function() {
 printer.displayStart = function() { 
 	console.log("RUNNING printer.displayStart");
 	$("#board").html( function() {
-		var startTable = "<tr><th><button type=\"button\" onclick=\"game.startGame();\">I am host!  Let us start the game!</button></th></tr>";
+		var startTable = "<tr><th><div style=\"font-size:40px;\">GEPARTY!</div><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><br /><br /><button type=\"button\" onclick=\"game.startGame();\">Play Original</button><br /><br /><button type=\"button\" onclick=\"printer.displayCustom();setInputValueWithGoogleID();game.setCustomGame();\">Play Custom</button><br /><br /></th></tr>";
+		return(startTable);
+	});
+};
+
+printer.displayCustom = function() { 
+	console.log("RUNNING printer.displayCustom");
+	$("#board").html( function() {
+		var startTable = "<tr><th><div style=\"font-size:40px;\">GEPARTY!</div><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><hr style=\"color:#eb9c31;background-color:#eb9c31;\" /><br /><br /><button type=\"button\" onclick=\"printer.displayStart();\">Back to Main Menu</button><br /><br /><form id = \"createGameForm\" action=\"https://bvdtechcom.ipage.com/geparty/custom/CustomGame.php\" method=\"POST\"><input type=\"hidden\" name=\"userID\" /><input type=\"hidden\" name=\"gameID\" value=\"-1\"/><input type=\"submit\" value=\"Create new Game\" /></form><br /><br />Game: <select name=\"gameDropDown\" id=\"gameDropDown\" onchange=\"setInputValueWithGameID()\"></select><br /><br /><button type=\"button\" onclick=\"game.startCustomGame();\">Play</button><form id = \"createGameForm\" action=\"https://bvdtechcom.ipage.com/geparty/custom/CustomGame.php\" method=\"POST\"><input type=\"hidden\" name=\"userID\" /><input type=\"hidden\" name=\"gameID\" /><input type=\"submit\" value=\"Edit\" /></form></th></tr>";
 		return(startTable);
 	});
 };
@@ -327,30 +337,35 @@ printer.submitBet = function(bet){
 
 printer.displayIntermission = function() { 
 	console.log("RUNNING printer.displayIntermission");
-	if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE ) {
-		$("#board").html( function() {
-			var startTable = "<tr><th>END OF SINGLE JEOPARDY</th></tr>";
-			if(game.isHost()){
-				startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameDouble();\">Start Double Jeopardy</button></th></tr>";
-			}
-			return(startTable);
-		});
-	}
-	else if(gapi.hangout.data.getValue("Mode") == cnst.DOUBLE ) {
-		$("#board").html( function() {
-			var startTable = "<tr><th>END OF DOUBLE JEOPARDY</th></tr>";
-			if(game.isHost()){
-				startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameFinal();\">Start Final Jeopardy</button></th></tr>";
-			}
-			return(startTable);
-		});
-	}
-	else {
-		$("#board").html( function() {
-			var startTable = "<tr><th>END OF FINAL JEOPARDY</th></tr>";
-			startTable += "<tr><th>Dee Bug McPlaceholderson wins!</th></tr>";
-			return(startTable);
-		});
+	if(!alreadyDisplayed) {
+		if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE ) {
+			$("#board").html( function() {
+				var startTable = "<tr><th>END OF SINGLE JEOPARDY</th></tr>";
+				if(game.isHost()){
+					startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameDouble();\">Start Double Jeopardy</button></th></tr>";
+				}
+				alreadyDisplayed = true;
+				return(startTable);
+			});
+		}
+		else if(gapi.hangout.data.getValue("Mode") == cnst.DOUBLE ) {
+			$("#board").html( function() {
+				var startTable = "<tr><th>END OF DOUBLE JEOPARDY</th></tr>";
+				if(game.isHost()){
+					startTable += "<tr><th><button type=\"button\" onclick=\"game.startGameFinal();\">Start Final Jeopardy</button></th></tr>";
+				}
+				alreadyDisplayed = true;
+				return(startTable);
+			});
+		}
+		else {
+			$("#board").html( function() {
+				var startTable = "<tr><th>END OF FINAL JEOPARDY</th></tr>";
+				startTable += "<tr><th>Dee Bug McPlaceholderson wins!</th></tr>";
+				alreadyDisplayed = true;
+				return(startTable);
+			});
+		}
 	}
 };
 

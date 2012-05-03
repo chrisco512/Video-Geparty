@@ -58,6 +58,31 @@ game.isController = function(){
 	
 };
 
+		
+		
+game.setCustomGame = function(){
+	console.log("Setting gameMode to Custom");
+	gapi.hangout.data.setValue("Mode",cnst.CUSTOM);
+};
+
+game.startCustomGame = function(){
+	if(getPlayableStatus() == '1'){
+		console.log("Playing game with GameID: " + getGameID());
+		console.log("Running Custom Game");
+		game.setHost();
+		host.growMustache();
+		// game.setPlayers();
+		// setLocalPlayerNum();
+		//setTimeout("board.setBoard()", 200);
+		board.setBoard();
+		game.setState( cnst.SETUP );
+	}
+	else{
+		return false;
+	}
+	
+};
+
 
 
 
@@ -79,6 +104,7 @@ game.startGameDouble = function()
 	gapi.hangout.data.setValue("Mode",cnst.DOUBLE);
 	console.log("Running Start Game Double");
 	setTimeout("board.setBoard()", 200);
+	setTimeout("alreadyDisplayed = false", 9001);
 	game.setState( cnst.SETUP );
 };
 
@@ -87,6 +113,7 @@ game.startGameFinal = function()
 	gapi.hangout.data.setValue("Mode",cnst.FINAL);
 	console.log("Running Start Game Final");
 	setTimeout("board.setBoard()", 200);
+	setTimeout("alreadyDisplayed = false", 9001);
 	game.setState( cnst.SETUP );
 };
 

@@ -38,31 +38,32 @@
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/printer.js"></script>
 <script type="text/javascript" src="https://bvdtechcom.ipage.com/jeopardy/Jesua/main.js"></script>
 
-
 </head>
 <body onkeydown="getkey(event);">
 <audio id="dailyDouble" preload="auto">
-	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3" type="audio/mp3"/>
+
+	<source  src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Daily Double.ogg" type="audio/ogg"/>
 </audio>
 <audio id="Applause" preload="auto">
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.mp3" type="audio/mp3"/>
-	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.ogg" type="audio/ogg"/>
+
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Applause.ogg" type="audio/ogg"/>	  	
 </audio>
 <audio id="buzzIn" preload="auto">
-	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/BuzzIn.mp3" type="audio/mp3"/>
+	<source  src="https://bvdtechcom.ipage.com/jeopardy/Joel/BuzzIn.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/BuzzIn.ogg" type="audio/ogg"/>
 </audio>
 <audio id="Final Reveal" preload="auto">
-	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final Reveal.mp3" type="audio/mp3"/>
+	<source  src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final Reveal.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final Reveal.ogg" type="audio/ogg"/>
-</audio>
+</audio>	  	
 <audio id="Final" preload="auto">
-	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.mp3" type="audio/mp3"/>
-	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.ogg" type="audio/ogg"/>
+	<source  src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.mp3" type="audio/mp3"/>  	
+	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Final.ogg" type="audio/ogg"/>	  	
 </audio>
 <audio id="Time_is_up" preload="auto">
-	<source	src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.mp3" type="audio/mp3"/>
+	<source  src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.mp3" type="audio/mp3"/>
 	<source src="https://bvdtechcom.ipage.com/jeopardy/Joel/Time is up.ogg" type="audio/ogg"/>
 </audio>
 <table id="screen" class="screen" text-align="center" vertical-align="center">
