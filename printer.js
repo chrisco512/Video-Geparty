@@ -225,7 +225,22 @@ printer.displayBoard = function() {
 		$("#board").addClass("controlpanel");
 		$("#board").html( function() {
 			var controlTable = "";
-			controlTable += "<table class=\"controlpanel\"><tr><td><form><tr><td><p class=\"pInstr\">Please choose a player.<br> You can either remove that player <br> or edit that player's score.</p><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg\" alt=\"Player 1\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\">Player 1</button></td><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg \" alt=\"Player 2\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\"> Player 2</button></td><td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg \" alt=\"Player 3\" width =\"100\" height=\"130\"><br><input type=\"Radio\" name = \"RadioButtons\"> Player 3</button></td></tr><tr><td><br><label for=\"score\">Last Score</label><br><input type=\"text\" name=\"score\" value = \"$0\" readonly = \"readonly\" /><br><input type = \"text\" name = \"adjustScore\" value = \"playerscore\" /><br><button name=\"EditScore\" class=\"button2\"  id=\"btnEditScore\" height=\"20\" width=\"60\" accesskey=\"e\" ><U>E</U>dit Score</button></td><td></td><td><br><button name=\"RemovePlayer\" class=\"button2\"  id=\"btnRemovePlayer\" accesskey=\"r\" ><U>R</U>emove</button><br><br><br>Please press the control panel button again when finished.</td></tr></form></td></tr></table>";
+			controlTable += "<table class=\"controlpanel\" colspan=\"" + (players - 1) + "\"><tr><td><form><tr><td><p class=\"pInstr\">Please choose a player.<br> You can either remove that player or edit that player's score.</p></td></tr><tr>"
+			var players = gapi.hangout.getParticipants().length;
+			for(var i=0; i<players; i++) {
+			//Don't print host
+				var temp = player.getGoogleIdByPlayerNum(i);
+				var hostID = gapi.hangout.data.getValue("host");
+				console.log("Temp: " + temp);
+				console.log("Host: " + hostID);
+				if(temp != hostID){
+					console.log("Temp != Host");
+					controlTable += "<td width=\"200\"><img src=\"http://i1074.photobucket.com/albums/w417/suerocher/manuel_small.jpg\" alt=\"Player " + i + "\" width =\"100\" height=\"130\"><br><input type=\"Radio\" id=\"Radio" + i + "\" value=\"" + i + "\" name=\"RadioButtons\">" + player.getName(i) + "</button></td>"
+				};
+			};
+			controlTable += "</tr><tr><td colspan=\"" + (players - 1) + "\"><br>Adjust Score by: $<input type=\"text\" name=\"adjustScore\" id=\"adjustScore\"/><br /><br /><br /><br /><button name=\"EditScore\" class=\"button2\"  id=\"btnEditScore\" height=\"20\" width=\"60\" accesskey=\"e\" onclick=\"";//Add adjustScore(localPlayerNum,value) here
+			controlTable += "\"><U>E</U>dit Score</button></td></tr>";
+			controlTable += "<tr><td colspan=\"" + (players - 1) + "\"><br><br><br>Please press the control panel button again when finished.</td></tr></form></td></tr></table>";
 			
 			return(controlTable);
 		});
