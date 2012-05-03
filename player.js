@@ -16,6 +16,10 @@ control is determined by the host.
 
 LocalPlayerNum = 0;
 
+player.getPlayerNum = function(){
+	return LocalPlayerNum;
+};
+
 function setLocalPlayerNum() {
 	
 	console.log("Running setlocalplayernum.................................");
@@ -80,13 +84,6 @@ function getThisParticipant() {   /* Returns the Participant Object for the loca
 player.buzzIn = function()
 {
 	buzzOn( LocalPlayerNum );
-};
-
-player.isController = function(){
-	if(gapi.hangout.data.getValue("boardController") == getGoogleId){
-		return true;
-	}
-	return false;
 };
 
 player.isValidBet = function(bet) {

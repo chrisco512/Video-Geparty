@@ -93,13 +93,16 @@ printer.display = function(currentState) {
 		console.log("You've found the daily double for this round!");
 		console.log("displayQuestion = " + gapi.hangout.data.getValue("displayQuestion"));
 		//setLocalPlayerNum();
-		if(gapi.hangout.data.getValue("displayQuestion") == "1"){
+		if(gapi.hangout.data.getValue("displayQuestion") == "1" && gapi.hangout.data.getValue("betSubmitted") == "1"){
 		//If not host, show the solution
 			printer.displayQuestion();
 		}
+		else if( gapi.hangout.data.getValue("betSubmitted") == "1" ){
+			printer.displayAnswer();
+		}
 		else{
 			printer.displayDaily();
-		}		
+		}			
 	}
 	printer.displayControls();
 	printer.displayScores();
@@ -205,6 +208,7 @@ printer.displayBoard = function() {
 	console.log("RUNNING printer.displayBoard");
 	gapi.hangout.data.setValue("BuzzedIn","");
 	gapi.hangout.data.setValue("displayQuestion","0");
+	gapi.hangout.data.setValue("betSubmitted","0");
 	if( game.isHost() && gapi.hangout.data.getValue("displayControl") == "true" ) 
 	{
 		$("#board").removeClass();
@@ -303,9 +307,9 @@ printer.displayDaily = function() {
 		}
 
 
-		else if(player.isController())
+		else if( game.isController() )
 		{
-			answerTable += "<tr><th>  Enter Bid: $<input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"\" />" + "<br><br><input type=\"button\" value=\"Submit Bid Now\" id=\"dailysubmit\" onclick=\"gapi.hangout.data.setValue(\"dailyBet\",getElementById('bidtext').value)\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
+			answerTable += "<tr><th>  Enter Bid: $<input type=\"text\" id=\"bidtext\" accesskey = \"t\" name=\"Bid Text Box\" value=\"\" />" + "<br><br><input type=\"button\" value=\"Submit Bid Now\" id=\"dailysubmit\" onclick=\"printer.submitBet(getElementById('bidtext').value);\" onkeydown=\"if(event.keyCode==13) getElementById('dailysubmit').click()\" />"+"</tr></th>";
 
 		}
 		
@@ -317,7 +321,9 @@ printer.displayDaily = function() {
 	});
 };
 
-
+printer.submitBet = function(bet){
+	gapi.hangout.data.setValue("dailyBet", bet);
+}
 
 printer.displayIntermission = function() { 
 	console.log("RUNNING printer.displayIntermission");

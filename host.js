@@ -56,7 +56,9 @@ host.questionCorrect = function(){
 	console.log( "running qcorr mode is " + gapi.hangout.data.getValue("Mode") );
 	if( game.getState == cnst.DAILY ){
 		gapi.hangout.data.setValue("soundEffect","Applause");
-		host.adjustScore(gapi.hangout.data.getValue("boardController"),gapi.hangout.getValue("dailyBet"));
+		var player = gapi.hangout.data.getValue("boardController");
+		var val = parseInt(gapi.hangout.getValue("dailyBet"));
+		host.adjustScore(player, val);
 	}
 	else if( gapi.hangout.data.getValue("Mode") == cnst.SINGLE )
 	{
@@ -77,6 +79,7 @@ host.questionCorrect = function(){
 		var buzzed = gapi.hangout.data.getValue("BuzzedIn");
 		if ( buzzed != null && parseInt(buzzed) >= 0 && parseInt(buzzed) <= 3 ) {
 			//play Applause sound effect when returning to game loop
+			gapi.hangout.data.setValue("boardController",buzzed);					
 			gapi.hangout.data.setValue("soundEffect", "Applause");
 			host.adjustScore( buzzed, amount );
 		}
@@ -101,6 +104,7 @@ host.questionCorrect = function(){
 		//find out who is selected
 		var buzzed = gapi.hangout.data.getValue("BuzzedIn");
 		if ( buzzed != null && parseInt(buzzed) >= 0 && parseInt(buzzed) <= 3 ) {
+			gapi.hangout.data.setValue("boardController",buzzed);		
 			host.adjustScore( buzzed, amount );
 		}
 		else {
@@ -112,8 +116,6 @@ host.questionCorrect = function(){
 		//for next release
 	} 
 
-	var controller = gapi.hangout.data.getValue("BuzzedIn");
-	gapi.hangout.data.setValue("boardController", controller);
 };
 
 host.questionIncorrect = function(){
@@ -122,9 +124,10 @@ host.questionIncorrect = function(){
 	
 	if( game.getState == cnst.DAILY ){
 		gapi.hangout.data.setValue("soundEffect","Applause");
-		host.adjustScore(gapi.hangout.data.getValue("boardController"), 0 - gapi.hangout.getValue("dailyBet"));
+		var player = gapi.hangout.data.getValue("boardController");
+		var val = 0 - parseInt(gapi.hangout.getValue("dailyBet"));
+		host.adjustScore(player, val);
 	}	
-	
 	else if(gapi.hangout.data.getValue("Mode") == cnst.SINGLE )
 	{
 		var q = parseInt(gapi.hangout.data.getValue("currentQ"));		//find out how much question is worth
@@ -219,9 +222,10 @@ host.showQuestion = function(){
 };
 
 host.checkBet = function(){
-	var bet = gapi.hangout.data.getValue("dailyBet");
+	var bet = parseInt(gapi.hangout.data.getValue("dailyBet"));
 	if(player.isValidBet(bet)){
-		printer.displayAnswer();
+		gapi.hangout.data.setValue("betSubmitted","1");
+		game.setState(cnst.DAILY);
 	}
 };
  

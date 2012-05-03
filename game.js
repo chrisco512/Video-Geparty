@@ -46,6 +46,21 @@ game.isHost = function( /* insert player id var here */ ) {
 	}
 };
 
+game.isController = function(){
+	var theController = gapi.hangout.data.getValue("boardController")
+	var theParticipant = player.getPlayerNum();
+	if(theParticipant == theController){
+		return true;
+	}
+	else{
+		return false;
+	}
+	
+};
+
+
+
+
 game.startGame = function()
 {
 	gapi.hangout.data.setValue("Mode",cnst.SINGLE);
